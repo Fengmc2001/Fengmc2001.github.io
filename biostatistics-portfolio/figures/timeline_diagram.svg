@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="420" viewBox="0 0 980 420">
+  <style>
+    .title { font: bold 24px sans-serif; }
+    .subtitle { font: 16px sans-serif; }
+    .label { font: bold 18px sans-serif; }
+    .text { font: 15px sans-serif; }
+    .axis { stroke: #222; stroke-width: 2; }
+    .box { fill: #f7f7f7; stroke: #555; stroke-width: 1.5; rx: 8; ry: 8; }
+    .dead { fill: #fce4e4; stroke: #c44; }
+    .survive { fill: #e7f4e8; stroke: #4a8; }
+    .note { fill: #eef3ff; stroke: #668; }
+    .line { stroke: #333; stroke-width: 3; }
+    .dashed { stroke: #777; stroke-width: 2; stroke-dasharray: 7 5; }
+  </style>
+  <text x="40" y="40" class="title">Landmark analysis and survivor selection</text>
+  <text x="40" y="68" class="subtitle">Time axis example at day 30</text>
+
+  <line x1="170" y1="120" x2="900" y2="120" class="axis"/>
+  <line x1="170" y1="240" x2="900" y2="240" class="axis"/>
+  <line x1="390" y1="80" x2="390" y2="300" class="dashed"/>
+  <text x="350" y="70" class="label">Day 30</text>
+
+  <text x="40" y="125" class="label">Treatment group</text>
+  <text x="40" y="245" class="label">Control group</text>
+
+  <line x1="170" y1="120" x2="310" y2="120" class="line"/>
+  <rect x="310" y="95" width="160" height="50" class="dead"/>
+  <text x="322" y="125" class="text">Early deaths / toxicity</text>
+
+  <line x1="470" y1="120" x2="860" y2="120" class="line"/>
+  <rect x="620" y="95" width="220" height="50" class="survive"/>
+  <text x="635" y="125" class="text">Selected survivors after day 30</text>
+
+  <line x1="170" y1="240" x2="860" y2="240" class="line"/>
+  <rect x="560" y="215" width="220" height="50" class="box"/>
+  <text x="575" y="245" class="text">Ordinary survivors after day 30</text>
+
+  <rect x="120" y="325" width="770" height="70" class="note"/>
+  <text x="140" y="352" class="text">Naive full-period analysis includes early harmful events.</text>
+  <text x="140" y="375" class="text">Landmark analysis starts at day 30 and removes people who died before that point,</text>
+  <text x="140" y="398" class="text">so the treatment group may look better only because fragile patients were already excluded.</text>
+</svg>
