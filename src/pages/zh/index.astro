@@ -1,0 +1,109 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HorizontalCard from "../../components/HorizontalCard.astro";
+import { getCollection } from "astro:content";
+import createSlug from "../../lib/createSlug";
+
+const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const lastPosts = posts.slice(0, 3);
+
+const noteCopy: Record<string, { title: string; description: string; badge?: string }> = {
+  "reproducible-analysis": {
+    title: "可复现数据分析检查清单",
+    description: "关于如何组织分析代码、表格、图形和报告，使研究结果便于核查与复用的实践性笔记。",
+    badge: "数据分析",
+  },
+  "academic-writing": {
+    title: "作为研究基础设施的学术写作",
+    description: "关于如何使用提纲、文献引用和 LaTeX 文档，使研究思路更易修订和追踪的简短思考。",
+    badge: "学术写作",
+  },
+  "research-proposal": {
+    title: "如何构建生物统计学研究计划",
+    description: "关于如何将临床问题转化为研究设计、统计假设、分析计划和预期贡献的研究笔记。",
+    badge: "研究计划",
+  },
+};
+---
+
+<BaseLayout
+  title="Fengmc | 生物统计学个人主页"
+  description="围绕生物统计学、临床研究方法学和可复现数据分析的个人学术主页。"
+  sideBarActiveItemID="home"
+  lang="zh-CN"
+>
+  <div class="pb-12 mt-5">
+    <div class="text-xl py-1">个人学术主页</div>
+    <div class="text-5xl font-bold">Fengmc</div>
+    <div class="text-3xl py-3 font-bold">生物统计学与数据分析</div>
+    <div class="py-2">
+      <text class="text-lg">
+        我的关注方向包括生物统计学、临床研究方法学、因果推断和可复现数据分析。
+        本网站用于整理个人学术简介、研究计划、写作样例以及数据分析项目，
+        并展示如何将具体研究问题转化为清晰的研究设计和统计分析方案。
+      </text>
+    </div>
+    <div class="mt-8">
+      <a class="btn" href="/zh/projects">查看研究内容</a>
+      <a href="/zh/cv" class="btn btn-outline ml-5">查看 CV</a>
+    </div>
+  </div>
+
+  <div>
+    <div class="text-3xl w-full font-bold mb-2">代表性内容</div>
+  </div>
+
+  <HorizontalCard
+    title="生物统计学研究计划"
+    img="/research.svg"
+    desc="围绕临床研究方法学、研究设计和统计推理组织的研究计划项目。"
+    url="/zh/projects"
+    target="_self"
+    badge="研究"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="临床数据分析流程"
+    img="/analysis.svg"
+    desc="用于清洗、建模、可视化和报告临床或生物医学数据的可复现分析流程。"
+    url="/zh/projects"
+    target="_self"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="学术写作样例"
+    img="/writing.svg"
+    desc="使用 LaTeX 准备的研究计划、技术笔记和结构化学术写作样例。"
+    url="/zh/projects"
+    target="_self"
+    badge="写作"
+  />
+
+  <div>
+    <div class="text-3xl w-full font-bold mb-5 mt-10">研究笔记</div>
+  </div>
+
+  {
+    lastPosts.map((post) => {
+      const copy = noteCopy[post.slug] ?? {
+        title: post.data.title,
+        description: post.data.description,
+        badge: post.data.badge,
+      };
+
+      return (
+        <>
+          <HorizontalCard
+            title={copy.title}
+            img={post.data.heroImage}
+            desc={copy.description}
+            url={"/blog/" + createSlug(post.data.title, post.slug)}
+            target="_self"
+            badge={copy.badge}
+          />
+          <div class="divider my-0" />
+        </>
+      );
+    })
+  }
+</BaseLayout>

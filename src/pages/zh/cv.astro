@@ -1,0 +1,91 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TimeLineElement from "../../components/cv/TimeLine.astro";
+---
+
+<BaseLayout
+  title="履历与研究简介"
+  description="围绕生物统计学、临床研究方法学和可复现数据分析的履历与研究简介。"
+  sideBarActiveItemID="cv"
+  lang="zh-CN"
+>
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">个人简介</div>
+  </div>
+
+  <div class="mb-10 text-justify">
+    我正在围绕生物统计学、临床研究方法学和可复现数据分析建立个人研究档案。
+    主要兴趣包括研究设计、因果推断、真实世界数据、统计建模以及清晰严谨的学术写作。
+    本页面是公开 CV 草稿，姓名、日期、正式资历和所属信息可在后续替换为最终版本。
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">教育与学术训练</div>
+  </div>
+
+  <div class="time-line-container grid gap-4 mb-10">
+    <TimeLineElement
+      title="研究生阶段学习"
+      subtitle="生物统计学及相关定量研究方法"
+    />
+    <TimeLineElement
+      title="学术训练"
+      subtitle="统计学、流行病学、生物医学研究与科学写作"
+    />
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">经历</div>
+  </div>
+
+  <div class="time-line-container mb-10">
+    <TimeLineElement
+      title="研究计划书撰写"
+      subtitle="研究设计、背景综述与统计分析计划"
+    >
+      注重临床相关性、方法学清晰度和写作的可复现性，撰写结构化研究计划书。
+    </TimeLineElement>
+    <TimeLineElement
+      title="数据分析实践"
+      subtitle="R、Python、统计建模与可视化"
+    >
+      构建包含数据清洗、模型拟合、假设检查、结果可视化和结论表达的分析流程。
+    </TimeLineElement>
+    <TimeLineElement
+      title="学术写作"
+      subtitle="LaTeX、文献综述与技术文档"
+    >
+      在结构、引用和可复现性方面保持清晰规范，准备研究笔记、研究计划和技术文档。
+    </TimeLineElement>
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">证书与学术活动</div>
+  </div>
+
+  <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li>
+      <a href="#" target="_blank">后续添加相关课程、证书或培训链接</a>
+    </li>
+    <li>
+      <a href="#" target="_blank">后续添加会议、海报展示或工作坊链接</a>
+    </li>
+  </ul>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">技能</div>
+  </div>
+
+  <ul class="list-disc md:columns-5 columns-2 mx-6">
+    <li>生物统计学</li>
+    <li>研究设计</li>
+    <li>因果推断</li>
+    <li>回归模型</li>
+    <li>生存分析</li>
+    <li>R</li>
+    <li>Python</li>
+    <li>LaTeX</li>
+    <li>数据可视化</li>
+    <li>可复现报告</li>
+  </ul>
+</BaseLayout>

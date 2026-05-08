@@ -1,0 +1,91 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TimeLineElement from "../../components/cv/TimeLine.astro";
+---
+
+<BaseLayout
+  title="履歴・研究プロフィール"
+  description="生物統計学、臨床研究方法論、再現可能なデータ解析に関する履歴と研究プロフィールです。"
+  sideBarActiveItemID="cv"
+  lang="ja"
+>
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">プロフィール</div>
+  </div>
+
+  <div class="mb-10 text-justify">
+    生物統計学、臨床研究方法論、再現可能なデータ解析を中心に研究プロフィールを構築しています。
+    関心領域は、研究デザイン、因果推論、リアルワールドデータ、統計モデリング、および明確な学術的文章作成です。
+    本ページは公開用 CV の草稿であり、氏名、年月、正式な所属・資格等は今後確定情報に差し替える予定です。
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">学歴・研究訓練</div>
+  </div>
+
+  <div class="time-line-container grid gap-4 mb-10">
+    <TimeLineElement
+      title="大学院での研究"
+      subtitle="生物統計学および関連する定量的研究方法"
+    />
+    <TimeLineElement
+      title="学術的訓練"
+      subtitle="統計学、疫学、生物医学研究、科学的文章作成"
+    />
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">経験</div>
+  </div>
+
+  <div class="time-line-container mb-10">
+    <TimeLineElement
+      title="研究計画書の作成"
+      subtitle="研究デザイン、背景整理、統計解析計画"
+    >
+      臨床的意義、方法論上の明確さ、再現可能な文章作成を重視し、構造化された研究計画書を作成しています。
+    </TimeLineElement>
+    <TimeLineElement
+      title="データ解析の実践"
+      subtitle="R、Python、統計モデリング、可視化"
+    >
+      データクリーニング、モデル構築、仮定の確認、結果の可視化、結論の伝達までを含む解析ワークフローを構築しています。
+    </TimeLineElement>
+    <TimeLineElement
+      title="学術的文章作成"
+      subtitle="LaTeX、文献レビュー、技術文書"
+    >
+      構成、引用、再現性に配慮しながら、研究ノート、研究計画、技術文書を作成しています。
+    </TimeLineElement>
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">資格・活動</div>
+  </div>
+
+  <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li>
+      <a href="#" target="_blank">関連する履修科目・修了証明を追記予定</a>
+    </li>
+    <li>
+      <a href="#" target="_blank">学会発表、ポスター発表、ワークショップ参加等を追記予定</a>
+    </li>
+  </ul>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">スキル</div>
+  </div>
+
+  <ul class="list-disc md:columns-5 columns-2 mx-6">
+    <li>生物統計学</li>
+    <li>研究デザイン</li>
+    <li>因果推論</li>
+    <li>回帰モデル</li>
+    <li>生存時間解析</li>
+    <li>R</li>
+    <li>Python</li>
+    <li>LaTeX</li>
+    <li>データ可視化</li>
+    <li>再現可能なレポート</li>
+  </ul>
+</BaseLayout>

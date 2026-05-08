@@ -1,0 +1,341 @@
+<div class="geometric-particles" aria-hidden="true">
+  <canvas id="network-particles-canvas"></canvas>
+</div>
+
+<style>
+  .geometric-particles {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 22% 18%, rgba(100, 116, 139, 0.045), transparent 26rem),
+      radial-gradient(circle at 78% 64%, rgba(71, 85, 105, 0.04), transparent 28rem),
+      linear-gradient(180deg, #fbfcfd 0%, #f8fafc 100%);
+  }
+
+  .geometric-particles canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    if (window.__networkParticlesCleanup) {
+      window.__networkParticlesCleanup();
+    }
+
+    const canvas = document.getElementById("network-particles-canvas");
+    if (!(canvas instanceof HTMLCanvasElement)) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const mobileQuery = window.matchMedia("(max-width: 768px)");
+    const palette = {
+      node: "rgba(51, 65, 85, 0.12)",
+      nodeSoft: "rgba(51, 65, 85, 0.045)",
+      edge: "rgba(51, 65, 85, 0.07)",
+      edgeSoft: "rgba(71, 85, 105, 0.045)",
+      symbol: "rgba(51, 65, 85, 0.085)",
+    };
+
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let animationFrame = 0;
+    let particles = [];
+    let glyphs = [];
+    let reduceMotion = mediaQuery.matches;
+    let isMobile = mobileQuery.matches;
+
+    const random = (min, max) => min + Math.random() * (max - min);
+    const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+
+    const createParticle = (type, x, y) => {
+      const radius = type === "network" ? random(8, 11) : random(2.2, 3.6);
+      const speed = type === "network" ? random(0.045, 0.075) : random(0.035, 0.07);
+      const angle = random(0, Math.PI * 2);
+
+      return {
+        type,
+        x,
+        y,
+        radius,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        angle: random(0, Math.PI * 2),
+        spin: (Math.random() > 0.5 ? 1 : -1) * random(0.0009, 0.0018),
+        phase: random(0, Math.PI * 2),
+      };
+    };
+
+    const seedParticles = () => {
+      const margin = 48;
+      const count = isMobile ? 18 : 34;
+      const networkCount = isMobile ? 3 : 5;
+      const seeded = [
+        createParticle("network", width * 0.18, height * 0.2),
+        createParticle("network", width * 0.72, height * 0.28),
+        createParticle("network", width * 0.28, height * 0.76),
+      ];
+
+      if (!isMobile) {
+        seeded.push(
+          createParticle("network", width * 0.82, height * 0.68),
+          createParticle("network", width * 0.52, height * 0.48),
+        );
+      }
+
+      while (seeded.length < networkCount) {
+        seeded.push(createParticle("network", random(margin, width - margin), random(margin, height - margin)));
+      }
+
+      while (seeded.length < count) {
+        seeded.push(createParticle("node", random(margin, width - margin), random(margin, height - margin)));
+      }
+
+      particles = seeded;
+      glyphs = [
+        { text: "β", x: width * 0.42, y: height * 0.18, angle: 0, spin: 0.0006 },
+        { text: "μ", x: width * 0.68, y: height * 0.62, angle: 0, spin: -0.0005 },
+        { text: "σ", x: width * 0.33, y: height * 0.83, angle: 0, spin: 0.00045 },
+        { text: "Σ", x: width * 0.86, y: height * 0.38, angle: 0, spin: -0.0004 },
+      ].slice(0, isMobile ? 2 : 4);
+    };
+
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      isMobile = mobileQuery.matches;
+      seedParticles();
+      draw();
+    };
+
+    const resolveBoundaryCollision = (particle) => {
+      if (particle.x < particle.radius) {
+        particle.x = particle.radius;
+        particle.vx = Math.abs(particle.vx);
+      } else if (particle.x > width - particle.radius) {
+        particle.x = width - particle.radius;
+        particle.vx = -Math.abs(particle.vx);
+      }
+
+      if (particle.y < particle.radius) {
+        particle.y = particle.radius;
+        particle.vy = Math.abs(particle.vy);
+      } else if (particle.y > height - particle.radius) {
+        particle.y = height - particle.radius;
+        particle.vy = -Math.abs(particle.vy);
+      }
+    };
+
+    const resolveParticleCollisions = () => {
+      for (let i = 0; i < particles.length; i += 1) {
+        for (let j = i + 1; j < particles.length; j += 1) {
+          const a = particles[i];
+          const b = particles[j];
+          const dx = b.x - a.x;
+          const dy = b.y - a.y;
+          const minDistance = a.radius + b.radius + 7;
+          const distanceSquared = dx * dx + dy * dy;
+
+          if (distanceSquared === 0 || distanceSquared > minDistance * minDistance) continue;
+
+          const distance = Math.sqrt(distanceSquared);
+          const nx = dx / distance;
+          const ny = dy / distance;
+          const overlap = (minDistance - distance) * 0.5;
+
+          a.x -= nx * overlap;
+          a.y -= ny * overlap;
+          b.x += nx * overlap;
+          b.y += ny * overlap;
+
+          const relativeVx = b.vx - a.vx;
+          const relativeVy = b.vy - a.vy;
+          const impulse = relativeVx * nx + relativeVy * ny;
+
+          if (impulse < 0) {
+            a.vx += impulse * nx;
+            a.vy += impulse * ny;
+            b.vx -= impulse * nx;
+            b.vy -= impulse * ny;
+          }
+        }
+      }
+    };
+
+    const update = () => {
+      if (reduceMotion) return;
+
+      for (const particle of particles) {
+        particle.phase += 0.006;
+        particle.vx += Math.cos(particle.phase) * 0.0018 + random(-0.0012, 0.0012);
+        particle.vy += Math.sin(particle.phase * 1.17) * 0.0018 + random(-0.0012, 0.0012);
+
+        const maxSpeed = particle.type === "network" ? 0.11 : 0.095;
+        particle.vx = clamp(particle.vx, -maxSpeed, maxSpeed);
+        particle.vy = clamp(particle.vy, -maxSpeed, maxSpeed);
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+        particle.angle += particle.spin;
+
+        resolveBoundaryCollision(particle);
+      }
+
+      resolveParticleCollisions();
+
+      for (const glyph of glyphs) {
+        glyph.angle += glyph.spin;
+      }
+    };
+
+    const drawMicroNetwork = (particle) => {
+      const offsets = [
+        { x: 0, y: -7 },
+        { x: -7, y: 6 },
+        { x: 7, y: 6 },
+      ];
+
+      const points = offsets.map((point) => {
+        const cos = Math.cos(particle.angle);
+        const sin = Math.sin(particle.angle);
+        return {
+          x: particle.x + point.x * cos - point.y * sin,
+          y: particle.y + point.x * sin + point.y * cos,
+        };
+      });
+
+      ctx.strokeStyle = palette.edge;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+      ctx.lineTo(points[1].x, points[1].y);
+      ctx.moveTo(points[0].x, points[0].y);
+      ctx.lineTo(points[2].x, points[2].y);
+      ctx.moveTo(points[1].x, points[1].y);
+      ctx.lineTo(points[2].x, points[2].y);
+      ctx.stroke();
+
+      for (const point of points) {
+        ctx.fillStyle = palette.node;
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, 2.6, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = palette.nodeSoft;
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, 5.4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    };
+
+    const drawNode = (particle) => {
+      ctx.fillStyle = palette.nodeSoft;
+      ctx.beginPath();
+      ctx.arc(particle.x, particle.y, particle.radius + 3, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = palette.node;
+      ctx.beginPath();
+      ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+      ctx.fill();
+    };
+
+    const drawConnections = () => {
+      const maxDistance = isMobile ? 56 : 72;
+
+      for (let i = 0; i < particles.length; i += 1) {
+        for (let j = i + 1; j < particles.length; j += 1) {
+          const a = particles[i];
+          const b = particles[j];
+          const dx = b.x - a.x;
+          const dy = b.y - a.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance > maxDistance) continue;
+
+          const opacity = clamp((1 - distance / maxDistance) * 0.085, 0.04, 0.085);
+          ctx.strokeStyle = `rgba(51, 65, 85, ${opacity})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+    };
+
+    const drawGlyphs = () => {
+      ctx.save();
+      ctx.font = "22px Georgia, Times New Roman, serif";
+      ctx.fillStyle = palette.symbol;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+
+      for (const glyph of glyphs) {
+        ctx.save();
+        ctx.translate(glyph.x, glyph.y);
+        ctx.rotate(glyph.angle);
+        ctx.fillText(glyph.text, 0, 0);
+        ctx.restore();
+      }
+
+      ctx.restore();
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+      drawConnections();
+
+      for (const particle of particles) {
+        if (particle.type === "network") {
+          drawMicroNetwork(particle);
+        } else {
+          drawNode(particle);
+        }
+      }
+
+      drawGlyphs();
+    };
+
+    const animate = () => {
+      update();
+      draw();
+      animationFrame = window.requestAnimationFrame(animate);
+    };
+
+    const restart = () => {
+      window.cancelAnimationFrame(animationFrame);
+      reduceMotion = mediaQuery.matches;
+      isMobile = mobileQuery.matches;
+      resize();
+
+      if (!reduceMotion) {
+        animationFrame = window.requestAnimationFrame(animate);
+      }
+    };
+
+    window.addEventListener("resize", restart, { passive: true });
+    mediaQuery.addEventListener("change", restart);
+    mobileQuery.addEventListener("change", restart);
+    window.__networkParticlesCleanup = () => {
+      window.cancelAnimationFrame(animationFrame);
+      window.removeEventListener("resize", restart);
+      mediaQuery.removeEventListener("change", restart);
+      mobileQuery.removeEventListener("change", restart);
+    };
+    restart();
+  })();
+</script>

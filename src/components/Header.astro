@@ -1,3 +1,39 @@
+---
+const pathname = Astro.url.pathname;
+const normalizedPath = pathname !== "/" && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+
+const locales = [
+  { code: "en", label: "English" },
+  { code: "ja", label: "日本語" },
+  { code: "zh", label: "中文" },
+];
+
+const currentLocale = normalizedPath === "/ja" || normalizedPath.startsWith("/ja/")
+  ? "ja"
+  : normalizedPath === "/zh" || normalizedPath.startsWith("/zh/")
+    ? "zh"
+    : "en";
+
+const pagePath = normalizedPath === "/ja" || normalizedPath === "/zh"
+  ? "/"
+  : normalizedPath.replace(/^\/(ja|zh)/, "") || "/";
+
+const localizedRoutes = {
+  "/": { en: "/", ja: "/ja/", zh: "/zh/" },
+  "/projects": { en: "/projects", ja: "/ja/projects", zh: "/zh/projects" },
+  "/cv": { en: "/cv", ja: "/ja/cv", zh: "/zh/cv" },
+};
+
+const currentRoutes = localizedRoutes[pagePath] ?? localizedRoutes["/"];
+const homeHref = localizedRoutes["/"][currentLocale];
+const languageLinks = locales
+  .filter((locale) => locale.code !== currentLocale)
+  .map((locale) => ({
+    ...locale,
+    href: currentRoutes[locale.code],
+  }));
+---
+
 <div
   class="sticky lg:hidden top-0 z-30 flex h-16 w-full justify-center bg-opacity-90 backdrop-blur transition-all duration-100 bg-base-100 text-base-content shadow-sm"
 >
@@ -10,8 +46,18 @@
       </label>
     </div>
     <div class="navbar-center">
-      <a class="btn btn-ghost normal-case text-xl" href="/">Fengmc</a>
+      <a class="btn btn-ghost normal-case text-xl" href={homeHref}>Fengmc</a>
     </div>
-    <div class="navbar-end"></div>
+    <div class="navbar-end">
+      <div class="flex items-center gap-1">
+        {languageLinks.map((link) => <a class="btn btn-ghost btn-xs sm:btn-sm whitespace-nowrap" href={link.href}>{link.label}</a>)}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="hidden lg:block fixed top-4 right-6 z-30">
+  <div class="flex items-center gap-1 rounded-lg bg-base-100/80 p-1 backdrop-blur">
+    {languageLinks.map((link) => <a class="btn btn-ghost btn-sm whitespace-nowrap" href={link.href}>{link.label}</a>)}
   </div>
 </div>
