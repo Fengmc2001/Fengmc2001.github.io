@@ -12,6 +12,6 @@ export default defineConfig({
   integrations: [mdx(), sitemap(), tailwind()],
   markdown: {
     remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex],
+    rehypePlugins: [[rehypeKatex, { output: 'html' }]],
   }
 });

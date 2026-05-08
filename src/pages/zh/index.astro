@@ -1,11 +1,15 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import HorizontalCard from "../../components/HorizontalCard.astro";
+import TimelineCurve from "../../components/TimelineCurve.astro";
 import { getCollection } from "astro:content";
 import createSlug from "../../lib/createSlug";
+import { featuredWorks, projectRoutes, workCard } from "../../lib/works";
 
 const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const works = await getCollection("works");
 const lastPosts = posts.slice(0, 3);
+const selectedWorks = featuredWorks(works, "zh");
 
 const noteCopy: Record<string, { title: string; description: string; badge?: string }> = {
   "reproducible-analysis": {
@@ -24,6 +28,25 @@ const noteCopy: Record<string, { title: string; description: string; badge?: str
     badge: "研究计划",
   },
 };
+
+const timelineItems = [
+  {
+    date: "2020",
+    title: "高中毕业",
+  },
+  {
+    date: "2022",
+    title: "来到日本",
+  },
+  {
+    date: "2023",
+    title: "入学",
+  },
+  {
+    date: "2026年5月9日",
+    title: "开设主页",
+  },
+];
 ---
 
 <BaseLayout
@@ -63,36 +86,35 @@ const noteCopy: Record<string, { title: string; description: string; badge?: str
     </div>
   </div>
 
+  <TimelineCurve
+    title="歩み"
+    quote="少年易老学难成"
+    items={timelineItems}
+  />
+
   <div>
     <div class="text-2xl w-full font-bold mb-2">代表性内容</div>
   </div>
 
-  <HorizontalCard
-    title="多语言 MLLM 忘却研究"
-    img="/analysis.svg"
-    desc="围绕大规模多模态模型中跨语言一致性与可信遗忘行为展开的本科毕业研究。"
-    url="/zh/projects"
-    target="_self"
-    badge="AI"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="生物统计与因果推断"
-    img="/research.svg"
-    desc="关注标的试验模拟、因果推断、真实世界数据和临床研究方法论。"
-    url="/zh/projects"
-    target="_self"
-    badge="Research"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="统计编程与数据分析"
-    img="/writing.svg"
-    desc="使用 Python、R、SAS、SQL 进行统计分析、可视化和可重复报告。"
-    url="/zh/projects"
-    target="_self"
-    badge="Data"
-  />
+  {
+    selectedWorks.map((work) => {
+      const card = workCard(work, "zh", { useSummary: true, url: projectRoutes.zh });
+
+      return (
+        <>
+          <HorizontalCard
+            title={card.title}
+            img={card.img}
+            desc={card.desc}
+            url={card.url}
+            target="_self"
+            badge={card.badge}
+          />
+          <div class="divider my-0" />
+        </>
+      );
+    })
+  }
 
   <div>
     <div class="text-2xl w-full font-bold mb-4 mt-8">研究笔记</div>

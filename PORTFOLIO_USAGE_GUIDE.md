@@ -143,3 +143,19 @@ $$
 7. **提交发布**：完成检查后，运行标准的 Git 命令 (`git add .`, `git commit -m "add new paper"`, `git push`) 推送到 GitHub 自动部署。
 
 本指南至此结束。将此文档提供给任何辅助您的 AI 助手，它们即可完美地代您执行所有繁琐的代码迁移与页面排版工作。
+## ⚠️ 常见故障排查与结构规范 (Troubleshooting & Structural Conventions)
+
+### 1. 为什么项目链接 (URL) 打不开？
+**原因**：Astro 默认配置中，如果启用了 GENERATE_SLUG_FROM_TITLE = true，系统会根据文件标题自动生成 URL 路径。由于它会使用正则表达式过滤掉所有非英文字符，当您的文章标题为全中文或日文时，生成的 slug 会被错误地剥离，导致手动填写的 url 发生 404 错误。
+**解决方案**：已在 src/config.ts 中将 GENERATE_SLUG_FROM_TITLE 设置为 false。这意味着直接使用 Markdown 文件名作为 URL 路径。请务必用英文为文件命名（如 irt_etesting_system.md）。
+
+### 2. 为什么数学公式会重复出现两遍？
+**原因**：Astro 中的 rehype-katex 插件默认会同时输出视觉渲染的 HTML 标签和屏幕阅读器使用的 MathML 标签。在某些 Markdown 排版组件干扰下，原本应该隐藏的 MathML 标签被显示出来，导致公式看起来出现两次。
+**解决方案**：已在 astro.config.mjs 中将 KaTeX 的输出模式强制设定为纯 HTML。以后无需担心此问题，正常使用双美元符号即可。
+
+### 3. 项目分类与插入 projects.astro 的最佳实践
+不要使用全局替换命令（如 sed）粗暴地替换 projects.astro，这极易导致卡片被插入到错误的区块（如 Research and analysis）甚至产生多份拷贝。
+请手动或精确匹配将项目插入到对应的分类下。分类规范：
+- **Research and analysis**: 核心的生统、因果推断研究计划、以及深度的学术研究项目。
+- **Writing and notes**: 类似于 IRT 系统这种课程演习、技术笔记、工程实现等。
+

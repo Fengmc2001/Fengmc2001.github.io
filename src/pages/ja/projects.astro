@@ -1,6 +1,16 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import HorizontalCard from "../../components/HorizontalCard.astro";
+import { getCollection } from "astro:content";
+import { workCard, worksBySection, workSectionTitles, type WorkSection } from "../../lib/works";
+
+const locale = "ja";
+const works = await getCollection("works");
+const sections: WorkSection[] = ["research", "writing"];
+const headingClass: Record<WorkSection, string> = {
+  research: "text-3xl w-full font-bold mb-5",
+  writing: "text-2xl w-full font-bold mb-4 mt-8",
+};
 ---
 
 <BaseLayout
@@ -10,57 +20,31 @@ import HorizontalCard from "../../components/HorizontalCard.astro";
   lang="ja"
   showParticles={false}
 >
-  <div>
-    <div class="text-3xl w-full font-bold mb-5">研究と解析</div>
-  </div>
+  {
+    sections.map((section) => (
+      <>
+        <div>
+          <div class={headingClass[section]}>{workSectionTitles[locale][section]}</div>
+        </div>
 
-  <HorizontalCard
-    title="多言語 MLLM における忘却研究"
-    img="/analysis.svg"
-    desc="大規模マルチモーダルモデルにおける忘却の多言語一貫性に関する卒業研究。信頼できる AI とモデル挙動分析に関心があります。"
-    url="/ja/projects"
-    target="_self"
-    badge="AI"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="生物統計学の研究計画"
-    img="/research.svg"
-    desc="臨床研究方法論、因果推論、標的試験エミュレーション、リアルワールドデータ解析を中心とした研究計画。"
-    url="/ja/projects"
-    target="_self"
-    badge="Research"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="再現可能なデータ解析ワークフロー"
-    img="/writing.svg"
-    desc="Python、R、SAS、SQL、可視化、再現可能なレポート作成を含む統計プログラミングの実践。"
-    url="/ja/projects"
-    target="_self"
-    badge="Data"
-  />
+        {worksBySection(works, locale, section).map((work) => {
+          const card = workCard(work, locale);
 
-  <div>
-    <div class="text-2xl w-full font-bold mb-4 mt-8">文章作成とノート</div>
-  </div>
-
-  <HorizontalCard
-    title="学術文書サンプル"
-    img="/writing.svg"
-    desc="方法論の明確さと再現性を重視した研究計画、技術レポート、構造化された LaTeX 文書。"
-    url="/ja/projects"
-    target="_self"
-    badge="Writing"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="統計・AI・生物統計学ノート"
-    img="/research.svg"
-    desc="統計学、機械学習、因果推論、統計モデリング、生物医学研究方法論に関する学習ノート。"
-    url="/ja/projects"
-    target="_self"
-    badge="Notes"
-  />
+          return (
+            <>
+              <HorizontalCard
+                title={card.title}
+                img={card.img}
+                desc={card.desc}
+                url={card.url}
+                target="_self"
+                badge={card.badge}
+              />
+              <div class="divider my-0" />
+            </>
+          );
+        })}
+      </>
+    ))
+  }
 </BaseLayout>
-
