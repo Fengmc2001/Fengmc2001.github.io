@@ -1,0 +1,78 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HorizontalCard from "../components/HorizontalCard.astro";
+import { getCollection } from "astro:content";
+import createSlug from "../lib/createSlug"
+
+const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const last_posts = posts.slice(0, 3);
+---
+
+<BaseLayout sideBarActiveItemID="home">
+  <div class="pb-12 mt-5">
+    <div class="text-xl py-1">Personal Portfolio</div>
+    <div class="text-5xl font-bold">I'm Fengmc</div>
+    <div class="text-3xl py-3 font-bold">Biostatistics and data analysis</div>
+    <div class="py-2">
+      <text class="text-lg">
+        I focus on biostatistics, clinical research methods, causal inference, and reproducible data analysis.
+        This site collects my academic profile, selected writing, research proposals, and analysis projects.
+      </text>
+    </div>
+    <div class="mt-8">
+      <a class="btn" href="/projects">View works</a>
+      <a href="/cv" class="btn btn-outline ml-5">View CV</a>
+    </div>
+  </div>
+
+  <div>
+    <div class="text-3xl w-full font-bold mb-2">Selected works</div>
+  </div>
+
+  <HorizontalCard
+    title="Biostatistics Research Proposal"
+    img="/research.svg"
+    desc="A research proposal focused on clinical research methodology, study design, and statistical reasoning."
+    url="/projects"
+    target="_self"
+    badge="Research"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Clinical Data Analysis Workflow"
+    img="/analysis.svg"
+    desc="A reproducible workflow for cleaning, modeling, visualizing, and reporting clinical or biomedical data."
+    url="/projects"
+    target="_self"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Academic Writing Samples"
+    img="/writing.svg"
+    desc="Research plans, technical notes, and structured writing samples prepared with LaTeX."
+    url="/projects"
+    target="_self"
+    badge="Writing"
+  />
+
+  <div>
+    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest notes</div>
+  </div>
+
+  {
+    last_posts.map((post) => (
+      <>
+        <HorizontalCard
+          title={post.data.title}
+          img={post.data.heroImage}
+          desc={post.data.description}
+          url={"/blog/" + createSlug(post.data.title, post.slug)}
+          target="_self"
+          badge={post.data.badge}
+        />
+        <div class="divider my-0" />
+      </>
+    ))
+  }
+</BaseLayout>

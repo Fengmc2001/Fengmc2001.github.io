@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://Fengmc2001.github.io/sitemap-index.xml

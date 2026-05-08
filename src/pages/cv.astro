@@ -1,0 +1,86 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TimeLineElement from "../components/cv/TimeLine.astro";
+---
+
+<BaseLayout title="Resume" sideBarActiveItemID="cv">
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Profile</div>
+  </div>
+
+  <div class="mb-10 text-justify">
+    I am building a research profile around biostatistics, clinical research methods, and reproducible data analysis.
+    My interests include study design, causal inference, real-world data, statistical modeling, and clear academic writing.
+    This page is a public CV draft; names, dates, and formal credentials can be replaced with finalized details.
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Education</div>
+  </div>
+
+  <div class="time-line-container grid gap-4 mb-10">
+    <TimeLineElement
+      title="Graduate Study"
+      subtitle="Biostatistics and related quantitative research methods"
+    />
+    <TimeLineElement
+      title="Academic Training"
+      subtitle="Statistics, epidemiology, biomedical research, and scientific writing"
+    />
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Experience</div>
+  </div>
+
+  <div class="time-line-container mb-10">
+    <TimeLineElement
+      title="Research Proposal Development"
+      subtitle="Study design, background synthesis, and statistical planning"
+    >
+      Developed structured research proposals with emphasis on clinical relevance, methodological clarity, and reproducible writing.
+    </TimeLineElement>
+    <TimeLineElement
+      title="Data Analysis Practice"
+      subtitle="R, Python, statistical modeling, and visualization"
+    >
+      Built analysis workflows for cleaning data, fitting models, checking assumptions, visualizing results, and communicating conclusions.
+    </TimeLineElement>
+    <TimeLineElement
+      title="Academic Writing"
+      subtitle="LaTeX, literature review, and technical documentation"
+    >
+      Prepared research notes, proposals, and technical documents with attention to structure, citations, and reproducibility.
+    </TimeLineElement>
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Certifications</div>
+  </div>
+
+  <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li>
+      <a href="#" target="_blank"> Add certification or coursework link</a>
+    </li>
+    <li>
+      <a href="#" target="_blank"> Add conference, poster, or workshop link</a>
+    </li>
+  </ul>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Skills</div>
+  </div>
+
+  <ul class="list-disc md:columns-5 columns-2 mx-6">
+    <li>Biostatistics</li>
+    <li>Study Design</li>
+    <li>Causal Inference</li>
+    <li>Regression Models</li>
+    <li>Survival Analysis</li>
+    <li>R</li>
+    <li>Python</li>
+    <li>LaTeX</li>
+    <li>Data Visualization</li>
+    <li>Reproducible Reports</li>
+  </ul>
+</BaseLayout>

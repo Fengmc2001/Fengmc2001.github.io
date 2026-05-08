@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Data analysis graphic</title>
+  <desc id="desc">A neutral dashboard-style illustration with charts and a model curve.</desc>
+  <rect width="960" height="540" fill="#f8fafc"/>
+  <rect x="118" y="94" width="724" height="352" rx="26" fill="#ffffff" stroke="#cbd5e1" stroke-width="4"/>
+  <rect x="172" y="150" width="172" height="118" rx="18" fill="#e2e8f0"/>
+  <rect x="394" y="150" width="394" height="118" rx="18" fill="#f1f5f9"/>
+  <path d="M424 232c42-74 84-74 126 0s84 74 126 0 84-74 126 0" fill="none" stroke="#2563eb" stroke-width="12" stroke-linecap="round"/>
+  <rect x="172" y="316" width="84" height="70" rx="12" fill="#bfdbfe"/>
+  <rect x="284" y="292" width="84" height="94" rx="12" fill="#93c5fd"/>
+  <rect x="396" y="260" width="84" height="126" rx="12" fill="#60a5fa"/>
+  <rect x="536" y="316" width="252" height="18" rx="9" fill="#94a3b8"/>
+  <rect x="536" y="364" width="194" height="18" rx="9" fill="#94a3b8"/>
+</svg>

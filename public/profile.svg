@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img" aria-labelledby="title desc">
+  <title id="title">Fengmc profile avatar</title>
+  <desc id="desc">A simple circular monogram avatar for a personal portfolio.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f5f4"/>
+      <stop offset="100%" stop-color="#d6d3d1"/>
+    </linearGradient>
+  </defs>
+  <rect width="300" height="300" fill="url(#bg)"/>
+  <circle cx="150" cy="150" r="104" fill="#ffffff" opacity="0.86"/>
+  <path d="M77 204c17-42 39-63 73-63s56 21 73 63" fill="none" stroke="#1f2937" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="150" cy="112" r="42" fill="#1f2937"/>
+  <text x="150" y="238" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#1f2937">FM</text>
+</svg>
