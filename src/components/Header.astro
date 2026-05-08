@@ -27,9 +27,9 @@ const localizedRoutes = {
 const currentRoutes = localizedRoutes[pagePath] ?? localizedRoutes["/"];
 const homeHref = localizedRoutes["/"][currentLocale];
 const languageLinks = locales
-  .filter((locale) => locale.code !== currentLocale)
   .map((locale) => ({
     ...locale,
+    isCurrent: locale.code === currentLocale,
     href: currentRoutes[locale.code],
   }));
 ---
@@ -46,11 +46,17 @@ const languageLinks = locales
       </label>
     </div>
     <div class="navbar-center">
-      <a class="btn btn-ghost normal-case text-xl" href={homeHref}>Fengmc</a>
+      <a class="btn btn-ghost normal-case text-xl" href={homeHref}>Ziyin Wu</a>
     </div>
     <div class="navbar-end">
       <div class="flex items-center gap-1">
-        {languageLinks.map((link) => <a class="btn btn-ghost btn-xs sm:btn-sm whitespace-nowrap" href={link.href}>{link.label}</a>)}
+        {
+          languageLinks.map((link) => (
+            <a class:list={["btn btn-xs sm:btn-sm whitespace-nowrap", link.isCurrent ? "btn-active" : "btn-ghost"]} href={link.href}>
+              {link.label}
+            </a>
+          ))
+        }
       </div>
     </div>
   </div>
@@ -58,6 +64,12 @@ const languageLinks = locales
 
 <div class="hidden lg:block fixed top-4 right-6 z-30">
   <div class="flex items-center gap-1 rounded-lg bg-base-100/80 p-1 backdrop-blur">
-    {languageLinks.map((link) => <a class="btn btn-ghost btn-sm whitespace-nowrap" href={link.href}>{link.label}</a>)}
+    {
+      languageLinks.map((link) => (
+        <a class:list={["btn btn-sm whitespace-nowrap", link.isCurrent ? "btn-active" : "btn-ghost"]} href={link.href}>
+          {link.label}
+        </a>
+      ))
+    }
   </div>
 </div>

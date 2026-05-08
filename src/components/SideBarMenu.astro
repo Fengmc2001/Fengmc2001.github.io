@@ -1,17 +1,33 @@
 ---
 const { sideBarActiveItemID } = Astro.props;
 const activeClass = "bg-base-300"; // For primary color replace with `active` class
+
+const pathname = Astro.url.pathname;
+const normalizedPath = pathname !== "/" && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+const currentLocale = normalizedPath === "/ja" || normalizedPath.startsWith("/ja/")
+  ? "ja"
+  : normalizedPath === "/zh" || normalizedPath.startsWith("/zh/")
+    ? "zh"
+    : "en";
+
+const localizedRoutes = {
+  en: { home: "/", projects: "/projects", cv: "/cv" },
+  ja: { home: "/ja/", projects: "/ja/projects", cv: "/ja/cv" },
+  zh: { home: "/zh/", projects: "/zh/projects", cv: "/zh/cv" },
+};
+
+const routes = localizedRoutes[currentLocale];
 ---
 
 <ul class="menu grow shrink menu-md overflow-y-auto">
-    <li><a class="py-3 text-base" id="home" href="/">Home</a></li>
-    <li><a class="py-3 text-base" id="projects" href="/projects">Works</a></li>
+    <li><a class="py-3 text-base" id="home" href={routes.home}>Home</a></li>
+    <li><a class="py-3 text-base" id="projects" href={routes.projects}>Works</a></li>
     <li><a class="py-3 text-base" id="blog" href="/blog/">Notes</a></li>
-    <li><a class="py-3 text-base" id="cv" href="/cv">CV</a></li>
+    <li><a class="py-3 text-base" id="cv" href={routes.cv}>CV</a></li>
     <li>
         <a
             class="py-3 text-base"
-            href="mailto:your.email@example.com"
+            href="mailto:4623044@ed.tus.ac.jp"
             target="_blank"
             referrerpolicy="no-referrer-when-downgrade">Contact</a
         >

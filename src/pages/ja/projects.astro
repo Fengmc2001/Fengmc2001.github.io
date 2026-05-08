@@ -4,55 +4,61 @@ import HorizontalCard from "../../components/HorizontalCard.astro";
 ---
 
 <BaseLayout
-  title="研究・制作内容"
-  description="生物統計学、臨床研究方法論、再現可能なデータ解析に関する研究・制作内容です。"
+  title="プロジェクト"
+  description="AI、生物統計学、因果推論、データサイエンスに関する研究関心と学習内容です。"
   sideBarActiveItemID="projects"
   lang="ja"
 >
   <div>
-    <div class="text-3xl w-full font-bold mb-5">研究とデータ解析</div>
+    <div class="text-3xl w-full font-bold mb-5">研究と解析</div>
   </div>
 
   <HorizontalCard
-    title="生物統計学に関する研究計画"
-    img="/research.svg"
-    desc="研究背景、臨床的意義、方法、期待される貢献、参考文献を整理するための研究計画項目です。"
-    url="#"
-    badge="研究"
+    title="多言語 MLLM における忘却研究"
+    img="/analysis.svg"
+    desc="大規模マルチモーダルモデルにおける忘却の多言語一貫性に関する卒業研究。信頼できる AI とモデル挙動分析に関心があります。"
+    url="/ja/projects"
+    target="_self"
+    badge="AI"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="臨床データ解析ワークフロー"
-    img="/analysis.svg"
-    desc="統計プログラミング、データクリーニング、モデリング、可視化、再現可能な報告を扱うプロジェクト項目です。"
-    url="#"
-    badge="データ"
+    title="生物統計学の研究計画"
+    img="/research.svg"
+    desc="臨床研究方法論、因果推論、標的試験エミュレーション、リアルワールドデータ解析を中心とした研究計画。"
+    url="/ja/projects"
+    target="_self"
+    badge="Research"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="再現可能なデータ解析ワークフロー"
+    img="/writing.svg"
+    desc="Python、R、SAS、SQL、可視化、再現可能なレポート作成を含む統計プログラミングの実践。"
+    url="/ja/projects"
+    target="_self"
+    badge="Data"
   />
 
   <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">学術的な文章作成とコミュニケーション</div>
+    <div class="text-3xl w-full font-bold mb-5 mt-10">文章作成とノート</div>
   </div>
 
   <HorizontalCard
-    title="学術文書・研究計画書"
+    title="学術文書サンプル"
     img="/writing.svg"
-    desc="研究上の問い、方法、根拠、議論を明確に整理するための文章サンプルです。"
-    url="#"
-    badge="文章"
+    desc="方法論の明確さと再現性を重視した研究計画、技術レポート、構造化された LaTeX 文書。"
+    url="/ja/projects"
+    target="_self"
+    badge="Writing"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="文献・参考資料ノート"
-    img="/writing.svg"
-    desc="研究論文、統計的方法論、生物医学的エビデンスに関する構造化されたノートです。"
-    url="#"
-    badge="ノート"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="ポートフォリオの今後の展開"
-    img="/analysis.svg"
-    desc="公開コード、データセット、インタラクティブな解析レポートなどを今後追加するための項目です。"
-    url="#"
+    title="統計・AI・生物統計学ノート"
+    img="/research.svg"
+    desc="統計学、機械学習、因果推論、統計モデリング、生物医学研究方法論に関する学習ノート。"
+    url="/ja/projects"
+    target="_self"
+    badge="Notes"
   />
 </BaseLayout>

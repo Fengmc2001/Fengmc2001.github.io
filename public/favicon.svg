@@ -1,13 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 36 36">
-  <path fill="#000" d="M22.25 4h-8.5a1 1 0 0 0-.96.73l-5.54 19.4a.5.5 0 0 0 .62.62l5.05-1.44a2 2 0 0 0 1.38-1.4l3.22-11.66a.5.5 0 0 1 .96 0l3.22 11.67a2 2 0 0 0 1.38 1.39l5.05 1.44a.5.5 0 0 0 .62-.62l-5.54-19.4a1 1 0 0 0-.96-.73Z"/>
-  <path fill="url(#gradient)" d="M18 28a7.63 7.63 0 0 1-5-2c-1.4 2.1-.35 4.35.6 5.55.14.17.41.07.47-.15.44-1.8 2.93-1.22 2.93.6 0 2.28.87 3.4 1.72 3.81.34.16.59-.2.49-.56-.31-1.05-.29-2.46 1.29-3.25 3-1.5 3.17-4.83 2.5-6-.67.67-2.6 2-5 2Z"/>
-  <defs>
-    <linearGradient id="gradient" x1="16" x2="16" y1="32" y2="24" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#000"/>
-      <stop offset="1" stop-color="#000" stop-opacity="0"/>
-    </linearGradient>
-  </defs>
-	<style>
-    @media (prefers-color-scheme:dark){:root{filter:invert(100%)}}
-  </style>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="863" height="563" viewBox="0 0 863 563">
+<title>WZ personal logo vectorized</title>
+<desc>Clean vectorized version of the provided logo. Transparent background.</desc>
+<g fill-rule="evenodd" clip-rule="evenodd">
+<path d="M 481 49 L 440 112 L 427 113 L 418 121 L 417 132 L 425 142 L 435 144 L 446 137 L 448 123 L 444 116 L 468 79 L 474 76 L 773 79 L 471 516 L 732 516 L 744 499 L 776 499 L 745 499 L 747 489 L 751 489 L 749 493 L 751 488 L 525 486 L 832 49 Z M 89 526 L 98 532 L 107 532 L 119 520 L 250 519 L 418 251 L 494 366 L 626 159 L 592 160 L 530 261 L 494 313 L 419 198 L 251 459 L 65 159 L 30 158 L 248 512 L 247 515 L 120 514 L 112 503 L 100 500 L 87 510 Z M 187 158 L 292 326 L 308 300 L 220 158 Z M 320 457 L 319 500 L 336 500 L 336 457 Z M 320 457 L 336 458 L 335 500 L 319 499 Z " fill="#14222A"/>
+<path d="M 57 39 L 53 49 L 55 62 L 63 71 L 71 74 L 86 72 L 94 65 L 98 56 L 208 56 L 318 234 L 212 53 L 99 53 L 92 37 L 79 30 L 68 31 Z M 409 338 L 409 499 L 424 499 L 424 338 Z M 379 373 L 378 499 L 394 499 L 394 373 Z M 821 492 L 818 483 L 811 476 L 805 473 L 792 473 L 780 482 L 776 494 L 749 494 L 748 490 L 750 489 L 748 489 L 745 498 L 776 498 L 782 510 L 787 514 L 804 516 L 814 511 L 818 506 Z M 349 419 L 349 499 L 365 499 L 365 419 Z M 71 38 L 80 38 L 89 47 L 89 57 L 80 66 L 69 65 L 61 55 L 62 46 Z M 797 480 L 807 483 L 813 492 L 810 503 L 801 509 L 790 506 L 784 497 L 787 486 Z M 320 458 L 320 499 L 335 499 L 335 458 Z " fill="#1F4F9D"/>
+</g>
 </svg>

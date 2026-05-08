@@ -3,15 +3,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import TimeLineElement from "../components/cv/TimeLine.astro";
 ---
 
-<BaseLayout title="Resume" sideBarActiveItemID="cv">
+<BaseLayout title="CV" sideBarActiveItemID="cv">
   <div class="mb-5">
     <div class="text-3xl w-full font-bold">Profile</div>
   </div>
 
   <div class="mb-10 text-justify">
-    I am building a research profile around biostatistics, clinical research methods, and reproducible data analysis.
-    My interests include study design, causal inference, real-world data, statistical modeling, and clear academic writing.
-    This page is a public CV draft; names, dates, and formal credentials can be replaced with finalized details.
+    I am an undergraduate student in Information Engineering at Tokyo University of Science, with academic interests in AI, machine learning, biostatistics, causal inference, real-world data analysis, statistical modeling, and reproducible data analysis.
+    My background combines computer science, statistics, programming, and academic writing.
+    I am based in Tokyo, Japan.
   </div>
 
   <div class="mb-5">
@@ -20,67 +20,96 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
 
   <div class="time-line-container grid gap-4 mb-10">
     <TimeLineElement
-      title="Graduate Study"
-      subtitle="Biostatistics and related quantitative research methods"
+      title="Tokyo University of Science"
+      subtitle="Apr 2023 – Mar 2027 expected"
+    >
+      Faculty of Engineering, Department of Information Engineering. Bachelor's degree expected March 2027. Current GPA: 3.6/4.0, Top 10%.
+    </TimeLineElement>
+    <TimeLineElement
+      title="Waseda Language School"
+      subtitle="Apr 2022 – Mar 2023"
     />
     <TimeLineElement
-      title="Academic Training"
-      subtitle="Statistics, epidemiology, biomedical research, and scientific writing"
-    />
+      title="The High School Attached to Henan University"
+      subtitle="Sep 2017 – Jun 2020"
+    >
+      Kaifeng, Henan, China.
+    </TimeLineElement>
   </div>
 
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Experience</div>
+    <div class="text-3xl w-full font-bold">Undergraduate Research</div>
   </div>
 
   <div class="time-line-container mb-10">
     <TimeLineElement
-      title="Research Proposal Development"
-      subtitle="Study design, background synthesis, and statistical planning"
+      title="Multilingual Consistency in Unlearning for Large Multimodal Models"
+      subtitle="Current undergraduate research"
     >
-      Developed structured research proposals with emphasis on clinical relevance, methodological clarity, and reproducible writing.
-    </TimeLineElement>
-    <TimeLineElement
-      title="Data Analysis Practice"
-      subtitle="R, Python, statistical modeling, and visualization"
-    >
-      Built analysis workflows for cleaning data, fitting models, checking assumptions, visualizing results, and communicating conclusions.
-    </TimeLineElement>
-    <TimeLineElement
-      title="Academic Writing"
-      subtitle="LaTeX, literature review, and technical documentation"
-    >
-      Prepared research notes, proposals, and technical documents with attention to structure, citations, and reproducibility.
+      Current undergraduate research on unlearning in multilingual large multimodal models, focusing on whether forgetting behavior remains consistent across languages after unlearning specific visual or identity-related information.
+      The project is related to trustworthy AI, model behavior analysis, and cross-lingual robustness.
     </TimeLineElement>
   </div>
 
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Certifications</div>
+    <div class="text-3xl w-full font-bold">Employment</div>
+  </div>
+
+  <div class="time-line-container mb-10">
+    <TimeLineElement
+      title="株式会社新領域理工塾"
+      subtitle="2023 – 2026"
+    >
+      Part-time position.
+    </TimeLineElement>
+    <TimeLineElement
+      title="中国旅人教育集団株式会社"
+      subtitle="2025 – Present"
+    >
+      Part-time position.
+    </TimeLineElement>
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Awards & Scholarships</div>
   </div>
 
   <ul class="list-disc mx-6 mb-10 grid gap-2">
-    <li>
-      <a href="#" target="_blank"> Add certification or coursework link</a>
-    </li>
-    <li>
-      <a href="#" target="_blank"> Add conference, poster, or workshop link</a>
-    </li>
+    <li>Dec 2025: Japan Statistical Society Certificate Grade Pre-1 Best Performance Award</li>
+    <li>Apr 2024: JEES International Scholarship, Study Support</li>
+    <li>Apr 2023: Monbukagakusho Honors Scholarship for Privately-Financed International Students</li>
+  </ul>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Certifications & Test Scores</div>
+  </div>
+
+  <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li>Mar 2026: SAS Certified Specialist: Base Programming Using SAS 9.4</li>
+    <li>Dec 2025: Japan Statistical Society Certificate Grade Pre-1, 93/100</li>
+    <li>Oct 2025: Japan Statistical Society Certificate Grade 2, 77/100</li>
+    <li>2025: TOEFL iBT 92, Reading 28 / Listening 20 / Speaking 22 / Writing 22</li>
+    <li>Feb 2024: JLPT N1, 137/180</li>
   </ul>
 
   <div class="mb-5">
     <div class="text-3xl w-full font-bold">Skills</div>
   </div>
 
-  <ul class="list-disc md:columns-5 columns-2 mx-6">
-    <li>Biostatistics</li>
-    <li>Study Design</li>
-    <li>Causal Inference</li>
-    <li>Regression Models</li>
-    <li>Survival Analysis</li>
-    <li>R</li>
-    <li>Python</li>
-    <li>LaTeX</li>
-    <li>Data Visualization</li>
-    <li>Reproducible Reports</li>
+  <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li><strong>AI / Machine Learning:</strong> Machine Learning, Model Behavior Analysis, Trustworthy AI, Multilingual MLLM Unlearning</li>
+    <li><strong>Programming:</strong> Python, R, C, LaTeX, SAS, HTML, SQL</li>
+    <li><strong>Quantitative / Technical:</strong> Statistics, Data Analysis, Statistical Modeling, Reproducible Reports</li>
+    <li><strong>Research Interests:</strong> AI, Biostatistics, Causal Inference, Real-World Data, Clinical Research Methods</li>
+  </ul>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Languages</div>
+  </div>
+
+  <ul class="list-disc mx-6">
+    <li>Chinese: Native</li>
+    <li>Japanese: JLPT N1</li>
+    <li>English: TOEFL iBT 92</li>
   </ul>
 </BaseLayout>

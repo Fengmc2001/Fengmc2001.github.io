@@ -27,21 +27,31 @@ const noteCopy: Record<string, { title: string; description: string; badge?: str
 ---
 
 <BaseLayout
-  title="Fengmc | 生物統計学ポートフォリオ"
-  description="生物統計学、臨床研究方法論、再現可能なデータ解析に関する個人ポートフォリオです。"
+  title="Ziyin Wu | AI・生物統計学・データサイエンス"
+  description="東京理科大学の情報工学科に在籍する呉 子吟のアカデミック・ポートフォリオです。"
   sideBarActiveItemID="home"
   lang="ja"
 >
   <div class="pb-12 mt-5">
-    <div class="text-xl py-1">研究ポートフォリオ</div>
-    <div class="text-5xl font-bold">Fengmc</div>
-    <div class="text-3xl py-3 font-bold">生物統計学とデータ解析</div>
-    <div class="py-2">
-      <text class="text-lg">
-        生物統計学、臨床研究方法論、因果推論、再現可能なデータ解析を中心に、研究上の問いを
-        適切な研究デザインと統計解析へ結びつけることに関心があります。
-        本サイトでは、研究プロフィール、学術的な文章、研究計画、解析プロジェクトを整理しています。
-      </text>
+    <div class="text-xl py-1">アカデミック・ポートフォリオ</div>
+    <div class="text-5xl font-bold">呉 子吟 / Ziyin Wu</div>
+    <div class="text-3xl py-3 font-bold">
+      AI・生物統計学・データサイエンスに関心を持つ、<br />
+      情報工学専攻の学部生
+    </div>
+    <div class="py-2 space-y-4 text-lg leading-relaxed">
+      <p>
+        東京理科大学 工学部 情報工学科に在籍している。
+      </p>
+      <p>
+        AI・機械学習を中心に、生物統計学、因果推論、リアルワールドデータ解析、再現可能なデータ解析にも関心がある。
+      </p>
+      <p>
+        現在の卒業研究では、多言語大規模マルチモーダルモデルにおける忘却の多言語一貫性を扱っている。
+      </p>
+      <p>
+        本サイトでは、研究関心、プロジェクト、学習ノート、CV を整理している。
+      </p>
     </div>
     <div class="mt-8">
       <a class="btn" href="/ja/projects">研究内容を見る</a>
@@ -54,29 +64,30 @@ const noteCopy: Record<string, { title: string; description: string; badge?: str
   </div>
 
   <HorizontalCard
-    title="生物統計学に関する研究計画"
-    img="/research.svg"
-    desc="臨床研究の方法論、研究デザイン、統計的推論を中心に構成した研究計画の項目です。"
-    url="/ja/projects"
-    target="_self"
-    badge="研究"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="臨床データ解析ワークフロー"
+    title="多言語 MLLM における忘却研究"
     img="/analysis.svg"
-    desc="臨床・生物医学データの前処理、モデリング、可視化、報告を再現可能な形で進めるためのワークフローです。"
+    desc="大規模マルチモーダルモデルにおける忘却挙動の多言語一貫性と信頼性に関する卒業研究。"
     url="/ja/projects"
     target="_self"
+    badge="AI"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="学術文書・研究計画書"
-    img="/writing.svg"
-    desc="LaTeX を用いた研究計画、技術メモ、構造化された学術的文章のサンプルです。"
+    title="生物統計学・因果推論"
+    img="/research.svg"
+    desc="標的試験エミュレーション、因果推論、リアルワールドデータ、臨床研究方法論への関心。"
     url="/ja/projects"
     target="_self"
-    badge="文章"
+    badge="Research"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="統計プログラミング・データ解析"
+    img="/writing.svg"
+    desc="Python、R、SAS、SQL を用いた統計解析、可視化、再現可能なレポート作成。"
+    url="/ja/projects"
+    target="_self"
+    badge="Data"
   />
 
   <div>

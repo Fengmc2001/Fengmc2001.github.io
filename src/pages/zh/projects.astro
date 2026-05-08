@@ -5,7 +5,7 @@ import HorizontalCard from "../../components/HorizontalCard.astro";
 
 <BaseLayout
   title="研究与项目"
-  description="围绕生物统计学、临床研究方法学和可复现数据分析的研究与项目内容。"
+  description="围绕 AI、生物统计、因果推断和数据科学的研究兴趣与学习内容。"
   sideBarActiveItemID="projects"
   lang="zh-CN"
 >
@@ -14,45 +14,51 @@ import HorizontalCard from "../../components/HorizontalCard.astro";
   </div>
 
   <HorizontalCard
-    title="生物统计学研究计划"
-    img="/research.svg"
-    desc="用于整理研究背景、临床意义、研究方法、预期贡献和参考文献的研究计划项目。"
-    url="#"
-    badge="研究"
+    title="多语言 MLLM 忘却研究"
+    img="/analysis.svg"
+    desc="围绕大规模多模态模型中忘却行为的跨语言一致性展开的本科毕业研究，关注可信 AI 与模型行为分析。"
+    url="/zh/projects"
+    target="_self"
+    badge="AI"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="临床数据分析流程"
-    img="/analysis.svg"
-    desc="涵盖统计编程、数据清洗、模型构建、结果可视化和可复现报告的项目页面。"
-    url="#"
-    badge="数据"
+    title="生物统计学研究计划"
+    img="/research.svg"
+    desc="围绕临床研究方法学、因果推断、标的试验模拟和真实世界数据分析的研究规划。"
+    url="/zh/projects"
+    target="_self"
+    badge="Research"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="可重复数据分析流程"
+    img="/writing.svg"
+    desc="使用 Python、R、SAS、SQL 进行统计编程、可视化和可重复报告的实践。"
+    url="/zh/projects"
+    target="_self"
+    badge="Data"
   />
 
   <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">学术写作与研究沟通</div>
+    <div class="text-3xl w-full font-bold mb-5 mt-10">写作与笔记</div>
   </div>
 
   <HorizontalCard
     title="学术写作样例"
     img="/writing.svg"
-    desc="展示如何组织研究问题、方法、证据和论证结构的写作样例。"
-    url="#"
-    badge="写作"
+    desc="强调方法清晰性与可重复性的研究计划、技术报告和结构化 LaTeX 文档。"
+    url="/zh/projects"
+    target="_self"
+    badge="Writing"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="文献与参考资料笔记"
-    img="/writing.svg"
-    desc="围绕研究论文、统计方法学和相关生物医学证据整理的结构化笔记。"
-    url="#"
-    badge="笔记"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="个人主页后续规划"
-    img="/analysis.svg"
-    desc="后续用于加入公开代码仓库、数据集和交互式分析报告等内容的占位项目。"
-    url="#"
+    title="统计、AI 与生物统计笔记"
+    img="/research.svg"
+    desc="关于统计学、机器学习、因果推断、统计建模和生物医学研究方法学的学习笔记。"
+    url="/zh/projects"
+    target="_self"
+    badge="Notes"
   />
 </BaseLayout>

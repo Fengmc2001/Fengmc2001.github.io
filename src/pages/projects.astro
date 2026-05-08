@@ -3,51 +3,57 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
 ---
 
-<BaseLayout title = "Projects" sideBarActiveItemID="projects">
+<BaseLayout title="Projects" sideBarActiveItemID="projects">
   <div>
     <div class="text-3xl w-full font-bold mb-5">Research and analysis</div>
   </div>
 
   <HorizontalCard
+    title="Multilingual MLLM Unlearning"
+    img="/analysis.svg"
+    desc="Undergraduate research on cross-lingual consistency in unlearning for large multimodal models, with interest in trustworthy AI and model behavior analysis."
+    url="/projects"
+    target="_self"
+    badge="AI"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
     title="Biostatistics Research Proposal"
     img="/research.svg"
-    desc="A proposal portfolio item for biostatistics, including study motivation, methods, expected contribution, and references."
-    url="#"
+    desc="Research planning around clinical research methodology, causal inference, target trial emulation, and real-world data analysis."
+    url="/projects"
+    target="_self"
     badge="Research"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Clinical Data Analysis Workflow"
-    img="/analysis.svg"
-    desc="A project page for statistical programming, data cleaning, modeling, visualization, and reproducible reporting."
-    url="#"
+    title="Reproducible Data Analysis Workflow"
+    img="/writing.svg"
+    desc="Statistical programming practice using Python, R, SAS, SQL, visualization, and reproducible reporting."
+    url="/projects"
+    target="_self"
     badge="Data"
   />
 
   <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Writing and communication</div>
+    <div class="text-3xl w-full font-bold mb-5 mt-10">Writing and notes</div>
   </div>
 
   <HorizontalCard
     title="Academic Writing Samples"
     img="/writing.svg"
-    desc="Selected writing samples that show how I organize research questions, methods, evidence, and argumentation."
-    url="#"
+    desc="Research plans, technical reports, and structured LaTeX documents focused on clear methodology and reproducibility."
+    url="/projects"
+    target="_self"
     badge="Writing"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Literature and Reference Notes"
-    img="/writing.svg"
-    desc="Structured notes on research papers, statistical methodology, and related biomedical evidence."
-    url="#"
+    title="Statistics, AI, and Biostatistics Notes"
+    img="/research.svg"
+    desc="Learning notes on statistics, machine learning, causal inference, statistical modeling, and biomedical research methodology."
+    url="/projects"
+    target="_self"
     badge="Notes"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Portfolio Roadmap"
-    img="/analysis.svg"
-    desc="A placeholder for future projects, including public code repositories, datasets, and interactive reports."
-    url="#"
   />
 </BaseLayout>

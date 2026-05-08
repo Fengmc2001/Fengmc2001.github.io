@@ -11,14 +11,25 @@ const last_posts = posts.slice(0, 3);
 
 <BaseLayout sideBarActiveItemID="home">
   <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Personal Portfolio</div>
-    <div class="text-5xl font-bold">I'm Fengmc</div>
-    <div class="text-3xl py-3 font-bold">Biostatistics and data analysis</div>
-    <div class="py-2">
-      <text class="text-lg">
-        I focus on biostatistics, clinical research methods, causal inference, and reproducible data analysis.
-        This site collects my academic profile, selected writing, research proposals, and analysis projects.
-      </text>
+    <div class="text-xl py-1">Personal Academic Portfolio</div>
+    <div class="text-5xl font-bold">I'm Ziyin Wu</div>
+    <div class="text-3xl py-3 font-bold">
+      Information Engineering undergraduate interested in AI,<br />
+      biostatistics, and data science
+    </div>
+    <div class="py-2 space-y-4 text-lg leading-relaxed">
+      <p>
+        I am an undergraduate student in the Department of Information Engineering at Tokyo University of Science.
+      </p>
+      <p>
+        My interests center on AI and machine learning, with additional focus on biostatistics, causal inference, real-world data analysis, and reproducible scientific computing.
+      </p>
+      <p>
+        My current undergraduate research examines multilingual consistency in unlearning for large multimodal models.
+      </p>
+      <p>
+        This website collects my academic profile, selected projects, research notes, and CV.
+      </p>
     </div>
     <div class="mt-8">
       <a class="btn" href="/projects">View works</a>
@@ -31,29 +42,30 @@ const last_posts = posts.slice(0, 3);
   </div>
 
   <HorizontalCard
-    title="Biostatistics Research Proposal"
+    title="Multilingual MLLM Unlearning"
+    img="/analysis.svg"
+    desc="Undergraduate research on cross-lingual consistency and trustworthy forgetting behavior in large multimodal models."
+    url="/projects"
+    target="_self"
+    badge="AI"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Biostatistics & Causal Inference"
     img="/research.svg"
-    desc="A research proposal focused on clinical research methodology, study design, and statistical reasoning."
+    desc="Research interests in target trial emulation, causal inference, real-world data, and clinical research methodology."
     url="/projects"
     target="_self"
     badge="Research"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Clinical Data Analysis Workflow"
-    img="/analysis.svg"
-    desc="A reproducible workflow for cleaning, modeling, visualizing, and reporting clinical or biomedical data."
-    url="/projects"
-    target="_self"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Academic Writing Samples"
+    title="Statistical Programming & Data Analysis"
     img="/writing.svg"
-    desc="Research plans, technical notes, and structured writing samples prepared with LaTeX."
+    desc="Projects and practice using Python, R, SAS, SQL, and reproducible reporting workflows."
     url="/projects"
     target="_self"
-    badge="Writing"
+    badge="Data"
   />
 
   <div>

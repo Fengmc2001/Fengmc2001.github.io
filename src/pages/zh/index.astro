@@ -27,21 +27,31 @@ const noteCopy: Record<string, { title: string; description: string; badge?: str
 ---
 
 <BaseLayout
-  title="Fengmc | 生物统计学个人主页"
-  description="围绕生物统计学、临床研究方法学和可复现数据分析的个人学术主页。"
+  title="Ziyin Wu | AI、生物统计与数据科学"
+  description="吴子吟的个人学术主页，方向包括 AI、多语言 MLLM 忘却、生物统计、因果推断、真实世界数据和可重复数据分析。"
   sideBarActiveItemID="home"
   lang="zh-CN"
 >
   <div class="pb-12 mt-5">
     <div class="text-xl py-1">个人学术主页</div>
-    <div class="text-5xl font-bold">Fengmc</div>
-    <div class="text-3xl py-3 font-bold">生物统计学与数据分析</div>
-    <div class="py-2">
-      <text class="text-lg">
-        我的关注方向包括生物统计学、临床研究方法学、因果推断和可复现数据分析。
-        本网站用于整理个人学术简介、研究计划、写作样例以及数据分析项目，
-        并展示如何将具体研究问题转化为清晰的研究设计和统计分析方案。
-      </text>
+    <div class="text-5xl font-bold">我是吴子吟 / Ziyin Wu</div>
+    <div class="text-3xl py-3 font-bold">
+      关注 AI、生物统计与数据科学的<br />
+      信息工程专业本科生
+    </div>
+    <div class="py-2 space-y-4 text-lg leading-relaxed">
+      <p>
+        我目前就读于东京理科大学工学部信息工程学科。
+      </p>
+      <p>
+        我的兴趣以 AI 和机器学习为中心，也包括生物统计、因果推断、真实世界数据分析以及可重复的科学计算。
+      </p>
+      <p>
+        当前的本科毕业研究关注多语言大规模多模态模型中的遗忘一致性。
+      </p>
+      <p>
+        本网站用于整理我的学术背景、项目、研究笔记和 CV。
+      </p>
     </div>
     <div class="mt-8">
       <a class="btn" href="/zh/projects">查看研究内容</a>
@@ -54,29 +64,30 @@ const noteCopy: Record<string, { title: string; description: string; badge?: str
   </div>
 
   <HorizontalCard
-    title="生物统计学研究计划"
-    img="/research.svg"
-    desc="围绕临床研究方法学、研究设计和统计推理组织的研究计划项目。"
-    url="/zh/projects"
-    target="_self"
-    badge="研究"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="临床数据分析流程"
+    title="多语言 MLLM 忘却研究"
     img="/analysis.svg"
-    desc="用于清洗、建模、可视化和报告临床或生物医学数据的可复现分析流程。"
+    desc="围绕大规模多模态模型中跨语言一致性与可信遗忘行为展开的本科毕业研究。"
     url="/zh/projects"
     target="_self"
+    badge="AI"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="学术写作样例"
-    img="/writing.svg"
-    desc="使用 LaTeX 准备的研究计划、技术笔记和结构化学术写作样例。"
+    title="生物统计与因果推断"
+    img="/research.svg"
+    desc="关注标的试验模拟、因果推断、真实世界数据和临床研究方法论。"
     url="/zh/projects"
     target="_self"
-    badge="写作"
+    badge="Research"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="统计编程与数据分析"
+    img="/writing.svg"
+    desc="使用 Python、R、SAS、SQL 进行统计分析、可视化和可重复报告。"
+    url="/zh/projects"
+    target="_self"
+    badge="Data"
   />
 
   <div>
