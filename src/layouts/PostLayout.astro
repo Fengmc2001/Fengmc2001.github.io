@@ -1,43 +1,56 @@
 ---
 import { type BlogSchema } from "../content/config";
-import BaseLayout from "./BaseLayout.astro";
+import AcademicNoteLayout from "./AcademicNoteLayout.astro";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
+import { Image } from "astro:assets";
 
-export interface Props extends BlogSchema {}
+export interface Props extends BlogSchema {
+  headings?: any[];
+}
 
-const { title, description, pubDate, updatedDate, heroImage, badge, tags = [] } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, badge, tags = [], headings = [] } = Astro.props;
 dayjs.extend(localizedFormat);
 const displayDate = dayjs(pubDate).format("ll")
-import { Image } from "astro:assets";
 ---
 
-<BaseLayout title={title} description={description} image={heroImage} ogType="article" showParticles={false}>
-  <main class="md:flex md:justify-center">
-    <article class="prose prose-lg max-w-[750px] prose-img:mx-auto">
-      {heroImage && <Image width={750} height={422} format="webp" src={heroImage} alt={title} class="w-full mb-6" />}
-      <h1 class="title my-2 text-4xl font-bold">{title}</h1>
-      {pubDate && <time>{displayDate}</time>}
-      <br />
-      {badge && <div class="badge badge-secondary my-1">{badge}</div>}
-      {
-        tags &&
-          tags.map((tag) => (
-            <a href={`/blog/tag/${tag}`} class="badge badge-outline ml-2 no-underline">
-              {tag}
+<AcademicNoteLayout title={title} description={description} image={heroImage} ogType="article" headings={headings}>
+  <article class="prose prose-slate prose-lg max-w-none w-full pb-20">
+    {heroImage && <Image width={840} height={472} format="webp" src={heroImage} alt={title} class="w-full mb-8 rounded-xl shadow-sm object-cover border border-slate-100" />}
+    
+    <header class="mb-10 pb-6 border-b border-slate-200">
+      <h1 class="title text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 mb-6 leading-tight">{title}</h1>
+      
+      <div class="flex flex-wrap items-center gap-4 text-slate-500 text-sm sm:text-base">
+        {pubDate && <time class="flex items-center gap-1.5 font-medium">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+          </svg>
+          {displayDate}
+        </time>}
+        
+        {updatedDate && (
+          <span class="flex items-center gap-1 italic border-l border-slate-300 pl-4">
+            Updated: <time>{updatedDate}</time>
+          </span>
+        )}
+
+        {badge && <span class="badge badge-secondary badge-outline px-3 py-1 ml-auto font-medium">{badge}</span>}
+      </div>
+
+      {tags && tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mt-6">
+          {tags.map((tag) => (
+            <a href={`/blog/tag/${tag}`} class="bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900 transition-colors px-3 py-1 rounded-full text-sm font-medium no-underline">
+              #{tag}
             </a>
-          ))
-      }
-      {
-        updatedDate && (
-          <div>
-            {" "}
-            Last updated on <time>{updatedDate}</time>{" "}
-          </div>
-        )
-      }
-      <div class="divider my-2"></div>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <div class="prose-content">
       <slot />
-    </article>
-  </main>
-</BaseLayout>
+    </div>
+  </article>
+</AcademicNoteLayout>

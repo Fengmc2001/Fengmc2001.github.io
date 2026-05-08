@@ -1,4 +1,8 @@
-<div class="geometric-particles" aria-hidden="true">
+---
+const { show = true } = Astro.props;
+---
+
+<div class="geometric-particles" aria-hidden="true" style={show ? "" : "display: none"}>
   <canvas id="network-particles-canvas"></canvas>
 </div>
 
@@ -23,13 +27,19 @@
 </style>
 
 <script is:inline>
-  (() => {
+  const initParticles = () => {
     if (window.__networkParticlesCleanup) {
       window.__networkParticlesCleanup();
     }
 
     const canvas = document.getElementById("network-particles-canvas");
     if (!(canvas instanceof HTMLCanvasElement)) return;
+    
+    // If parent is hidden, don't run animation
+    const parent = canvas.parentElement;
+    if (parent && parent.style.display === "none") {
+      return;
+    }
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -50,8 +60,9 @@
     let animationFrame = 0;
     let particles = [];
     let glyphs = [];
-    let reduceMotion = mediaQuery.matches;
     let isMobile = mobileQuery.matches;
+    let reduceMotion = mediaQuery.matches || isMobile;
+    let frameCount = 0;
 
     const random = (min, max) => min + Math.random() * (max - min);
     const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
@@ -76,20 +87,13 @@
 
     const seedParticles = () => {
       const margin = 48;
-      const count = isMobile ? 18 : 34;
-      const networkCount = isMobile ? 3 : 5;
+      const count = isMobile ? 8 : Math.floor(random(18, 22));
+      const networkCount = isMobile ? 1 : 3;
       const seeded = [
         createParticle("network", width * 0.18, height * 0.2),
         createParticle("network", width * 0.72, height * 0.28),
         createParticle("network", width * 0.28, height * 0.76),
-      ];
-
-      if (!isMobile) {
-        seeded.push(
-          createParticle("network", width * 0.82, height * 0.68),
-          createParticle("network", width * 0.52, height * 0.48),
-        );
-      }
+      ].slice(0, networkCount);
 
       while (seeded.length < networkCount) {
         seeded.push(createParticle("network", random(margin, width - margin), random(margin, height - margin)));
@@ -105,7 +109,7 @@
         { text: "μ", x: width * 0.68, y: height * 0.62, angle: 0, spin: -0.0005 },
         { text: "σ", x: width * 0.33, y: height * 0.83, angle: 0, spin: 0.00045 },
         { text: "Σ", x: width * 0.86, y: height * 0.38, angle: 0, spin: -0.0004 },
-      ].slice(0, isMobile ? 2 : 4);
+      ].slice(0, isMobile ? 0 : 2);
     };
 
     const resize = () => {
@@ -118,6 +122,7 @@
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       isMobile = mobileQuery.matches;
+      reduceMotion = mediaQuery.matches || isMobile;
       seedParticles();
       draw();
     };
@@ -140,42 +145,6 @@
       }
     };
 
-    const resolveParticleCollisions = () => {
-      for (let i = 0; i < particles.length; i += 1) {
-        for (let j = i + 1; j < particles.length; j += 1) {
-          const a = particles[i];
-          const b = particles[j];
-          const dx = b.x - a.x;
-          const dy = b.y - a.y;
-          const minDistance = a.radius + b.radius + 7;
-          const distanceSquared = dx * dx + dy * dy;
-
-          if (distanceSquared === 0 || distanceSquared > minDistance * minDistance) continue;
-
-          const distance = Math.sqrt(distanceSquared);
-          const nx = dx / distance;
-          const ny = dy / distance;
-          const overlap = (minDistance - distance) * 0.5;
-
-          a.x -= nx * overlap;
-          a.y -= ny * overlap;
-          b.x += nx * overlap;
-          b.y += ny * overlap;
-
-          const relativeVx = b.vx - a.vx;
-          const relativeVy = b.vy - a.vy;
-          const impulse = relativeVx * nx + relativeVy * ny;
-
-          if (impulse < 0) {
-            a.vx += impulse * nx;
-            a.vy += impulse * ny;
-            b.vx -= impulse * nx;
-            b.vy -= impulse * ny;
-          }
-        }
-      }
-    };
-
     const update = () => {
       if (reduceMotion) return;
 
@@ -193,8 +162,6 @@
 
         resolveBoundaryCollision(particle);
       }
-
-      resolveParticleCollisions();
 
       for (const glyph of glyphs) {
         glyph.angle += glyph.spin;
@@ -254,7 +221,7 @@
     };
 
     const drawConnections = () => {
-      const maxDistance = isMobile ? 56 : 72;
+      const maxDistance = isMobile ? 0 : 58; // Reduced from 72 to 58
 
       for (let i = 0; i < particles.length; i += 1) {
         for (let j = i + 1; j < particles.length; j += 1) {
@@ -311,15 +278,18 @@
     };
 
     const animate = () => {
-      update();
-      draw();
+      frameCount++;
+      if (frameCount % 2 === 0) { // Render every 2 frames
+        update();
+        draw();
+      }
       animationFrame = window.requestAnimationFrame(animate);
     };
 
     const restart = () => {
       window.cancelAnimationFrame(animationFrame);
-      reduceMotion = mediaQuery.matches;
       isMobile = mobileQuery.matches;
+      reduceMotion = mediaQuery.matches || isMobile;
       resize();
 
       if (!reduceMotion) {
@@ -337,5 +307,11 @@
       mobileQuery.removeEventListener("change", restart);
     };
     restart();
-  })();
+  };
+
+  // Run on initial load
+  initParticles();
+
+  // Run on every navigation with View Transitions
+  document.addEventListener('astro:page-load', initParticles);
 </script>

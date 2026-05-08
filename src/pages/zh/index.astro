@@ -32,14 +32,18 @@ const noteCopy: Record<string, { title: string; description: string; badge?: str
   sideBarActiveItemID="home"
   lang="zh-CN"
 >
-  <div class="pb-12 mt-5">
-    <div class="text-xl py-1">个人学术主页</div>
-    <div class="text-5xl font-bold">我是吴子吟 / Ziyin Wu</div>
-    <div class="text-3xl py-3 font-bold">
+  <div class="pb-12 mt-5 pt-4">
+    <div class="text-2xl py-1 font-medium text-base-content/70 mb-2">我是</div>
+    <div class="text-6xl md:text-[4.5rem] leading-none font-extrabold tracking-tight mb-4 flex items-end gap-1">
+      <ruby>吴<rt class="text-xl md:text-2xl font-medium text-base-content/50 tracking-widest" style="padding-bottom: 0.2em; font-family: ui-sans-serif, system-ui, sans-serif;">WU</rt></ruby>
+      <ruby>子<rt class="text-xl md:text-2xl font-medium text-base-content/50 tracking-widest" style="padding-bottom: 0.2em; font-family: ui-sans-serif, system-ui, sans-serif;">ZI</rt></ruby>
+      <ruby>吟<rt class="text-xl md:text-2xl font-medium text-base-content/50 tracking-widest" style="padding-bottom: 0.2em; font-family: ui-sans-serif, system-ui, sans-serif;">YIN</rt></ruby>
+    </div>
+    <div class="text-2xl py-2 font-bold leading-snug">
       关注 AI、生物统计与数据科学的<br />
       信息工程专业本科生
     </div>
-    <div class="py-2 space-y-4 text-lg leading-relaxed">
+    <div class="py-2 space-y-3 text-base leading-relaxed">
       <p>
         我目前就读于东京理科大学工学部信息工程学科。
       </p>
@@ -60,7 +64,7 @@ const noteCopy: Record<string, { title: string; description: string; badge?: str
   </div>
 
   <div>
-    <div class="text-3xl w-full font-bold mb-2">代表性内容</div>
+    <div class="text-2xl w-full font-bold mb-2">代表性内容</div>
   </div>
 
   <HorizontalCard
@@ -91,7 +95,7 @@ const noteCopy: Record<string, { title: string; description: string; badge?: str
   />
 
   <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">研究笔记</div>
+    <div class="text-2xl w-full font-bold mb-4 mt-8">研究笔记</div>
   </div>
 
   {

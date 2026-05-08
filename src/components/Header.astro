@@ -18,20 +18,23 @@ const pagePath = normalizedPath === "/ja" || normalizedPath === "/zh"
   ? "/"
   : normalizedPath.replace(/^\/(ja|zh)/, "") || "/";
 
-const localizedRoutes = {
-  "/": { en: "/", ja: "/ja/", zh: "/zh/" },
-  "/projects": { en: "/projects", ja: "/ja/projects", zh: "/zh/projects" },
-  "/cv": { en: "/cv", ja: "/ja/cv", zh: "/zh/cv" },
-};
+const cleanPath = pagePath.startsWith("/") ? pagePath : `/${pagePath}`;
 
-const currentRoutes = localizedRoutes[pagePath] ?? localizedRoutes["/"];
-const homeHref = localizedRoutes["/"][currentLocale];
+const homeHref = currentLocale === "en" ? "/" : `/${currentLocale}/`;
 const languageLinks = locales
-  .map((locale) => ({
-    ...locale,
-    isCurrent: locale.code === currentLocale,
-    href: currentRoutes[locale.code],
-  }));
+  .map((locale) => {
+    let href;
+    if (locale.code === "en") {
+      href = cleanPath;
+    } else {
+      href = `/${locale.code}${cleanPath === "/" ? "/" : cleanPath}`;
+    }
+    return {
+      ...locale,
+      isCurrent: locale.code === currentLocale,
+      href: href,
+    };
+  });
 ---
 
 <div

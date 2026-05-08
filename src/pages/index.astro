@@ -10,9 +10,9 @@ const last_posts = posts.slice(0, 3);
 ---
 
 <BaseLayout sideBarActiveItemID="home">
-  <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Personal Academic Portfolio</div>
-    <div class="text-5xl font-bold">I'm Ziyin Wu</div>
+  <div class="pb-12 mt-5 pt-4">
+    <div class="text-3xl py-1 font-medium text-base-content/70 mb-3">I'm</div>
+    <div class="text-[5rem] leading-none font-extrabold tracking-tight mb-6">Ziyin Wu</div>
     <div class="text-3xl py-3 font-bold">
       Information Engineering undergraduate interested in AI,<br />
       biostatistics, and data science
@@ -69,7 +69,7 @@ const last_posts = posts.slice(0, 3);
   />
 
   <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest notes</div>
+    <div class="text-2xl w-full font-bold mb-4 mt-8">Latest notes</div>
   </div>
 
   {
@@ -85,6 +85,10 @@ const last_posts = posts.slice(0, 3);
         />
         <div class="divider my-0" />
       </>
+    ))
+  }
+</BaseLayout>
+ </>
     ))
   }
 </BaseLayout>

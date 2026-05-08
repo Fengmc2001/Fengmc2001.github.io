@@ -27,7 +27,7 @@ const {
     {TRANSITION_API && <ViewTransitions />}
   </head>
   <body>
-    {showParticles && <GeometricParticles />}
+    <GeometricParticles show={showParticles} />
     <div class="drawer lg:drawer-open relative z-10 bg-transparent">
       <input id="my-drawer" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content relative z-10 bg-transparent">
