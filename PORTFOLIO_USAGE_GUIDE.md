@@ -41,27 +41,54 @@
 - **Works / Projects 卡片**：写在 `src/content/works/`，会显示在主页和三语 Projects 页面。
 
 ### 2.1 新建一篇学术笔记或项目详情页
-1. 在 `src/content/blog/` 目录下新建一个文件，例如 `my-new-research.md`。
-2. 文件顶部**必须**包含以下 Frontmatter (YAML 格式) 的元数据：
 
-```markdown
----
-title: "你的项目或论文标题"
-description: "简短的一两句话摘要，将显示在卡片上"
-pubDate: "2026-06-15"
-heroImage: "/analysis.svg"  # 题图的路径，放置在 public/ 目录下
-badge: "AI"                 # 可选，显示在卡片右上角的徽章标签
-tags: ["machine-learning", "causal-inference"] # 可选，文章标签
----
+> **核心心智模型**：你只需要做 **三件事**——放一个 md、放图片、git push。三语路由、tag 页、列表分页、首页 Latest notes 全部由 Astro 自动生成。**永远不要去 `src/pages/` 下手动建 ja/zh 副本**。
 
-这里开始写正文内容...
-```
+#### 标准工作流（每次新增博文）
 
-如果文件名是 `my-new-research.md`，并且 `src/config.ts` 中 `GENERATE_SLUG_FROM_TITLE = false`，那么文章路径通常就是：
+1. **准备图片**：在 `public/` 下创建（或选择）一个语义化子文件夹，例如 `public/<project-slug>/`，把所有相关图片放进去。**不要散到 `public/` 根目录**（详见第 7.1 节）。
+2. **新建 Markdown**：在 `src/content/blog/` 目录下新建文件，**文件名必须是英文/数字/连字符**（参见第 ⚠️ 章常见故障 1），例如 `jssc-pre1-experience.md`。
+3. **写好 Frontmatter**：
 
-```text
-/blog/my-new-research
-```
+   ```markdown
+   ---
+   title: "你的项目或论文标题"
+   description: "简短的一两句话摘要，将显示在卡片上"
+   pubDate: "2026-06-15"                           # 必填，YYYY-MM-DD
+   updatedDate: "2026-07-01"                       # 可选，更新日期
+   heroImage: "/<project-slug>/cover.jpg"          # 可选，题图
+   badge: "AI"                                     # 可选，卡片右上角徽章
+   tags: ["machine-learning", "causal-inference"]  # 可选，会生成 /blog/tag/<tag> 列表页
+   ---
+
+   这里开始写正文内容...
+   ```
+
+4. **写正文**：可以使用标准 Markdown + LaTeX 公式（`$...$`、`$$...$$`）+ 图片引用 `![描述](/<project-slug>/figure.png)`。
+5. **本地验证**：`npm run dev`，访问以下三个 URL 都应该能打开同一篇文章：
+   - `/blog/<filename>` — 英文站
+   - `/ja/blog/<filename>` — 日文站
+   - `/zh/blog/<filename>` — 中文站
+6. **构建检查**：`npm run build`。看到 `[build] Complete!` 即可。**注意**：每篇博文会让总页面数增加 `3 + 3×N_tags`（3 个详情页 + 每个 tag 一个分页）。这是 Astro 自动生成的，**不是你需要维护的**。
+7. **提交推送**：`git add . && git commit -m "..." && git push`。GitHub Actions 会自动部署到 GitHub Pages。
+
+#### 一篇博文实际生成多少页？
+
+举例：一篇带 3 个 tag 的新博文 `foo.md` 会让 `npm run build` 输出多 6 个页面：
+
+| 自动生成的页面 | 数量 |
+|---|---:|
+| `/blog/foo`、`/ja/blog/foo`、`/zh/blog/foo` | 3 |
+| `/blog/tag/<tag1>`、`<tag2>`、`<tag3>` | 3 |
+| **合计** | **6** |
+
+如果不写 `tags` 字段则只有 3 个新页面。**你不需要为这些页面写任何代码**，全部由 `src/pages/blog/[...page].astro`、`[slug].astro` 与三语 `pages/{ja,zh}/blog/*` 共用同一份 content collection 自动展开。
+
+#### 文章 URL 规则
+
+`src/config.ts` 中 `GENERATE_SLUG_FROM_TITLE = false`，所以 URL = 文件名（去掉 `.md`）。
+- 文件 `jssc-pre1-experience.md` → URL `/blog/jssc-pre1-experience`、`/ja/blog/jssc-pre1-experience`、`/zh/blog/jssc-pre1-experience`。
+- **不要用中文/日文文件名**，否则 URL 会被剥离成空 slug 导致 404。
 
 ### 2.2 新建一张 Works / Projects 卡片
 如果希望项目出现在主页 Selected works / 代表性内容，或出现在 `/projects`、`/ja/projects`、`/zh/projects`，请在 `src/content/works/` 新建一个 `.md` 文件，例如 `my-new-work.md`。
@@ -227,13 +254,13 @@ featured: true
 ## 5. 总结：日常登载标准工作流 (Workflow)
 
 1. **准备内容**：整理好您的 `.tex` 代码或草稿，以及相关图片（`.png`, `.gif` 等）。
-2. **存放图片**：将图片拖入项目的 `public/` 文件夹。
+2. **存放图片**：在 `public/` 下建一个**语义化子文件夹**（例如 `public/<project-slug>/`），把图片放进去。**根目录不放课题/项目图片。**
 3. **格式转换**：使用 AI（通过上述提示词）将内容转化为带 Frontmatter 的 Markdown 格式。
-4. **新建文章详情页**：如果需要长文展示，在 `src/content/blog/` 下新建 `.md` 文件并粘贴转化后的正文。
-5. **新建 Works 卡片**：如果需要出现在主页或 Projects 页面，在 `src/content/works/` 下新建对应 `.md` 文件，填写三语标题、说明、分类、图片、链接和排序。
-6. **本地预览**：在终端运行 `npm run dev`，访问 `http://localhost:4321/`、`/projects`、`/blog` 查看卡片、文章排版和 LaTeX 公式是否正确。
-7. **构建检查**：运行 `npm run build`，确认 Astro、Markdown、图片路径和 KaTeX 渲染没有错误。
-8. **提交发布**：完成检查后，运行标准的 Git 命令 (`git add .`, `git commit -m "add new work"`, `git push`) 推送到 GitHub 自动部署。
+4. **新建文章详情页**：在 `src/content/blog/` 下新建 `.md` 文件（**英文文件名**），粘贴转化后的正文，填好 `pubDate` 等 frontmatter。一份 md 自动生成三语路由（`/blog/...`、`/ja/blog/...`、`/zh/blog/...`），**不要手动复制到 ja/zh 目录**。
+5. **新建 Works 卡片（可选）**：仅在希望该项目以**卡片**形式出现在 Projects 页面时，才在 `src/content/works/` 下新建 `.md` 文件，填写三语标题、`pubDate`、`section`、`projectUrl`（可指向上一步的 `/blog/...`）。如果只想发博文不开卡片，**跳过此步**即可。
+6. **本地预览**：`npm run dev`，访问 `/`、`/projects`、`/blog`、`/ja/blog`、`/zh/blog` 检查卡片、文章排版、LaTeX 公式、图片是否正确。
+7. **构建检查**：`npm run build`。0 error 即可。页面数会随内容自动增长——这是正常的，无需关注。
+8. **提交发布**：`git add . && git commit -m "..." && git push`。GitHub Actions 自动部署到 GitHub Pages，约 1–2 分钟生效。
 
 ---
 
