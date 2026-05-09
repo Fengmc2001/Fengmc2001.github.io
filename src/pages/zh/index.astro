@@ -6,7 +6,7 @@ import { getCollection } from "astro:content";
 import createSlug from "../../lib/createSlug";
 import { featuredWorks, projectRoutes, workCard } from "../../lib/works";
 
-const HIDDEN_NOTE_SLUGS = new Set(["research-proposal", "academic-writing", "reproducible-analysis"]);
+const HIDDEN_NOTE_SLUGS = new Set(["academic-writing", "reproducible-analysis"]);
 
 const posts = (await getCollection("blog"))
   .filter((post) => !HIDDEN_NOTE_SLUGS.has(post.slug))
@@ -25,11 +25,6 @@ const noteCopy: Record<string, { title: string; description: string; badge?: str
     title: "作为研究基础设施的学术写作",
     description: "关于如何使用提纲、文献引用和 LaTeX 文档，使研究思路更易修订和追踪的简短思考。",
     badge: "学术写作",
-  },
-  "research-proposal": {
-    title: "如何构建生物统计学研究计划",
-    description: "关于如何将临床问题转化为研究设计、统计假设、分析计划和预期贡献的研究笔记。",
-    badge: "研究计划",
   },
 };
 

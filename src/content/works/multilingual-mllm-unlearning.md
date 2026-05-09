@@ -19,9 +19,9 @@ section: "research"
 badge: "AI"
 heroImage: "/analysis.svg"
 projectUrl:
-  en: "/projects"
-  ja: "/ja/projects"
-  zh: "/zh/projects"
+  en: "/blog/graduation-research"
+  ja: "/ja/blog/graduation-research"
+  zh: "/zh/blog/graduation-research"
 pubDate: "2026-05-08"
 order: 10
 featured: true

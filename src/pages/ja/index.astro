@@ -6,7 +6,7 @@ import { getCollection } from "astro:content";
 import createSlug from "../../lib/createSlug";
 import { featuredWorks, projectRoutes, workCard } from "../../lib/works";
 
-const HIDDEN_NOTE_SLUGS = new Set(["research-proposal", "academic-writing", "reproducible-analysis"]);
+const HIDDEN_NOTE_SLUGS = new Set(["academic-writing", "reproducible-analysis"]);
 
 const posts = (await getCollection("blog"))
   .filter((post) => !HIDDEN_NOTE_SLUGS.has(post.slug))
@@ -25,11 +25,6 @@ const noteCopy: Record<string, { title: string; description: string; badge?: str
     title: "研究基盤としての学術的文章作成",
     description: "アウトライン、引用管理、LaTeX を用いて研究上の思考と修正過程を整理するための短い考察です。",
     badge: "学術文書",
-  },
-  "research-proposal": {
-    title: "生物統計学の研究計画書をどのように構成するか",
-    description: "臨床上の問いを、研究デザイン、仮定、解析計画、期待される貢献へと接続するためのメモです。",
-    badge: "研究計画",
   },
 };
 
