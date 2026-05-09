@@ -10,10 +10,7 @@ description:
 section: "writing"
 badge: "Notes"
 heroImage: "/research.svg"
-projectUrl:
-  en: "/projects"
-  ja: "/ja/projects"
-  zh: "/zh/projects"
+projectUrl: "/projects"
 pubDate: "2025-12-01"
 order: 60
 featured: false

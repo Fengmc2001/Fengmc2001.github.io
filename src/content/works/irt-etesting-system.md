@@ -10,10 +10,7 @@ description:
 section: "writing"
 badge: "IRT / Web Sys"
 heroImage: "/irt-etesting/1.jpg"
-projectUrl:
-  en: "/blog/irt_etesting_system"
-  ja: "/blog/irt_etesting_system"
-  zh: "/blog/irt_etesting_system"
+projectUrl: "/blog/irt_etesting_system"
 pubDate: "2024-05-09"
 order: 50
 featured: false

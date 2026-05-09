@@ -18,10 +18,7 @@ summary:
 section: "research"
 badge: "CV / Dynamics"
 heroImage: "/synchronization-analysis/Figure_4.png"
-projectUrl:
-  en: "/blog/synchronization-analysis"
-  ja: "/blog/synchronization-analysis"
-  zh: "/blog/synchronization-analysis"
+projectUrl: "/blog/synchronization-analysis"
 pubDate: "2025-07-10"
 order: 35
 featured: true

@@ -18,10 +18,7 @@ summary:
 section: "research"
 badge: "AI"
 heroImage: "/analysis.svg"
-projectUrl:
-  en: "/blog/graduation-research"
-  ja: "/ja/blog/graduation-research"
-  zh: "/zh/blog/graduation-research"
+projectUrl: "/blog/graduation-research"
 pubDate: "2026-05-08"
 order: 10
 featured: true

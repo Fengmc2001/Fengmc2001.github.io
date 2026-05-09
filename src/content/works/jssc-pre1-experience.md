@@ -18,10 +18,7 @@ summary:
 section: "writing"
 badge: "JSSC"
 heroImage: "/jssc-pre1/score-report.jpg"
-projectUrl:
-  en: "/blog/jssc-pre1-experience"
-  ja: "/ja/blog/jssc-pre1-experience"
-  zh: "/zh/blog/jssc-pre1-experience"
+projectUrl: "/blog/jssc-pre1-experience"
 pubDate: "2025-12-22"
 order: 25
 featured: true

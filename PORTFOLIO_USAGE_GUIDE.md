@@ -134,7 +134,12 @@ visibleIn: ["en", "ja", "zh"]
 - `section`：决定项目出现在 Projects 页面的哪个分类。只能填 `"research"` 或 `"writing"`。
 - `badge`：卡片右侧标签，例如 `AI`、`Research`、`Data`、`Writing`。
 - `heroImage`：卡片图片路径，必须指向 `public/` 下的静态资源。
-- `projectUrl`：点击卡片后的链接。可以指向 `/blog/...` 文章详情页，也可以指向外部链接。
+- `projectUrl`：点击卡片后的链接。**推荐写成单行字符串**（例如 `projectUrl: "/blog/foo"`），`workCard()` 会自动展开为：
+  - English 站：`/blog/foo`
+  - 日本語 站：`/ja/blog/foo`
+  - 中文 站：`/zh/blog/foo`
+
+  对 `/projects`、`/cv` 同样生效。指向外部链接（`https://...`、`mailto:`、`#`）会原样使用，不加 locale 前缀。如果某些 locale 需要单独指向不同 URL，仍然可以写成三语对象 `projectUrl: { en: "...", ja: "...", zh: "..." }`，但 99% 情况下用单行字符串即可，**这是避免 ja/zh 链接 404 的标准做法**。
 - `pubDate`：**必填**。项目发布日期，格式 `"YYYY-MM-DD"`。Works 现在按 `pubDate` 倒序显示（越新越靠前），通常应与对应 blog 文章的 `pubDate` 一致；没有对应博客文章时填写项目实际开始/完成日期。
 - `order`：可选。仅作为 `pubDate` 相同时的次级排序键（数值越小越靠前）。新建项目可省略。
 - `featured`：是否出现在主页 Selected works / 代表性内容区域。

@@ -10,10 +10,7 @@ description:
 section: "writing"
 badge: "Writing"
 heroImage: "/writing.svg"
-projectUrl:
-  en: "/blog/academic-writing"
-  ja: "/ja/projects"
-  zh: "/zh/projects"
+projectUrl: "/projects"
 pubDate: "2026-05-08"
 order: 40
 featured: false

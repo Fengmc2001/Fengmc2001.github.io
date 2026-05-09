@@ -44,6 +44,31 @@ export const worksBySection = (works: WorkEntry[], locale: Locale, section: Work
 export const featuredWorks = (works: WorkEntry[], locale: Locale) =>
   visibleWorks(works, locale).filter((work) => work.data.featured);
 
+// Expand a single string projectUrl into a locale-aware URL.
+// Rules:
+//   "/blog/foo"     -> en:/blog/foo, ja:/ja/blog/foo, zh:/zh/blog/foo
+//   "/projects"     -> en:/projects, ja:/ja/projects, zh:/zh/projects (and similar /cv, /contact)
+//   "https://..."   -> same external URL for all locales
+//   anything else   -> used as-is
+const localizeStringUrl = (url: string, locale: Locale): string => {
+  if (locale === "en" || /^https?:\/\//.test(url) || url.startsWith("#") || url.startsWith("mailto:")) {
+    return url;
+  }
+  if (url.startsWith("/blog/") || url === "/blog" || url === "/projects" || url === "/cv") {
+    return `/${locale}${url}`;
+  }
+  return url;
+};
+
+const resolveProjectUrl = (
+  projectUrl: string | Record<Locale, string> | undefined,
+  locale: Locale,
+): string | undefined => {
+  if (!projectUrl) return undefined;
+  if (typeof projectUrl === "string") return localizeStringUrl(projectUrl, locale);
+  return projectUrl[locale] ?? projectUrl.en;
+};
+
 export const workCard = (work: WorkEntry, locale: Locale, options?: { useSummary?: boolean; url?: string }) => {
   const title = options?.useSummary && work.data.summaryTitle ? work.data.summaryTitle : work.data.title;
   const description = options?.useSummary && work.data.summary ? work.data.summary : work.data.description;
@@ -52,7 +77,7 @@ export const workCard = (work: WorkEntry, locale: Locale, options?: { useSummary
     title: localizedText(title, locale),
     img: work.data.heroImage,
     desc: localizedText(description, locale),
-    url: options?.url ?? (work.data.projectUrl ? localizedText(work.data.projectUrl, locale) : projectRoutes[locale]),
+    url: options?.url ?? (resolveProjectUrl(work.data.projectUrl, locale) ?? projectRoutes[locale]),
     badge: work.data.badge,
   };
 };

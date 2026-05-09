@@ -18,10 +18,7 @@ summary:
 section: "research"
 badge: "Research"
 heroImage: "/research.svg"
-projectUrl:
-  en: "/blog/research-proposal"
-  ja: "/ja/projects"
-  zh: "/zh/projects"
+projectUrl: "/blog/research-proposal"
 pubDate: "2026-05-08"
 order: 20
 featured: true

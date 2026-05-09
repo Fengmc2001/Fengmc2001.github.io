@@ -30,7 +30,7 @@ const workSchema = z.object({
     section: z.enum(["research", "writing"]),
     badge: z.string(),
     heroImage: z.string().optional(),
-    projectUrl: localeTextSchema.optional(),
+    projectUrl: z.union([z.string(), localeTextSchema]).optional(),
     pubDate: z.coerce.date(),
     order: z.number().optional(),
     featured: z.boolean().default(false),
