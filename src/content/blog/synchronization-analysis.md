@@ -182,7 +182,7 @@ else:
 
 <div class="not-prose my-10">
   <a
-    href="https://github.com/Fengmc2001/portfolio-projects/tree/main/synchronization-analysis"
+    href="https://github.com/Fengmc2001/portfolio-projects/tree/main/metronome-synchronization-analysis"
     target="_blank"
     rel="noreferrer"
     class="group block rounded-xl border border-slate-200 bg-slate-50/80 p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:bg-white hover:shadow-md"
