@@ -19,7 +19,7 @@ section: "research"
 badge: "Data"
 heroImage: "/writing.svg"
 projectUrl:
-  en: "/blog/reproducible-analysis"
+  en: "/projects"
   ja: "/ja/projects"
   zh: "/zh/projects"
 pubDate: "2026-05-08"

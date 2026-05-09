@@ -11,7 +11,7 @@ section: "writing"
 badge: "Notes"
 heroImage: "/research.svg"
 projectUrl:
-  en: "/blog/reproducible-analysis"
+  en: "/projects"
   ja: "/ja/projects"
   zh: "/zh/projects"
 pubDate: "2025-12-01"

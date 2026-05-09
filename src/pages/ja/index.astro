@@ -6,7 +6,11 @@ import { getCollection } from "astro:content";
 import createSlug from "../../lib/createSlug";
 import { featuredWorks, projectRoutes, workCard } from "../../lib/works";
 
-const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const HIDDEN_NOTE_SLUGS = new Set(["research-proposal", "academic-writing", "reproducible-analysis"]);
+
+const posts = (await getCollection("blog"))
+  .filter((post) => !HIDDEN_NOTE_SLUGS.has(post.slug))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const works = await getCollection("works");
 const lastPosts = posts.slice(0, 3);
 const selectedWorks = featuredWorks(works, "ja");
