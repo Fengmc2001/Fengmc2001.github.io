@@ -65,7 +65,16 @@ const card = workCard(work, "en", { useSummary: true, url: projectRoutes.en });
 - `GENERATE_SLUG_FROM_TITLE = false`，URL = 文件名。
 - **禁止用中文/日文文件名**，会导致 slug 被剥离成空字符串，全语种 404。
 
-### 0.7 三语 UI 标签集中在两处
+### 0.7 文章页有一个 Google Translate widget，**永远不要**复制到其他页面
+- 嵌入位置：`src/layouts/PostLayout.astro` 文章页头部，`<div id="google_translate_element">`。
+- 触发方式：每篇文章顶部 "Translate:" 旁的下拉框，选目标语言后整篇即时翻译，原页默认显示原文。
+- 第三方依赖：`https://translate.google.com/translate_a/element.js`（Google 官方 widget，免费、无需 API key）。
+- **不要**把这段脚本加到 `BaseLayout.astro` 或其他公共布局——会让首页、Works、CV 也插入 widget，污染多语种切换逻辑。
+- 不要改 widget 的 `pageLanguage: "auto"`，否则不同 locale 的文章会无法正确识别源语言。
+- 不要删 `<style is:global>` 里那块 CSS——它隐藏 Google 强行注入的顶栏，否则页面布局会下移。
+- 如果将来 widget 被 Google 停服（已 deprecated），切换到浏览器原生翻译只需删掉那段 script + style 即可，不会影响其他功能。
+
+### 0.8 三语 UI 标签集中在两处
 - 侧边栏标签（Home/Works/Notes/CV/Contact）：`src/components/SideBarMenu.astro` 中的 `labels` 字典。
 - Works 分类标题：`src/lib/works.ts` 的 `workSectionTitles`。
 - 想新增导航条目时，**两处都要更新**，否则某 locale 会出现"未翻译"标签。
