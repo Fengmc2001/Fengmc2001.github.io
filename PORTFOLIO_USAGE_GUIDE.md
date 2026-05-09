@@ -4,6 +4,74 @@
 
 ---
 
+## 0. 给 AI 助手的硬性约定 (Read-First Contract for AI Agents)
+
+> **任何 AI 在改动这个仓库前，必须先读完这一节，再读相关章节。** 这些规则都是过去踩坑后总结出来的，违反它们会立刻产生 404 / 三语不一致 / 卡片点击错位等可见 bug。
+
+### 0.1 三语路由是结构对称的，**不要**手动复制 ja/zh 副本
+- 一篇 `src/content/blog/foo.md` 自动展开为 `/blog/foo`、`/ja/blog/foo`、`/zh/blog/foo`，由 `src/pages/{blog,ja/blog,zh/blog}/[slug].astro` 共享同一个 `getCollection("blog")` 完成。
+- **永远不要** 把同一篇 md 复制到 `src/pages/ja/blog/` 或 `src/pages/zh/blog/` 目录里——那样不会被 collection 读取，反而会污染路由。
+- 如果某语言的 blog 路由"打不开"，先 `npm run build` 然后看 `dist/{,/ja,/zh}/blog/<slug>/index.html` 是否都生成；都生成而线上 404，是 GitHub Pages 部署延迟或浏览器缓存。
+
+### 0.2 Works 的 `projectUrl` **必须写成单字符串**，由系统按 locale 自动展开
+**这是避免 ja/zh 卡片 404 的强制写法。** `src/lib/works.ts` 中的 `localizeStringUrl()` 已经处理：
+
+```yaml
+# ✅ 正确：一行字符串，系统自动加 locale 前缀
+projectUrl: "/blog/foo"
+# → en:/blog/foo, ja:/ja/blog/foo, zh:/zh/blog/foo
+
+projectUrl: "/projects"
+# → en:/projects, ja:/ja/projects, zh:/zh/projects
+
+projectUrl: "https://github.com/xxx/yyy"
+# → 三语都用同一外部链接（不加前缀）
+```
+
+**禁止**：
+```yaml
+# ❌ 错误：手写三语对象时，ja/zh 极易写错或填占位
+projectUrl:
+  en: "/blog/foo"
+  ja: "/ja/projects"   # ← 旧 bug 模式：变成跳转到 projects 列表而非文章
+  zh: "/zh/projects"
+```
+
+只有当某语种**真的需要**指向不同 URL（极少）才允许写 `{ en, ja, zh }` 对象。**默认全部用单字符串。**
+
+### 0.3 主页 Selected works 不要传 `url` 覆盖
+`src/pages/{,/ja,/zh}/index.astro` 中 Selected works 的卡片渲染 **不要** 传 `url: projectRoutes.xx`：
+
+```ts
+// ✅ 正确：让 workCard 使用 projectUrl 自动跳到文章
+const card = workCard(work, "en", { useSummary: true });
+
+// ❌ 错误：传 url 覆盖，会导致点击只能跳到 /projects 列表
+const card = workCard(work, "en", { useSummary: true, url: projectRoutes.en });
+```
+
+理由：Selected works 的卡片应该**直接跳到对应文章**，与 `/projects` 页面的卡片行为一致。`projectRoutes.en` 这种覆盖只在没有具体文章时才有用，而当前每个 featured 卡片都有 `projectUrl`。
+
+### 0.4 图片必须放进 `public/<subfolder>/`，不许散到根目录
+- 根目录只允许：`favicon*.svg`、`profile.{webp,svg}`、`analysis.svg`、`research.svg`、`writing.svg`、`robots.txt`。
+- 课题/项目图片一律放进语义化子文件夹：`public/<project-slug>/`。
+- Markdown 中引用绝对路径：`![](/<subfolder>/file.jpg)`，**不要**写嵌套的 `public/`。
+
+### 0.5 Works 的 `pubDate` 是必填字段
+- `src/content/config.ts` 中 works schema 的 `pubDate` 是必填，build 会校验。`order` 是可选的 tiebreaker。
+- 排序由 `pubDate` 倒序决定（`src/lib/works.ts` 中的 `visibleWorks`）。
+
+### 0.6 文件名一律英文
+- `GENERATE_SLUG_FROM_TITLE = false`，URL = 文件名。
+- **禁止用中文/日文文件名**，会导致 slug 被剥离成空字符串，全语种 404。
+
+### 0.7 三语 UI 标签集中在两处
+- 侧边栏标签（Home/Works/Notes/CV/Contact）：`src/components/SideBarMenu.astro` 中的 `labels` 字典。
+- Works 分类标题：`src/lib/works.ts` 的 `workSectionTitles`。
+- 想新增导航条目时，**两处都要更新**，否则某 locale 会出现"未翻译"标签。
+
+---
+
 ## 1. 网站层级与架构运作机制
 
 本网站基于 **Astro** 框架构建，搭配 **TailwindCSS** 和 **DaisyUI** 提供样式支持。网站区分为“常规展示页”和“学术阅读页”两种主要形态。
