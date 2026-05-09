@@ -9,7 +9,7 @@ description:
   zh: "使用 IRT、贝叶斯推断和牛顿法动态估计受试者能力值的 e-Testing 系统开发。"
 section: "writing"
 badge: "IRT / Web Sys"
-heroImage: "/1.jpg"
+heroImage: "/irt-etesting/1.jpg"
 projectUrl:
   en: "/blog/irt_etesting_system"
   ja: "/blog/irt_etesting_system"

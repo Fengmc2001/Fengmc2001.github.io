@@ -20,8 +20,6 @@ const {
   <head>
     <BaseHead title={title} description={description} image={image} ogType={ogType} />
     {TRANSITION_API && <ViewTransitions />}
-    <!-- KaTeX CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsEOPaLzO1iOdEEig4Zwq087wS4B4AcmFuiI2wPujU0UIti286mA1BqTjE" crossorigin="anonymous">
   </head>
   <body class="bg-[#f8fafc] text-slate-900 font-sans antialiased min-h-screen selection:bg-slate-200">
     <div class="max-w-[1400px] mx-auto w-full px-4 sm:px-6 lg:px-8">
@@ -163,6 +161,31 @@ const {
       }
       .prose a:hover {
         border-color: #2563eb;
+      }
+
+      /* Keep article body images readable without dominating the page */
+      .prose-content img {
+        display: block;
+        width: auto;
+        max-width: min(100%, 34rem);
+        max-height: 28rem;
+        object-fit: contain;
+        margin: 1.75rem auto;
+        border-radius: 0.75rem;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 8px 24px -18px rgba(15, 23, 42, 0.35);
+      }
+
+      .prose-content p > img:only-child {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      @media (max-width: 640px) {
+        .prose-content img {
+          max-width: 100%;
+          max-height: none;
+        }
       }
 
       /* KaTeX formulas overflow handling */
