@@ -2,6 +2,22 @@
 
 本指南旨在为您（以及协助您的 AI 助手）提供一份详尽的手册，说明该 Astro 网站的架构层级、运作机制，以及如何高效地登载新的学术项目、转换 LaTeX 文件和管理多语言内容。
 
+> **AI 助手请先读 [§0 硬性约定](#0-给-ai-助手的硬性约定-read-first-contract-for-ai-agents)。** 普通用户日常更新内容只需看 [§2](#2-如何登载新的学术项目或文章) 与 [§5](#5-总结日常登载标准工作流-workflow)。
+
+## 目录
+
+| 章节 | 内容 | 谁需要看 |
+|---|---|---|
+| [§0](#0-给-ai-助手的硬性约定-read-first-contract-for-ai-agents) | 给 AI 助手的硬性约定（10 条） | **AI 必读** |
+| [§1](#1-网站层级与架构运作机制) | 网站架构 / 目录结构 | 所有人 |
+| [§2](#2-如何登载新的学术项目或文章) | 新增博客 / Works 卡片 | 内容更新 |
+| [§3](#3-latex-文件的转化与登载) | LaTeX → Markdown 转换 | 内容更新 |
+| [§4](#4-主页和-projects-页面如何读取-works-数据) | 主页 / Projects 数据流 | 调整布局 |
+| [§5](#5-总结日常登载标准工作流-workflow) | 日常工作流 8 步 | 内容更新 |
+| [§6](#6-从-tex文件-选择和整理-portfolio-项目的规则) | 从历史 LaTeX 项目选材 | 内容更新 |
+| [§7](#7--常见故障排查与结构规范-troubleshooting--structural-conventions) | ⚠️ 常见故障排查 | 调试 |
+| [§8](#8-维护历史与已知约定-maintenance-log) | 维护历史与约定 | 长期维护 |
+
 ---
 
 ## 0. 给 AI 助手的硬性约定 (Read-First Contract for AI Agents)
@@ -114,9 +130,12 @@ const card = workCard(work, "en", { useSummary: true, url: projectRoutes.en });
 - 添加新 placeholder：编辑 `src/lib/blogFilters.ts` 的 `HIDDEN_NOTE_SLUGS`，三语主页自动同步。
 - 注意：被隐藏的文章 URL 仍然能直接访问，只是不出现在主页 Latest notes。如果要彻底下线，删除 md 文件本身。
 
-### 0.10 404 页面是 locale-aware
-- `src/pages/404.astro` 通过 `Astro.url.pathname` 检测前缀，把"返回主页"按钮指向当前 locale 的根（`/`、`/ja/`、`/zh/`），并展示对应语种的提示文字。
-- 新增其他全站语言时，记得更新 `404.astro` 的 `labels` 字典。
+### 0.10 404 页面是 locale-aware，但**必须用客户端 JS 检测**
+- GitHub Pages 静态托管对**所有未匹配 URL** 都只返回**同一份** `dist/404.html`。这意味着：
+  - **不能**用 `Astro.url.pathname` 在 server 端判断 locale——build 时它只是 `/404`，永远会把所有访问者识别成英文。
+  - 必须用 `<script is:inline>` 在浏览器里读 `location.pathname`，再 DOM 操作把 `headline`、`btn`、`href` 三处替换成对应 locale 的文案。
+- 实现位置：`src/pages/404.astro` 的 `<script is:inline>` 块；DOM 节点用 `id="not-found-headline"` / `id="not-found-home"` 命名。
+- 新增其他全站语言时，更新 `labels` 字典即可，不要改回 server 端逻辑。
 
 ### 0.8 三语 UI 标签集中在两处
 - 侧边栏标签（Home/Works/Notes/CV/Contact）：`src/components/SideBarMenu.astro` 中的 `labels` 字典。
@@ -454,7 +473,7 @@ featured: true
 
 ---
 
-## ⚠️ 常见故障排查与结构规范 (Troubleshooting & Structural Conventions)
+## 7. ⚠️ 常见故障排查与结构规范 (Troubleshooting & Structural Conventions)
 
 ### 1. 为什么项目链接 (URL) 打不开？
 **原因**：Astro 默认配置中，如果启用了 GENERATE_SLUG_FROM_TITLE = true，系统会根据文件标题自动生成 URL 路径。由于它会使用正则表达式过滤掉所有非英文字符，当您的文章标题为全中文或日文时，生成的 slug 会被错误地剥离，导致手动填写的 url 发生 404 错误。
@@ -510,7 +529,7 @@ P(\theta | X)
 
 ---
 
-## 7. 维护历史与已知约定 (Maintenance log)
+## 8. 维护历史与已知约定 (Maintenance log)
 
 本节记录 2026-05-09 后引入的几条新约定，**新增内容时必须遵守**。
 
