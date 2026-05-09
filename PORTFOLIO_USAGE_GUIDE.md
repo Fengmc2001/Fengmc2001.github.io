@@ -66,13 +66,20 @@ const card = workCard(work, "en", { useSummary: true, url: projectRoutes.en });
 - **禁止用中文/日文文件名**，会导致 slug 被剥离成空字符串，全语种 404。
 
 ### 0.7 文章页有一个 Google Translate widget，**永远不要**复制到其他页面
-- 嵌入位置：`src/layouts/PostLayout.astro` 文章页头部，`<div id="google_translate_element">`。
-- 触发方式：每篇文章顶部 "Translate:" 旁的下拉框，选目标语言后整篇即时翻译，原页默认显示原文。
+- 嵌入位置：`src/layouts/PostLayout.astro` 文章页底部。Google Translate Element 本体 `<div id="google_translate_element">` **完全隐藏**（CSS `display:none`），仅作为翻译引擎后端。
+- 用户可见的 UI：右上角（桌面）/ 右下角（移动端）的**单按钮悬浮控件**，点击循环切换 `EN → JP → CN`，按钮 label 实时反映当前显示语言。
+- 初始 label 由当前页面 locale 决定：`/blog/...` → `EN`、`/ja/blog/...` → `JP`、`/zh/blog/...` → `CN`。
 - 第三方依赖：`https://translate.google.com/translate_a/element.js`（Google 官方 widget，免费、无需 API key）。
-- **不要**把这段脚本加到 `BaseLayout.astro` 或其他公共布局——会让首页、Works、CV 也插入 widget，污染多语种切换逻辑。
-- 不要改 widget 的 `pageLanguage: "auto"`，否则不同 locale 的文章会无法正确识别源语言。
-- 不要删 `<style is:global>` 里那块 CSS——它隐藏 Google 强行注入的顶栏，否则页面布局会下移。
-- 如果将来 widget 被 Google 停服（已 deprecated），切换到浏览器原生翻译只需删掉那段 script + style 即可，不会影响其他功能。
+- 限定语言：`includedLanguages: "en,ja,zh-CN"`，避免误装载多余语言。
+
+**禁止做的事**：
+- **不要**把脚本加到 `BaseLayout.astro` 或公共布局——只有文章页需要翻译，列表页、Works、CV 加了会破坏 locale 路由切换。
+- **不要**改 `pageLanguage: "auto"`——三语文章源语言识别依赖它。
+- **不要**显示 `#google_translate_element` 默认 UI——所有交互应只通过自定义按钮，避免和站点风格冲突。
+- **不要**删 `<style is:global>` 那块 CSS：`#google_translate_element { display: none }`、`body { top: 0 }`、`.goog-te-banner-frame { display: none }` 这三条任何一条删掉都会让 Google 顶栏挤压布局。
+- **不要**把按钮做成下拉框——用户已经明确否决过这种 UI；保持单按钮三语循环。
+
+**降级路径**：若 Google 某天停服 `translate_a/element.js`，删掉两段 `<script>`、两个按钮、`<style is:global>` 整块即可。文章本身不依赖 widget。
 
 ### 0.8 三语 UI 标签集中在两处
 - 侧边栏标签（Home/Works/Notes/CV/Contact）：`src/components/SideBarMenu.astro` 中的 `labels` 字典。
