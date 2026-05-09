@@ -118,17 +118,23 @@ const backLabels = { en: "Back to Notes", ja: "ノートに戻る", zh: "返回�
         function bind() {
           applyLabel();
           document.querySelectorAll("[data-translate-cycle]").forEach((btn) => {
-            btn.addEventListener("click", () => {
+            // Guard: Astro ViewTransitions 会保留 DOM 但重新执行 inline script，
+            // 不加 guard 会重复绑定 → 第一次点击触发多次 reload，看起来像"卡住"。
+            if (btn.dataset.translateBound === "1") return;
+            btn.dataset.translateBound = "1";
+            btn.addEventListener("click", (e) => {
+              e.preventDefault();
+              e.stopPropagation();
               const next = (currentIdx() + 1) % codes.length;
               setLang(next);
             });
           });
         }
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", bind);
-        } else {
-          bind();
-        }
+        // Astro ViewTransitions：站内导航不刷新整页，需要监听 page-load 事件
+        // 才能重新绑定按钮（DOMContentLoaded 在站内导航时不会再触发）。
+        bind();
+        document.addEventListener("DOMContentLoaded", bind);
+        document.addEventListener("astro:page-load", bind);
       })();
     </script>
     <script is:inline async src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

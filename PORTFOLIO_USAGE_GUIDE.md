@@ -105,6 +105,13 @@ const card = workCard(work, "en", { useSummary: true, url: projectRoutes.en });
 2. 用户点击按钮 → 写 cookie 到下一种语言 → reload → Google widget 翻译整篇。
 3. 用户切换文章后 cookie 仍在，新文章自动同样语言翻译；按钮 label 与 cookie 同步。
 
+#### 与 Astro ViewTransitions 的兼容性（重要）
+站点开启了 `<ViewTransitions />`（`TRANSITION_API = true`）。站内导航不会触发整页刷新，所以：
+
+- **必须**同时监听 `DOMContentLoaded` 和 `astro:page-load`。仅监听前者会导致：用户从 `/blog/` 列表点进文章时，inline script 重新执行但 `DOMContentLoaded` 不再触发，按钮不绑定 → **第一次点击没反应**。
+- **必须**用 `dataset.translateBound` 这类标记防止重复绑定。否则一次点击会触发多个 `location.reload()`，看起来像"卡住"或"乱跳"。
+- 点击 handler 里加 `e.preventDefault()` + `e.stopPropagation()`，避免冒泡到上级链接（mobile 视图按钮和 mobile 返回链接相邻）。
+
 #### 严禁做的事
 - **不要**重新引入"右上角悬浮按钮"或"右下角浮窗"——已经由用户明确否决，统一改到左侧 NoteSideBar 与移动端顶部。
 - **不要**改 `pageLanguage: "auto"`——三语文章源语言识别依赖它。
