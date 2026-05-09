@@ -65,21 +65,58 @@ const card = workCard(work, "en", { useSummary: true, url: projectRoutes.en });
 - `GENERATE_SLUG_FROM_TITLE = false`，URL = 文件名。
 - **禁止用中文/日文文件名**，会导致 slug 被剥离成空字符串，全语种 404。
 
-### 0.7 文章页有一个 Google Translate widget，**永远不要**复制到其他页面
-- 嵌入位置：`src/layouts/PostLayout.astro` 文章页底部。Google Translate Element 本体 `<div id="google_translate_element">` **完全隐藏**（CSS `display:none`），仅作为翻译引擎后端。
-- 用户可见的 UI：右上角（桌面）/ 右下角（移动端）的**单按钮悬浮控件**，点击循环切换 `EN → JP → CN`，按钮 label 实时反映当前显示语言。
-- 初始 label 由当前页面 locale 决定：`/blog/...` → `EN`、`/ja/blog/...` → `JP`、`/zh/blog/...` → `CN`。
-- 第三方依赖：`https://translate.google.com/translate_a/element.js`（Google 官方 widget，免费、无需 API key）。
-- 限定语言：`includedLanguages: "en,ja,zh-CN"`，避免误装载多余语言。
+### 0.7 文章页 Google Translate widget — **唯一**实现位置和触发方式
 
-**禁止做的事**：
-- **不要**把脚本加到 `BaseLayout.astro` 或公共布局——只有文章页需要翻译，列表页、Works、CV 加了会破坏 locale 路由切换。
+#### 实现架构（不要改散）
+- **引擎挂载点**：`src/layouts/AcademicNoteLayout.astro` 中的 `<div id="google_translate_element">` + 紧跟其后的 `<script>` 块。**全站只允许这一处加载** `translate_a/element.js`，绝不允许复制到 `BaseLayout.astro`、`PostLayout.astro`、或其他任何位置。
+- **触发按钮**：所有带 `[data-translate-cycle]` 属性的元素都会被脚本自动绑定 click 事件。当前两处：
+  - 桌面端：`src/components/notes/NoteSideBar.astro` —— 圆形按钮，与"返回笔记列表"按钮同款样式，叠在它**正下方**。
+  - 移动端：`src/layouts/AcademicNoteLayout.astro` `lg:hidden` 区域顶部，紧跟 mobile 返回链接旁边的小药丸。
+- **label 显示位置**：所有带 `[data-translate-label]` 属性的 `<span>` 都会被同步更新成当前语言缩写（`EN` / `JP` / `CN`）。
+
+#### 触发机制：cookie + reload（**不要**改回事件 dispatch）
+点击按钮 → 写 cookie `googtrans=/auto/<lang>; path=/; max-age=31536000` → `location.reload()` → 页面重新加载时 Google widget 读取 cookie 并自动翻译。
+
+**为什么用这种方式？** 早期版本用 `select.dispatchEvent(new Event("change"))` 直接触发 hidden select，但是：
+1. Google 异步注入 select，需要复杂重试逻辑
+2. 某些 widget 版本对 dispatch 的 `change` 事件不响应（必须是真实用户点击）
+3. cookie + reload 跨浏览器一致、无竞态、Google 官方推荐
+
+代价：每次切换会刷新页面（约 0.5–1 秒）。这是可接受的。**不要**为了"无刷新"切回 dispatch 方案。
+
+#### 三步交互
+1. 用户进入 `/blog/foo`，没有 cookie → 按钮 label 由 URL locale 推断（`/blog/` → `EN`、`/ja/blog/` → `JP`、`/zh/blog/` → `CN`）。
+2. 用户点击按钮 → 写 cookie 到下一种语言 → reload → Google widget 翻译整篇。
+3. 用户切换文章后 cookie 仍在，新文章自动同样语言翻译；按钮 label 与 cookie 同步。
+
+#### 严禁做的事
+- **不要**重新引入"右上角悬浮按钮"或"右下角浮窗"——已经由用户明确否决，统一改到左侧 NoteSideBar 与移动端顶部。
 - **不要**改 `pageLanguage: "auto"`——三语文章源语言识别依赖它。
-- **不要**显示 `#google_translate_element` 默认 UI——所有交互应只通过自定义按钮，避免和站点风格冲突。
-- **不要**删 `<style is:global>` 那块 CSS：`#google_translate_element { display: none }`、`body { top: 0 }`、`.goog-te-banner-frame { display: none }` 这三条任何一条删掉都会让 Google 顶栏挤压布局。
-- **不要**把按钮做成下拉框——用户已经明确否决过这种 UI；保持单按钮三语循环。
+- **不要**改 `includedLanguages: "en,ja,zh-CN"`——多语言会污染 cookie 状态机。
+- **不要**修改 `<style is:global>` 中关于 `#google_translate_element` 离屏定位（`position: absolute; left:-9999px;`）的部分。**不能用 `display: none`**，否则 Google widget 会因为元素不可见拒绝挂载，导致 cookie 即使写了也不会翻译。
+- **不要**改 cookie 的写法。`googtrans=/auto/<lang>` 中的两个斜杠**不能**被 URL-encode；`path=/` 必须有，否则只在 `/blog/...` 路径生效不到子文章。
+- **不要**把按钮做成下拉框。
+- **不要**复制 widget 到 BaseLayout——只有 AcademicNoteLayout 渲染的页面（即文章详情页）需要翻译。
 
-**降级路径**：若 Google 某天停服 `translate_a/element.js`，删掉两段 `<script>`、两个按钮、`<style is:global>` 整块即可。文章本身不依赖 widget。
+#### 降级路径
+若 Google 停服 `translate_a/element.js`：从 `AcademicNoteLayout.astro` 删除整块 `<div id="google_translate_element">` + `<script>` + `<style is:global>`，再删除 NoteSideBar 中的翻译按钮即可。文章功能不受影响。
+
+### 0.8 三语 tag 路由是结构对称的（这次审计后修复）
+- `/blog/tag/<tag>`、`/ja/blog/tag/<tag>`、`/zh/blog/tag/<tag>` **三套都存在**，分别由：
+  - `src/pages/blog/tag/[tag]/[...page].astro`
+  - `src/pages/ja/blog/tag/[tag]/[...page].astro`
+  - `src/pages/zh/blog/tag/[tag]/[...page].astro`
+- PostLayout 中 tag chip `<a href={tagPrefix + "/" + tag}>` 中的 `tagPrefix` 由当前 URL locale 决定，点击不会切换 locale。
+- **新增 tag 页面布局功能时**（例如自定义 sort、加 RSS link 等），三个文件都要改。或者抽出共享 component。
+
+### 0.9 隐藏的 placeholder 博文用 `src/lib/blogFilters.ts` 集中管理
+- 不再在每个 `index.astro` 重复声明 `HIDDEN_NOTE_SLUGS`。`isPublicNote` helper 是唯一过滤入口。
+- 添加新 placeholder：编辑 `src/lib/blogFilters.ts` 的 `HIDDEN_NOTE_SLUGS`，三语主页自动同步。
+- 注意：被隐藏的文章 URL 仍然能直接访问，只是不出现在主页 Latest notes。如果要彻底下线，删除 md 文件本身。
+
+### 0.10 404 页面是 locale-aware
+- `src/pages/404.astro` 通过 `Astro.url.pathname` 检测前缀，把"返回主页"按钮指向当前 locale 的根（`/`、`/ja/`、`/zh/`），并展示对应语种的提示文字。
+- 新增其他全站语言时，记得更新 `404.astro` 的 `labels` 字典。
 
 ### 0.8 三语 UI 标签集中在两处
 - 侧边栏标签（Home/Works/Notes/CV/Contact）：`src/components/SideBarMenu.astro` 中的 `labels` 字典。

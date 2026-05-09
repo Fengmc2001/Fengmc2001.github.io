@@ -1,9 +1,28 @@
 ---
+const path = Astro.url.pathname;
+const locale = path.startsWith("/ja/") ? "ja" : path.startsWith("/zh/") ? "zh" : "en";
+const blogHome = locale === "en" ? "/blog/" : `/${locale}/blog/`;
+const backTitles = { en: "Back to Notes", ja: "ノートに戻る", zh: "返回笔记列表" };
 ---
+
 <div class="flex flex-col gap-4 pt-10">
-  <a href="/blog/" class="flex items-center justify-center w-12 h-12 rounded-full bg-white border border-slate-200 shadow-sm hover:border-slate-400 hover:shadow-md hover:text-primary text-slate-500 transition-all group" title="Back to Notes">
+  <a
+    href={blogHome}
+    class="flex items-center justify-center w-12 h-12 rounded-full bg-white border border-slate-200 shadow-sm hover:border-slate-400 hover:shadow-md hover:text-primary text-slate-500 transition-all group"
+    title={backTitles[locale]}
+  >
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 group-hover:-translate-x-0.5 transition-transform">
       <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
     </svg>
   </a>
+
+  <button
+    type="button"
+    data-translate-cycle
+    aria-label="Translate this article (EN / JP / CN)"
+    class="flex items-center justify-center w-12 h-12 rounded-full bg-white border border-slate-200 shadow-sm hover:border-slate-400 hover:shadow-md hover:text-primary text-slate-500 transition-all"
+    title="Translate (EN / JP / CN)"
+  >
+    <span data-translate-label class="text-xs font-semibold tracking-wide tabular-nums">EN</span>
+  </button>
 </div>

@@ -1,12 +1,22 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const path = Astro.url.pathname;
+const locale = path.startsWith("/ja/") ? "ja" : path.startsWith("/zh/") ? "zh" : "en";
+const homeHref = locale === "en" ? "/" : `/${locale}/`;
+const labels = {
+  en: { headline: "The page you're looking for couldn't be found.", btn: "Home" },
+  ja: { headline: "お探しのページは見つかりませんでした。", btn: "ホームへ戻る" },
+  zh: { headline: "未找到您访问的页面。", btn: "返回主页" },
+};
+const t = labels[locale];
 ---
 
-<BaseLayout title = "404: Not Found" includeSidebar={false}>
+<BaseLayout title="404: Not Found" includeSidebar={false}>
   <div class="text-center">
     <h1 class="text-9xl font-bold mb-4">🏝</h1>
     <h1 class="text-9xl font-bold mb-2">404</h1>
-    <h3 class="text-2xl">The page you're looking for couldn't be found.</h3>
-    <a class="btn btn-accent mt-9" href="/">Home</a>
+    <h3 class="text-2xl">{t.headline}</h3>
+    <a class="btn btn-accent mt-9" href={homeHref}>{t.btn}</a>
   </div>
 </BaseLayout>

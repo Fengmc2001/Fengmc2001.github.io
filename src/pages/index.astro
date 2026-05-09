@@ -5,11 +5,10 @@ import TimelineCurve from "../components/TimelineCurve.astro";
 import { getCollection } from "astro:content";
 import createSlug from "../lib/createSlug";
 import { featuredWorks, projectRoutes, workCard } from "../lib/works";
-
-const HIDDEN_NOTE_SLUGS = new Set(["academic-writing", "reproducible-analysis"]);
+import { isPublicNote } from "../lib/blogFilters";
 
 const posts = (await getCollection("blog"))
-  .filter((post) => !HIDDEN_NOTE_SLUGS.has(post.slug))
+  .filter(isPublicNote)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const works = await getCollection("works");
 

@@ -5,28 +5,18 @@ import TimelineCurve from "../../components/TimelineCurve.astro";
 import { getCollection } from "astro:content";
 import createSlug from "../../lib/createSlug";
 import { featuredWorks, projectRoutes, workCard } from "../../lib/works";
-
-const HIDDEN_NOTE_SLUGS = new Set(["academic-writing", "reproducible-analysis"]);
+import { isPublicNote } from "../../lib/blogFilters";
 
 const posts = (await getCollection("blog"))
-  .filter((post) => !HIDDEN_NOTE_SLUGS.has(post.slug))
+  .filter(isPublicNote)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const works = await getCollection("works");
 const lastPosts = posts.slice(0, 3);
 const selectedWorks = featuredWorks(works, "ja");
 
-const noteCopy: Record<string, { title: string; description: string; badge?: string }> = {
-  "reproducible-analysis": {
-    title: "再現可能なデータ解析のチェックリスト",
-    description: "解析コード、表、図、報告書を検証可能な形で整理するための実践的なメモです。",
-    badge: "データ解析",
-  },
-  "academic-writing": {
-    title: "研究基盤としての学術的文章作成",
-    description: "アウトライン、引用管理、LaTeX を用いて研究上の思考と修正過程を整理するための短い考察です。",
-    badge: "学術文書",
-  },
-};
+// 仅当某篇 blog 标题/描述需要在主页 Latest notes 用本地化版本展示时，
+// 才往这里加条目。绝大多数情况留空，回退到文章 frontmatter。
+const noteCopy: Record<string, { title: string; description: string; badge?: string }> = {};
 
 const timelineItems = [
   {
