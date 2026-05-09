@@ -22,6 +22,7 @@ projectUrl:
   en: "/blog/research-proposal"
   ja: "/ja/projects"
   zh: "/zh/projects"
+pubDate: "2026-05-08"
 order: 20
 featured: true
 ---

@@ -93,6 +93,7 @@ projectUrl:
   en: "/blog/my-new-research"
   ja: "/blog/my-new-research"
   zh: "/blog/my-new-research"
+pubDate: "2026-06-15"
 order: 70
 featured: false
 visibleIn: ["en", "ja", "zh"]
@@ -107,7 +108,8 @@ visibleIn: ["en", "ja", "zh"]
 - `badge`：卡片右侧标签，例如 `AI`、`Research`、`Data`、`Writing`。
 - `heroImage`：卡片图片路径，必须指向 `public/` 下的静态资源。
 - `projectUrl`：点击卡片后的链接。可以指向 `/blog/...` 文章详情页，也可以指向外部链接。
-- `order`：排序数字，越小越靠前。
+- `pubDate`：**必填**。项目发布日期，格式 `"YYYY-MM-DD"`。Works 现在按 `pubDate` 倒序显示（越新越靠前），通常应与对应 blog 文章的 `pubDate` 一致；没有对应博客文章时填写项目实际开始/完成日期。
+- `order`：可选。仅作为 `pubDate` 相同时的次级排序键（数值越小越靠前）。新建项目可省略。
 - `featured`：是否出现在主页 Selected works / 代表性内容区域。
 - `visibleIn`：可选。控制该卡片在哪些语言页面显示。若省略，则三种语言都显示。例如 `visibleIn: ["en"]` 表示只在英文 Projects 显示。
 
@@ -352,3 +354,66 @@ P(\theta | X)
 - 省略 `visibleIn`：默认在 English / 日本語 / 中文 三语页面都显示。
 
 只有在要改变整体页面结构、分类标题、卡片渲染方式时，才需要编辑 `src/pages/*/projects.astro` 或 `src/lib/works.ts`。
+
+---
+
+## 7. 维护历史与已知约定 (Maintenance log)
+
+本节记录 2026-05-09 后引入的几条新约定，**新增内容时必须遵守**。
+
+### 7.1 `public/` 图片必须放进命名子文件夹
+原本 `public/` 根目录混入了多个旧课题（教育システム1/2/3、情報工学実験等）的零散图片（`kadai*.jpg`、`0.05.jpg`、`venn_diagram.jpg` 等）。已经按照来源整理到子文件夹中：
+
+| 子文件夹 | 来源 / 用途 |
+|---|---|
+| `public/edu-system-1/` | 教育システム1（`venn_diagram.jpg` 等） |
+| `public/edu-system-2/` | 教育システム2（`kadai1-4.jpg`、`kadai7_*.jpg`、`0.05.jpg`、`0.2.jpg`、`1-4.jpg`） |
+| `public/edu-system-3/` | 教育システム3（`3-1.jpg`、`3-2.jpg`、`3-4.jpg`、`3-5.jpg`） |
+| `public/irt-etesting/` | IRT eTesting 项目（包括从根目录迁入的 `samplegraph2.jpg`） |
+| `public/synchronization-analysis/` | 节拍器同步项目 |
+
+**规则**：
+- **不要在 `public/` 根目录新增散装的课题图片**。新增图片前先创建（或选择）一个语义化的子文件夹，例如 `public/<project-slug>/`。
+- 根目录只允许保留站点级公共资源：`favicon*.svg`、`profile.{webp,svg}`、`analysis.svg`、`research.svg`、`writing.svg`、`robots.txt` 等。
+- 在 Markdown 中引用时使用绝对路径：`![desc](/edu-system-2/kadai1.jpg)`。
+- 移动已有图片时，**先全局搜索 `src/` 与 `dist/` 是否引用了该路径**，再做迁移并同步修改引用。
+
+### 7.2 Works 与 Notes 一律按 `pubDate` 倒序
+- **Works**：`src/lib/works.ts` 中的 `visibleWorks` 已改为按 `pubDate` 降序排序，`order` 仅作为 `pubDate` 相同时的次级 tiebreaker。`src/content/config.ts` 中 `pubDate` 已设为必填、`order` 设为可选。
+- **Blog / Notes**：原本就在 `src/pages/blog/[...page].astro` 和三语主页中按 `pubDate` 降序排序，无需修改。
+- **新增 works 卡片必须填写 `pubDate`**，否则 `npm run build` 会因 zod schema 校验失败而报错。
+- 如果只想调整两个同一天发布项目的相对顺序，使用 `order`；不要再依赖 `order` 控制全局顺序。
+
+### 7.3 Notes 已支持三语路由
+原本只有 `/blog/`（英文）一套路由，语言切换器把 `/blog/<slug>` 重写为 `/ja/blog/<slug>` 和 `/zh/blog/<slug>` 时直接 404。现在已经新增三语 blog 路由，语言切换器可以正常工作。
+
+**新增的文件**：
+- `src/pages/ja/blog/[...page].astro` — 日文 listing（标题"ノート"，分页按钮"新しい記事 / 以前の記事"）
+- `src/pages/ja/blog/[slug].astro` — 日文文章详情
+- `src/pages/zh/blog/[...page].astro` — 中文 listing（标题"笔记"）
+- `src/pages/zh/blog/[slug].astro` — 中文文章详情
+
+**实现要点（重要，不要踩坑）**：
+
+1. **共用 `blog` content collection**：三语 blog 路由全部从同一个 `getCollection("blog")` 读取数据，**不复制 Markdown 文件**。这样新增/修改一篇文章时，三语路由会自动同步。
+2. **正文不会自动翻译**：当前每篇 `src/content/blog/*.md` 仍然是单语种（多数为日文）。`/ja/blog/<slug>`、`/zh/blog/<slug>`、`/blog/<slug>` 三个 URL 显示的正文是同一份。区别仅在 **侧边栏、页面标题、分页按钮、卡片链接** 是按 locale 本地化的。
+3. **若日后要做真正的多语正文**：可以选两条路径：
+   - 简单方案：在 frontmatter 加 `lang: "ja" | "zh" | "en"` 字段，三语路由各自只展示匹配 locale 的文章。这样需要给同一主题准备三份 Markdown。
+   - 进阶方案：把 `src/content/blog/` 拆成 `blog-en/`、`blog-ja/`、`blog-zh/` 三个 collection。改动较大。
+4. **listing 页 / 详情页的卡片链接必须带 locale 前缀**：`/ja/blog/...` 和 `/zh/blog/...`。各 `index.astro`（en/ja/zh）的 "Latest notes" 块也已分别改为 `/blog/`、`/ja/blog/`、`/zh/blog/`。新建索引/列表组件时不要再写死 `"/blog/"`。
+5. **`SideBarMenu.astro` 的 Notes 链接**已使用 `routes.blog`，根据当前 locale 自动指向对应路径。新增导航条目时务必也走 `localizedRoutes`，并在 `labels` 字典中加入三语标签。
+6. **`Header.astro` 的语言切换器**保持简单的"加 locale 前缀"逻辑——因为三语 blog 路由都存在，所以 `/blog/foo` ↔ `/ja/blog/foo` ↔ `/zh/blog/foo` 互相切换不会 404。
+
+**关键不要做的事**：
+- 不要在 `src/pages/blog/` 里再写死 `/blog/` 链接，应让三套路由各自负责自己的链接前缀。
+- 不要复制 Markdown 文件到 `src/pages/ja/blog/` 之类的目录里——blog 路由读 `content/blog/`，不会自动扫页面目录里的 md。
+- 不要把博文的 frontmatter 改成多语对象（仿照 works）——除非你愿意同时改 schema、`PostLayout` 和三处路由。当前架构刻意保持简单。
+
+### 7.4 后续检查清单（每次新增 works / blog 时）
+1. 新建 works 时，frontmatter 至少包含 `title`/`description`/`section`/`badge`/`pubDate`，并且 `pubDate` 是 `YYYY-MM-DD` 字符串。
+2. 新增图片必须放在 `public/<subfolder>/` 下；不要散到根目录。
+3. 本地跑 `npm run dev`，验证：
+   - 主页和 `/projects` 中新项目按 `pubDate` 出现在正确位置。
+   - 在 `/blog/` 或任意 `/blog/<slug>` 上点击 日本語 / 中文，跳转到 `/ja/` 或 `/zh/`，**不要**出现 404。
+   - 图片正常加载。
+4. `npm run build` 必须 0 error。

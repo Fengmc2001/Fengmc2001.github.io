@@ -31,7 +31,8 @@ const workSchema = z.object({
     badge: z.string(),
     heroImage: z.string().optional(),
     projectUrl: localeTextSchema.optional(),
-    order: z.number(),
+    pubDate: z.coerce.date(),
+    order: z.number().optional(),
     featured: z.boolean().default(false),
     visibleIn: z.array(z.enum(["en", "ja", "zh"])).optional(),
 });

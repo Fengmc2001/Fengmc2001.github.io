@@ -32,7 +32,11 @@ export const localizedText = (value: LocalizedText, locale: Locale) => value[loc
 export const visibleWorks = (works: WorkEntry[], locale: Locale) =>
   works
     .filter((work) => !work.data.visibleIn || work.data.visibleIn.includes(locale))
-    .sort((a, b) => a.data.order - b.data.order);
+    .sort((a, b) => {
+      const diff = b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+      if (diff !== 0) return diff;
+      return (a.data.order ?? 0) - (b.data.order ?? 0);
+    });
 
 export const worksBySection = (works: WorkEntry[], locale: Locale, section: WorkSection) =>
   visibleWorks(works, locale).filter((work) => work.data.section === section);

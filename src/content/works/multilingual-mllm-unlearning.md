@@ -22,6 +22,7 @@ projectUrl:
   en: "/blog/reproducible-analysis"
   ja: "/ja/projects"
   zh: "/zh/projects"
+pubDate: "2026-05-08"
 order: 10
 featured: true
 ---
