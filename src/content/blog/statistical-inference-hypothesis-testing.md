@@ -1,7 +1,7 @@
 ---
 title: "統計的な推測：母平均の推定と仮説検定"
 description: "乱数シミュレーションを用いた母平均の信頼区間推定（t分布）および両側仮説検定。"
-pubDate: "2026-05-08"
+pubDate: "2024-06-01"
 heroImage: "/statistical-inference-hypothesis-testing/zu1.jpg"
 badge: "Academic"
 tags: ["biostatistics", "statistical-inference"]

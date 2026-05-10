@@ -1,7 +1,7 @@
 ---
 title: "画像処理：空間フィルタリングと2次元フーリエ変換"
 description: "ガウシアンフィルタを用いたノイズ除去と、手書き2次元フーリエ変換による周波数領域フィルタリングの実装。"
-pubDate: "2025-04-24"
+pubDate: "2025-06-19"
 heroImage: "/image-processing-fourier-transform/hybridimage1.jpg"
 badge: "Academic"
 tags: ["image-processing", "computer-vision"]

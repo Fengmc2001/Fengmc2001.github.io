@@ -1,7 +1,7 @@
 ---
 title: "パターン認識：K近傍法と線形判別分析の実装"
 description: "Pandasを用いたデータ前処理、K近傍法(K-NN)、および固有値分解に基づく線形判別分析(LDA)の実装と評価。"
-pubDate: "2026-05-08"
+pubDate: "2025-04-24"
 heroImage: "/knn-lda-pattern-recognition/3-1.png"
 badge: "Academic"
 tags: ["machine-learning", "pattern-recognition"]

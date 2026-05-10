@@ -11,5 +11,5 @@ section: "research"
 badge: "Academic"
 heroImage: "/bayesian-prior-mixture-model/34.png"
 projectUrl: "/blog/bayesian-prior-mixture-model"
-pubDate: "2025-04-24"
+pubDate: "2025-10-01"
 ---

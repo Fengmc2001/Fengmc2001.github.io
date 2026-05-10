@@ -1,7 +1,7 @@
 ---
 title: "ベイズ事前分布の混合モデルを用いた再犯率の推定"
 description: "ベータ分布の混合事前分布を用いたベイズ推論と分析"
-pubDate: "2025-04-24"
+pubDate: "2025-10-01"
 heroImage: "/bayesian-prior-mixture-model/34.png"
 badge: "Academic"
 tags: ["biostatistics", "bayesian-inference"]

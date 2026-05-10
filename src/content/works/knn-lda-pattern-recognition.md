@@ -11,5 +11,5 @@ section: "research"
 badge: "Academic"
 heroImage: "/knn-lda-pattern-recognition/3-1.png"
 projectUrl: "/blog/knn-lda-pattern-recognition"
-pubDate: "2026-05-08"
+pubDate: "2025-04-24"
 ---

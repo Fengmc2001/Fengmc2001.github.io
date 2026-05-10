@@ -11,5 +11,5 @@ section: "research"
 badge: "Academic"
 heroImage: "/statistical-inference-hypothesis-testing/zu1.jpg"
 projectUrl: "/blog/statistical-inference-hypothesis-testing"
-pubDate: "2026-05-08"
+pubDate: "2024-06-01"
 ---
