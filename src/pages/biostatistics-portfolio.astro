@@ -1,0 +1,94 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Biostatistics" sideBarActiveItemID="biostat">
+  <div class="mb-6">
+    <div class="text-3xl w-full font-bold">生物統計</div>
+  </div>
+
+  <div class="space-y-8">
+
+    <!-- 模擬臨床試験 -->
+    <div>
+      <div class="badge badge-sm mb-2">臨床試験方法論</div>
+      <h2 class="text-xl font-bold mb-1">
+        <a href="/blog/simulated-clinical-trial-cards" class="hover:underline">
+          模擬 RCT のデザインと統計的評価
+        </a>
+      </h2>
+      <p class="text-base-content/60 text-sm leading-relaxed">
+        患者カードから抽出した小サンプルで疑似ランダム化比較試験を実施し、検出力不足を確認した上でサンプルサイズ設計を行い、n=86 の大規模模擬データで再検証。データ収集はグループ、CSV 処理・R 実装・執筆は個人で担当。
+      </p>
+      <div class="flex gap-3 mt-2 text-sm items-center">
+        <a href="/blog/simulated-clinical-trial-cards" class="link link-hover">記事を読む</a>
+        <a href="/biostatistics/simulated-clinical-trial-report.pdf" class="link link-hover text-base-content/50">報告書（レポート）原本</a>
+        <span class="text-xs text-base-content/30">*</span>
+      </div>
+      <p class="text-xs text-base-content/30 mt-0.5">* 共同実験者の情報を伏せています</p>
+    </div>
+
+    <div class="divider my-2"></div>
+
+    <!-- 生存時間解析 -->
+    <div>
+      <div class="badge badge-sm mb-2">生存時間解析</div>
+      <h2 class="text-xl font-bold mb-1">
+        <a href="/blog/kaplan-meier-survival-analysis" class="hover:underline">
+          Kaplan-Meier 推定量と右打ち切り
+        </a>
+      </h2>
+      <p class="text-base-content/60 text-sm leading-relaxed">
+        打ち切りを含む生存時間データから生存関数を推定する方法について、シミュレーションと veteran データセットで検証。データは教員提供、解析・執筆は個人で実施。
+      </p>
+      <div class="flex gap-3 mt-2 text-sm">
+        <a href="/blog/kaplan-meier-survival-analysis" class="link link-hover">記事を読む</a>
+        <a href="/biostatistics/kaplan-meier-report.pdf" class="link link-hover text-base-content/50">報告書（レポート）原本</a>
+      </div>
+    </div>
+
+    <div class="divider my-2"></div>
+
+    <!-- 資格 -->
+    <div>
+      <div class="badge badge-sm mb-2">資格</div>
+      <h2 class="text-xl font-bold mb-1">
+        <a href="/blog/jssc-pre1-experience" class="hover:underline">
+          統計検定 準 1 級 合格（最優秀成績賞）
+        </a>
+      </h2>
+      <p class="text-base-content/60 text-sm leading-relaxed">
+        日本統計学会公式認定。
+      </p>
+      <div class="mt-2 text-sm">
+        <a href="/blog/jssc-pre1-experience" class="link link-hover">受験記を読む</a>
+      </div>
+    </div>
+
+    <div class="divider my-2"></div>
+
+    <!-- その他 -->
+    <div>
+      <div class="badge badge-sm mb-2">学習ノート</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+        <a href="/blog/research-proposal" class="block border rounded-lg p-3 hover:bg-base-200 transition-colors">
+          <div class="font-medium text-sm">生物統計学・因果推論</div>
+          <div class="text-xs text-base-content/50 mt-0.5">TTE, CCW, IPCW, G-methods</div>
+        </a>
+        <a href="/blog/bayesian-prior-mixture-model" class="block border rounded-lg p-3 hover:bg-base-200 transition-colors">
+          <div class="font-medium text-sm">ベイズ事前分布の混合モデル</div>
+          <div class="text-xs text-base-content/50 mt-0.5">Beta 分布・混合事前分布・R 実装</div>
+        </a>
+        <a href="/blog/statistical-inference-hypothesis-testing" class="block border rounded-lg p-3 hover:bg-base-200 transition-colors">
+          <div class="font-medium text-sm">統計的推測：母平均の推定と仮説検定</div>
+          <div class="text-xs text-base-content/50 mt-0.5">信頼区間・t 分布・両側検定</div>
+        </a>
+        <a href="/blog/simple-linear-regression-analysis" class="block border rounded-lg p-3 hover:bg-base-200 transition-colors">
+          <div class="font-medium text-sm">統計的推測と単回帰分析</div>
+          <div class="text-xs text-base-content/50 mt-0.5">正規方程式・行列表現・最小二乗推定量</div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</BaseLayout>
