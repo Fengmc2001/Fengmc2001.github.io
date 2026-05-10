@@ -1,0 +1,115 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TimeLineElement from "../components/cv/TimeLine.astro";
+---
+
+<BaseLayout title="CV" sideBarActiveItemID="cv">
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Profile</div>
+  </div>
+
+  <div class="mb-10 text-justify">
+    I am an undergraduate student in Information Engineering at Tokyo University of Science, with academic interests in AI, machine learning, biostatistics, causal inference, real-world data analysis, statistical modeling, and reproducible data analysis.
+    My background combines computer science, statistics, programming, and academic writing.
+    I am based in Tokyo, Japan.
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Education</div>
+  </div>
+
+  <div class="time-line-container grid gap-4 mb-10">
+    <TimeLineElement
+      title="Tokyo University of Science"
+      subtitle="Apr 2023 – Mar 2027 expected"
+    >
+      Faculty of Engineering, Department of Information Engineering. Bachelor's degree expected March 2027. Current GPA: 3.6/4.0, Top 10%.
+    </TimeLineElement>
+    <TimeLineElement
+      title="Waseda Language School"
+      subtitle="Apr 2022 – Mar 2023"
+    />
+    <TimeLineElement
+      title="The High School Attached to Henan University"
+      subtitle="Sep 2017 – Jun 2020"
+    >
+      Kaifeng, Henan, China.
+    </TimeLineElement>
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Undergraduate Research</div>
+  </div>
+
+  <div class="time-line-container mb-10">
+    <TimeLineElement
+      title="Multilingual Consistency in Unlearning for Large Multimodal Models"
+      subtitle="Current undergraduate research"
+    >
+      Current undergraduate research on unlearning in multilingual large multimodal models, focusing on whether forgetting behavior remains consistent across languages after unlearning specific visual or identity-related information.
+      The project is related to trustworthy AI, model behavior analysis, and cross-lingual robustness.
+    </TimeLineElement>
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Employment</div>
+  </div>
+
+  <div class="time-line-container mb-10">
+    <TimeLineElement
+      title="株式会社新領域理工塾"
+      subtitle="2023 – 2026"
+    >
+      Part-time position.
+    </TimeLineElement>
+    <TimeLineElement
+      title="中国旅人教育集団株式会社"
+      subtitle="2025 – Present"
+    >
+      Part-time position.
+    </TimeLineElement>
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Awards & Scholarships</div>
+  </div>
+
+  <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li>Dec 2025: Japan Statistical Society Certificate Grade Pre-1 Best Performance Award</li>
+    <li>Apr 2024: JEES International Scholarship, Study Support</li>
+    <li>Apr 2023: Monbukagakusho Honors Scholarship for Privately-Financed International Students</li>
+  </ul>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Certifications & Test Scores</div>
+  </div>
+
+  <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li>Mar 2026: SAS Certified Specialist: Base Programming Using SAS 9.4</li>
+    <li>Dec 2025: Japan Statistical Society Certificate Grade Pre-1, 93/100</li>
+    <li>Oct 2025: Japan Statistical Society Certificate Grade 2, 77/100</li>
+    <li>2025: TOEFL iBT 92, Reading 28 / Listening 20 / Speaking 22 / Writing 22</li>
+    <li>Feb 2024: JLPT N1, 137/180</li>
+  </ul>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Skills</div>
+  </div>
+
+  <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li><strong>AI / Machine Learning:</strong> Machine Learning, Model Behavior Analysis, Trustworthy AI, Multilingual MLLM Unlearning</li>
+    <li><strong>Programming:</strong> Python, R, C, LaTeX, SAS, HTML, SQL</li>
+    <li><strong>Quantitative / Technical:</strong> Statistics, Data Analysis, Statistical Modeling, Reproducible Reports</li>
+    <li><strong>Research Interests:</strong> AI, Biostatistics, Causal Inference, Real-World Data, Clinical Research Methods</li>
+  </ul>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Languages</div>
+  </div>
+
+  <ul class="list-disc mx-6">
+    <li>Chinese: Native</li>
+    <li>Japanese: JLPT N1</li>
+    <li>English: TOEFL iBT 92</li>
+  </ul>
+</BaseLayout>

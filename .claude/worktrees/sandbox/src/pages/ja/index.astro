@@ -1,0 +1,135 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HorizontalCard from "../../components/HorizontalCard.astro";
+import TimelineCurve from "../../components/TimelineCurve.astro";
+import { getCollection } from "astro:content";
+import createSlug from "../../lib/createSlug";
+import { featuredWorks, projectRoutes, workCard } from "../../lib/works";
+import { isPublicNote } from "../../lib/blogFilters";
+
+const posts = (await getCollection("blog"))
+  .filter(isPublicNote)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const works = await getCollection("works");
+const lastPosts = posts.slice(0, 3);
+const selectedWorks = featuredWorks(works, "ja");
+
+// 仅当某篇 blog 标题/描述需要在主页 Latest notes 用本地化版本展示时，
+// 才往这里加条目。绝大多数情况留空，回退到文章 frontmatter。
+const noteCopy: Record<string, { title: string; description: string; badge?: string }> = {};
+
+const timelineItems = [
+  {
+    date: "2020",
+    title: "高校卒業",
+  },
+  {
+    date: "2022",
+    title: "来日",
+  },
+  {
+    date: "2023",
+    title: "入学",
+  },
+  {
+    date: "2026年5月9日",
+    title: "ホームページ開設",
+  },
+];
+---
+
+<BaseLayout
+  title="Ziyin Wu | AI・生物統計学・データサイエンス"
+  description="東京理科大学の情報工学科に在籍する呉 子吟のアカデミック・ポートフォリオです。"
+  sideBarActiveItemID="home"
+  lang="ja"
+>
+  <div class="pb-12 mt-5 pt-8">
+    <div class="text-6xl md:text-[4.5rem] leading-none font-extrabold tracking-tight mb-3 flex items-end gap-1">
+      <ruby>呉<rt class="text-xl md:text-2xl font-medium text-base-content/50 tracking-widest" style="padding-bottom: 0.2em; font-family: ui-sans-serif, system-ui, sans-serif;">WU</rt></ruby>
+      <ruby>子<rt class="text-xl md:text-2xl font-medium text-base-content/50 tracking-widest" style="padding-bottom: 0.2em; font-family: ui-sans-serif, system-ui, sans-serif;">ZI</rt></ruby>
+      <ruby>吟<rt class="text-xl md:text-2xl font-medium text-base-content/50 tracking-widest" style="padding-bottom: 0.2em; font-family: ui-sans-serif, system-ui, sans-serif;">YIN</rt></ruby>
+    </div>
+    <div class="text-2xl py-1 font-medium text-base-content/70 mb-4">です</div>
+    <div class="text-2xl py-2 font-bold leading-snug">
+      AI・生物統計学・データサイエンスに関心を持つ、<br />
+      情報工学専攻の学部生
+    </div>
+    <div class="py-2 space-y-3 text-base leading-relaxed">
+      <p>
+        東京理科大学 工学部 情報工学科に在籍している。
+      </p>
+      <p>
+        AI・機械学習を中心に、生物統計学、因果推論、リアルワールドデータ解析、再現可能なデータ解析にも関心がある。
+      </p>
+      <p>
+        現在の卒業研究では、多言語大規模マルチモーダルモデルにおける忘却の多言語一貫性を扱っている。
+      </p>
+      <p>
+        本サイトでは、研究関心、プロジェクト、学習ノート、CV を整理している。
+      </p>
+    </div>
+    <div class="mt-8">
+      <a class="btn" href="/ja/projects">研究内容を見る</a>
+      <a href="/ja/cv" class="btn btn-outline ml-5">CVを見る</a>
+    </div>
+  </div>
+
+  <TimelineCurve
+    title="歩み"
+    quote="少年老い易く学成り難し"
+    items={timelineItems}
+  />
+
+  <div>
+    <div class="text-3xl w-full font-bold mb-2">主な研究・制作内容</div>
+  </div>
+
+  {
+    selectedWorks.map((work) => {
+      const card = workCard(work, "ja", { useSummary: true });
+
+      return (
+        <>
+          <HorizontalCard
+            title={card.title}
+            img={card.img}
+            desc={card.desc}
+            url={card.url}
+            target="_self"
+            badge={card.badge}
+          />
+          <div class="divider my-0" />
+        </>
+      );
+    })
+  }
+
+  <div>
+    <div class="text-3xl w-full font-bold mb-5 mt-10">研究ノート</div>
+  </div>
+
+  {
+    lastPosts.map((post) => {
+      const copy = noteCopy[post.slug] ?? {
+        title: post.data.title,
+        description: post.data.description,
+        badge: post.data.badge,
+      };
+
+      return (
+        <>
+          <HorizontalCard
+            title={copy.title}
+            img={post.data.heroImage}
+            desc={copy.description}
+            url={"/ja/blog/" + createSlug(post.data.title, post.slug)}
+            target="_self"
+            badge={copy.badge}
+          />
+          <div class="divider my-0" />
+        </>
+      );
+    })
+  }
+</BaseLayout>

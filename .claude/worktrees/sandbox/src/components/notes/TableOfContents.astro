@@ -1,0 +1,57 @@
+---
+export interface Props {
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { headings } = Astro.props;
+const toc = headings.filter(heading => heading.depth === 2 || heading.depth === 3);
+---
+
+{toc.length > 0 && (
+  <div class="sticky top-16 pt-4">
+    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 pl-3">Catalog</h3>
+    <nav class="toc-nav">
+      <ul class="flex flex-col gap-1.5 relative border-l-2 border-slate-100 pl-3">
+        {toc.map((heading) => (
+          <li>
+            <a
+              href={`#${heading.slug}`}
+              class={`block text-sm transition-all duration-200 leading-snug outline-none focus:outline-none ${
+                heading.depth === 2
+                  ? "text-slate-600 hover:text-slate-900 font-medium"
+                  : "text-slate-500 hover:text-slate-900 ml-3"
+              } py-1.5 px-3 rounded-md hover:bg-slate-100/80`}
+            >
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+)}
+
+<script is:inline>
+  const setupTOC = () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const id = entry.target.getAttribute('id');
+        const tocLink = document.querySelector(`.toc-nav a[href="#${id}"]`);
+        
+        if (entry.isIntersecting && tocLink) {
+          document.querySelectorAll('.toc-nav a').forEach(a => {
+            a.classList.remove('text-slate-900', 'bg-slate-100', 'font-semibold', 'border-l-2', 'border-slate-800', '-ml-[15px]', 'pl-[17px]');
+          });
+          tocLink.classList.add('text-slate-900', 'bg-slate-100', 'font-semibold');
+        }
+      });
+    }, { rootMargin: '0px 0px -80% 0px' });
+
+    document.querySelectorAll('.prose-content h2, .prose-content h3').forEach((section) => {
+      observer.observe(section);
+    });
+  };
+
+  document.addEventListener('astro:page-load', setupTOC);
+  setupTOC();
+</script>

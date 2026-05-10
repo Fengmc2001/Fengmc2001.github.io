@@ -1,0 +1,115 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HorizontalCard from "../components/HorizontalCard.astro";
+import TimelineCurve from "../components/TimelineCurve.astro";
+import { getCollection } from "astro:content";
+import createSlug from "../lib/createSlug";
+import { featuredWorks, projectRoutes, workCard } from "../lib/works";
+import { isPublicNote } from "../lib/blogFilters";
+
+const posts = (await getCollection("blog"))
+  .filter(isPublicNote)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const works = await getCollection("works");
+
+const last_posts = posts.slice(0, 3);
+const selectedWorks = featuredWorks(works, "en");
+
+const timelineItems = [
+  {
+    date: "2020",
+    title: "High School Graduation",
+  },
+  {
+    date: "2022",
+    title: "Arrival in Japan",
+  },
+  {
+    date: "2023",
+    title: "TUS Enrollment",
+  },
+  {
+    date: "May 9, 2026",
+    title: "Homepage Launch",
+  },
+];
+---
+
+<BaseLayout sideBarActiveItemID="home">
+  <div class="pb-12 mt-5 pt-4">
+    <div class="text-3xl py-1 font-medium text-base-content/70 mb-3">I'm</div>
+    <div class="text-[5rem] leading-none font-extrabold tracking-tight mb-6">Ziyin Wu</div>
+    <div class="text-3xl py-3 font-bold">
+      Information Engineering undergraduate interested in AI,<br />
+      biostatistics, and data science
+    </div>
+    <div class="py-2 space-y-4 text-lg leading-relaxed">
+      <p>
+        I am an undergraduate student in the Department of Information Engineering at Tokyo University of Science.
+      </p>
+      <p>
+        My interests center on AI and machine learning, with additional focus on biostatistics, causal inference, real-world data analysis, and reproducible scientific computing.
+      </p>
+      <p>
+        My current undergraduate research examines multilingual consistency in unlearning for large multimodal models.
+      </p>
+      <p>
+        This website collects my academic profile, selected projects, research notes, and CV.
+      </p>
+    </div>
+    <div class="mt-8">
+      <a class="btn" href="/projects">View works</a>
+      <a href="/cv" class="btn btn-outline ml-5">View CV</a>
+    </div>
+  </div>
+
+  <TimelineCurve
+    title="歩み"
+    quote="Youth fades; learning is hard-won."
+    items={timelineItems}
+  />
+
+  <div>
+    <div class="text-3xl w-full font-bold mb-2">Selected works</div>
+  </div>
+
+  {
+    selectedWorks.map((work) => {
+      const card = workCard(work, "en", { useSummary: true });
+
+      return (
+        <>
+          <HorizontalCard
+            title={card.title}
+            img={card.img}
+            desc={card.desc}
+            url={card.url}
+            target="_self"
+            badge={card.badge}
+          />
+          <div class="divider my-0" />
+        </>
+      );
+    })
+  }
+
+  <div>
+    <div class="text-2xl w-full font-bold mb-4 mt-8">Latest notes</div>
+  </div>
+
+  {
+    last_posts.map((post) => (
+      <>
+        <HorizontalCard
+          title={post.data.title}
+          img={post.data.heroImage}
+          desc={post.data.description}
+          url={"/blog/" + createSlug(post.data.title, post.slug)}
+          target="_self"
+          badge={post.data.badge}
+        />
+        <div class="divider my-0" />
+      </>
+    ))
+  }
+</BaseLayout>

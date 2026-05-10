@@ -1,0 +1,33 @@
+{
+  "name": "fengmc2001-github-io",
+  "description": "Personal portfolio site built with Astrofy, Astro, TailwindCSS, and DaisyUI.",
+  "type": "module",
+  "version": "3.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/mdx": "^4.3.12",
+    "@astrojs/rss": "^4.0.14",
+    "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^5.16.0",
+    "daisyui": "^4.4.10",
+    "dayjs": "^1.11.10",
+    "katex": "^0.16.45",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
+    "sharp": "^0.33.5",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.15"
+  }
+}

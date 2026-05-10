@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Research proposal graphic</title>
+  <desc id="desc">A neutral illustration of documents, statistical marks, and a research plan.</desc>
+  <rect width="960" height="540" fill="#f4f4f5"/>
+  <rect x="156" y="84" width="648" height="372" rx="28" fill="#ffffff" stroke="#d4d4d8" stroke-width="4"/>
+  <rect x="214" y="144" width="320" height="24" rx="12" fill="#27272a"/>
+  <rect x="214" y="198" width="516" height="16" rx="8" fill="#a1a1aa"/>
+  <rect x="214" y="236" width="428" height="16" rx="8" fill="#a1a1aa"/>
+  <rect x="214" y="302" width="114" height="84" rx="12" fill="#e7e5e4"/>
+  <rect x="360" y="276" width="114" height="110" rx="12" fill="#d6d3d1"/>
+  <rect x="506" y="228" width="114" height="158" rx="12" fill="#a8a29e"/>
+  <path d="M660 360l48-50 26 26 64-78" fill="none" stroke="#0f766e" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

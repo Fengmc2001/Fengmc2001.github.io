@@ -1,0 +1,121 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TimeLineElement from "../../components/cv/TimeLine.astro";
+---
+
+<BaseLayout
+  title="CV"
+  description="吴子吟的履历与研究简介，方向包括 AI、多语言 MLLM 忘却、生物统计、因果推断和数据科学。"
+  sideBarActiveItemID="cv"
+  lang="zh-CN"
+>
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">个人简介</div>
+  </div>
+
+  <div class="mb-10 text-justify">
+    我是东京理科大学工学部信息工程学科的本科生，学术兴趣包括 AI、机器学习、生物统计、因果推断、真实世界数据分析、统计建模和可重复数据分析。
+    我的背景结合了计算机科学、统计学、程序设计和学术写作训练。
+    目前位于日本东京。
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">教育背景</div>
+  </div>
+
+  <div class="time-line-container grid gap-4 mb-10">
+    <TimeLineElement
+      title="东京理科大学"
+      subtitle="2023年4月 – 预计2027年3月"
+    >
+      工学部信息工程学科。预计于 2027年3月获得学士学位。目前 GPA 为 3.6/4.0，成绩排名 Top 10%。
+    </TimeLineElement>
+    <TimeLineElement
+      title="早稻田言语学院"
+      subtitle="2022年4月 – 2023年3月"
+    />
+    <TimeLineElement
+      title="河南大学附属高级中学"
+      subtitle="2017年9月 – 2020年6月"
+    >
+      中国河南省开封市。
+    </TimeLineElement>
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">本科毕业研究</div>
+  </div>
+
+  <div class="time-line-container mb-10">
+    <TimeLineElement
+      title="大规模多模态模型忘却中的多语言一致性"
+      subtitle="当前本科毕业研究"
+    >
+      当前正在进行与多语言大规模多模态模型 unlearning 相关的本科毕业研究。
+      研究重点是：在遗忘特定视觉信息或身份相关信息之后，模型的遗忘行为是否能够在不同语言之间保持一致。
+      该项目与可信 AI、模型行为分析和跨语言鲁棒性相关。
+    </TimeLineElement>
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">工作经历</div>
+  </div>
+
+  <div class="time-line-container mb-10">
+    <TimeLineElement
+      title="株式会社新領域理工塾"
+      subtitle="2023年 – 2026年"
+    >
+      兼职。
+    </TimeLineElement>
+    <TimeLineElement
+      title="中国旅人教育集団株式会社"
+      subtitle="2025年 – 至今"
+    >
+      兼职。
+    </TimeLineElement>
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">奖项与奖学金</div>
+  </div>
+
+  <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li>2025年12月：日本统计学会统计检定准1级最优秀成绩奖</li>
+    <li>2024年4月：JEES 国际学生奖学金，学习支援</li>
+    <li>2023年4月：文部科学省私费外国人留学生学习奖励费</li>
+  </ul>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">证书与考试成绩</div>
+  </div>
+
+  <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li>2026年3月：SAS Certified Specialist: Base Programming Using SAS 9.4</li>
+    <li>2025年12月：日本统计学会统计检定准1级，93/100</li>
+    <li>2025年10月：日本统计学会统计检定2级，77/100</li>
+    <li>2025年：TOEFL iBT 92，Reading 28 / Listening 20 / Speaking 22 / Writing 22</li>
+    <li>2024年2月：JLPT N1，137/180</li>
+  </ul>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">技能</div>
+  </div>
+
+  <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li><strong>AI / 机器学习：</strong>机器学习、模型行为分析、可信 AI、多语言 MLLM unlearning</li>
+    <li><strong>编程：</strong>Python、R、C、LaTeX、SAS、HTML、SQL</li>
+    <li><strong>定量 / 技术：</strong>统计学、数据分析、统计建模、可重复报告</li>
+    <li><strong>研究兴趣：</strong>AI、生物统计、因果推断、真实世界数据、临床研究方法学</li>
+  </ul>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">语言能力</div>
+  </div>
+
+  <ul class="list-disc mx-6">
+    <li>中文：母语</li>
+    <li>日语：JLPT N1</li>
+    <li>英语：TOEFL iBT 92</li>
+  </ul>
+</BaseLayout>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Academic writing graphic</title>
+  <desc id="desc">A neutral illustration of writing, notes, and citations.</desc>
+  <rect width="960" height="540" fill="#fafaf9"/>
+  <rect x="190" y="76" width="440" height="388" rx="24" fill="#ffffff" stroke="#d6d3d1" stroke-width="4"/>
+  <rect x="246" y="142" width="246" height="20" rx="10" fill="#292524"/>
+  <rect x="246" y="202" width="312" height="14" rx="7" fill="#a8a29e"/>
+  <rect x="246" y="242" width="286" height="14" rx="7" fill="#a8a29e"/>
+  <rect x="246" y="282" width="320" height="14" rx="7" fill="#a8a29e"/>
+  <rect x="246" y="348" width="196" height="52" rx="10" fill="#e7e5e4"/>
+  <path d="M616 356l130-130 58 58-130 130-80 22 22-80z" fill="#0f766e"/>
+  <path d="M746 226l26-26c12-12 32-12 44 0s12 32 0 44l-26 26" fill="#134e4a"/>
+</svg>

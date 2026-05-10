@@ -452,7 +452,6 @@ featured: true
 
 推荐结构：
 
-- 现实世界背景 (Background / Introduction)：文章的最开头（`## 背景 (Background)`），必须加入贴近现实世界应用场景的引入段落，避免一上来就罗列理论。
 - 项目概要：说明背景、目的、构建或分析了什么。
 - Core Theory：整理核心理论，例如 IRT、MLE、Bayesian inference、regression、survival analysis。
 - Derivations / Methods：保留关键推导、模型、估计方法和算法流程。
@@ -461,8 +460,6 @@ featured: true
 - Repository / Reproducibility：如有 GitHub 仓库，在文末加入项目卡片或链接。
 
 写作时要避免夸张表达。不要写“独创”“首次提出”“显著提升”等没有原始材料支持的表述。可以写“実装した”“確認した”“比較した”“検討した”这类事实性表达。
-
-**日期提取规则 (pubDate Extraction)**：对于提取的项目，Frontmatter 中的 `pubDate` 严禁使用当前日期或文件的更新日期(mtime)，必须精读源 `.tex` 代码，提取出 `\date{}` 或其中显式记录的“原始撰写/提交日期”。只有在源码中完全没有记录的情况下，才可推测文件夹的建立/平均编辑时期。
 
 ### 6.4 先在 `tex文件` 下做草稿，再进入网站
 对于复杂项目，推荐采用三步流程：

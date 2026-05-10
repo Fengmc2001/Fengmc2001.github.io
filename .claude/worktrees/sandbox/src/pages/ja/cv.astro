@@ -1,0 +1,122 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TimeLineElement from "../../components/cv/TimeLine.astro";
+---
+
+<BaseLayout
+  title="CV"
+  description="東京理科大学 工学部 情報工学科に在籍する呉 子吟の履歴と研究プロフィールです。"
+  sideBarActiveItemID="cv"
+  lang="ja"
+>
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">プロフィール</div>
+  </div>
+
+  <div class="mb-10 text-justify">
+    東京理科大学 工学部 情報工学科に在籍する学部生です。
+    AI・機械学習、生物統計学、因果推論、リアルワールドデータ解析、統計モデリング、再現可能なデータ解析に関心があります。
+    情報工学、統計学、プログラミング、学術的文章作成を組み合わせて学習しています。
+    現在は東京を拠点としています。
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">学歴</div>
+  </div>
+
+  <div class="time-line-container grid gap-4 mb-10">
+    <TimeLineElement
+      title="東京理科大学"
+      subtitle="2023年4月 – 2027年3月卒業予定"
+    >
+      工学部 情報工学科。学士号取得予定（2027年3月）。現在の GPA は 3.6/4.0、上位 10% です。
+    </TimeLineElement>
+    <TimeLineElement
+      title="早稲田言語学院"
+      subtitle="2022年4月 – 2023年3月"
+    />
+    <TimeLineElement
+      title="河南大学附属高級中学"
+      subtitle="2017年9月 – 2020年6月"
+    >
+      中国 河南省 開封市。
+    </TimeLineElement>
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">卒業研究</div>
+  </div>
+
+  <div class="time-line-container mb-10">
+    <TimeLineElement
+      title="大規模マルチモーダルモデルにおける忘却の多言語一貫性"
+      subtitle="現在の卒業研究"
+    >
+      多言語大規模マルチモーダルモデルにおける unlearning に関する卒業研究に取り組んでいます。
+      特定の視覚情報またはアイデンティティ関連情報を忘却させた後、忘却挙動が言語間で一貫しているかに焦点を当てています。
+      本研究は、信頼できる AI、モデル挙動分析、言語横断的な頑健性に関連しています。
+    </TimeLineElement>
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">職歴</div>
+  </div>
+
+  <div class="time-line-container mb-10">
+    <TimeLineElement
+      title="株式会社新領域理工塾"
+      subtitle="2023年 – 2026年"
+    >
+      アルバイト。
+    </TimeLineElement>
+    <TimeLineElement
+      title="中国旅人教育集団株式会社"
+      subtitle="2025年 – 現在"
+    >
+      アルバイト。
+    </TimeLineElement>
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">受賞・奨学金</div>
+  </div>
+
+  <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li>2025年12月：統計検定 準1級 最優秀成績賞</li>
+    <li>2024年4月：JEES 留学生奨学金（学修支援）</li>
+    <li>2023年4月：文部科学省 外国人留学生学習奨励費</li>
+  </ul>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">資格・スコア</div>
+  </div>
+
+  <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li>2026年3月：SAS Certified Specialist: Base Programming Using SAS 9.4</li>
+    <li>2025年12月：統計検定 準1級、93/100</li>
+    <li>2025年10月：統計検定 2級、77/100</li>
+    <li>2025年：TOEFL iBT 92、Reading 28 / Listening 20 / Speaking 22 / Writing 22</li>
+    <li>2024年2月：JLPT N1、137/180</li>
+  </ul>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">スキル</div>
+  </div>
+
+  <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li><strong>AI・機械学習：</strong>機械学習、モデル挙動分析、信頼できる AI、多言語 MLLM unlearning</li>
+    <li><strong>プログラミング：</strong>Python、R、C、LaTeX、SAS、HTML、SQL</li>
+    <li><strong>定量・技術：</strong>統計学、データ解析、統計モデリング、再現可能なレポート作成</li>
+    <li><strong>研究関心：</strong>AI、生物統計学、因果推論、リアルワールドデータ、臨床研究方法論</li>
+  </ul>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">言語</div>
+  </div>
+
+  <ul class="list-disc mx-6">
+    <li>中国語：母語</li>
+    <li>日本語：JLPT N1</li>
+    <li>英語：TOEFL iBT 92</li>
+  </ul>
+</BaseLayout>
