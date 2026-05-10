@@ -1,10 +1,10 @@
 ---
-title: "数理最適化アルゴリズムの実装と評価"
-description: "MATLABを用いた数理最適化の基礎から、勾配ベクトルとヘッセ行列に基づく最急降下法およびニュートン法の実装まで。"
+title: "数理最適化の基礎：テイラー展開とMax-Plus代数の実装"
+description: "正弦・逆正接関数のテイラー展開近似と、Max-Plus代数に基づく行列演算のMATLAB実装および乱数検証。"
 pubDate: "2024-10-18"
 heroImage: "/mathematical-optimization-algorithms/taylor1.jpg"
 badge: "Academic"
-tags: ["optimization", "algorithms"]
+tags: ["optimization", "taylor-series", "max-plus-algebra", "matlab"]
 ---
 
 ## 背景 (Background)

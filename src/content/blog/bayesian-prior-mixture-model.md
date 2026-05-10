@@ -4,7 +4,7 @@ description: "ベータ分布の混合事前分布を用いたベイズ推論と
 pubDate: "2025-10-01"
 heroImage: "/bayesian-prior-mixture-model/34.png"
 badge: "Academic"
-tags: ["biostatistics", "bayesian-inference"]
+tags: ["biostatistics", "bayesian-inference", "beta-distribution", "mixture-model"]
 ---
 
 ## 背景 (Background)

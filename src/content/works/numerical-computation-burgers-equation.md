@@ -12,4 +12,5 @@ badge: "Academic"
 heroImage: "/numerical-computation-burgers-equation/result3.jpg"
 projectUrl: "/blog/numerical-computation-burgers-equation"
 pubDate: "2025-07-15"
+featured: false
 ---

@@ -4,7 +4,7 @@ description: "線形代数の行列演算を用いた手書き数字画像デー
 pubDate: "2024-11-11"
 heroImage: "/matrix-dimensionality-reduction/hikaku1.jpg"
 badge: "Academic"
-tags: ["data-compression", "linear-algebra"]
+tags: ["data-compression", "linear-algebra", "dimensionality-reduction", "sgd"]
 ---
 
 ## 背景 (Background)
@@ -182,7 +182,7 @@ $$
 ![数字“7”の圧縮・復元前後比較(k=64)](/matrix-dimensionality-reduction/64_1.jpg)
 ![繰り返し回数に対するMSEの推移(k=16とk=64)](/matrix-dimensionality-reduction/32and64.jpg)
 
-圧縮次元数 \( k（16/32/64) \) を増加させると，へ平均二乗誤差MSEが減少した傾向が明らかに観察された．これは，次元数が増えることで，圧縮表現に含まれるピクスル量が増加し，復元精度が向上するためである．しかし，次元数の増加の一方，計算量も大幅に増加し，コンピュータの処理時間が長くなってしまった．
+圧縮次元数 \( k（16/32/64) \) を増加させると，へ平均二乗誤差MSEが減少した傾向が明らかに観察された．これは，次元数が増えることで，圧縮表現に含まれるピクセル量が増加し，復元精度が向上するためである．しかし，次元数の増加の一方，計算量も大幅に増加し，コンピュータの処理時間が長くなってしまった．
 
 ### 学習データで計算した MSE とテストデータで計算した MSE の違い
 
@@ -225,11 +225,11 @@ $$
 
 複数データ間の内挿を用いて，二つの画像から新しい画像を生成するプログラムを作った．
 
-![上から：元の画像，非線型モードからの画像，線形モードからの画像](/matrix-dimensionality-reduction/combined.jpg)
-![上から：元の画像，非線型モードからの画像，線形モードからの画像](/matrix-dimensionality-reduction/combined_image_centered6.jpg)
-![上から：元の画像，非線型モードからの画像，形モードからの画像](/matrix-dimensionality-reduction/combined_image_centered9.jpg)
+![上から：元の画像，非線型モードからの画像，線線形モードからの画像](/matrix-dimensionality-reduction/combined.jpg)
+![上から：元の画像，非線型モードからの画像，線線形モードからの画像](/matrix-dimensionality-reduction/combined_image_centered6.jpg)
+![上から：元の画像，非線型モードからの画像，線形モードからの画像](/matrix-dimensionality-reduction/combined_image_centered9.jpg)
 
-非線形モードで生成された画像は，数字の輪郭がより明確に表現されている．この点から，非線形モードは圧縮・復元の際に画像の細部をより精密に再現する能力が高いといえる．一方で，数字の判別性において課題がある．線形モードで生成された画像は，全体的にモザイク感が強いが，元の数字の形状をちゃんと保持している．
+非線線形モードで生成された画像は，数字の輪郭がより明確に表現されている．この点から，非線線形モードは圧縮・復元の際に画像の細部をより精密に再現する能力が高いといえる．一方で，数字の判別性において課題がある．線線形モードで生成された画像は，全体的にモザイク感が強いが，元の数字の形状をちゃんと保持している．
 
 ![k=16の生成された行列A,Bから生成内挿画像](/matrix-dimensionality-reduction/combine16.png)
 ![k=128の生成された行列A,Bから生成内挿画像](/matrix-dimensionality-reduction/combined128.png)

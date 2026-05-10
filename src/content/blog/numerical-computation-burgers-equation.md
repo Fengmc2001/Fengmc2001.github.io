@@ -4,7 +4,7 @@ description: "風上差分、保存型差分、およびGodunov法を用いた�
 pubDate: "2025-07-15"
 heroImage: "/numerical-computation-burgers-equation/result3.jpg"
 badge: "Academic"
-tags: ["numerical-methods", "pde"]
+tags: ["numerical-methods", "pde", "burgers-equation", "godunov-method", "upwind-scheme"]
 ---
 
 ## 背景 (Background)

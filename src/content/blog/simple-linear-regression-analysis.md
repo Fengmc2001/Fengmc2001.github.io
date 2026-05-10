@@ -4,7 +4,7 @@ description: "ピアソン相関係数の計算と、最小二乗法による単
 pubDate: "2024-12-17"
 heroImage: "/simple-linear-regression-analysis/zu1.jpg"
 badge: "Academic"
-tags: ["biostatistics", "linear-regression"]
+tags: ["biostatistics", "linear-regression", "least-squares", "matrix-formulation"]
 ---
 
 ## 背景 (Background)

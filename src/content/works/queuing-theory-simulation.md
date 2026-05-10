@@ -12,4 +12,5 @@ badge: "Academic"
 heroImage: "/analysis.svg"
 projectUrl: "/blog/queuing-theory-simulation"
 pubDate: "2026-01-01"
+featured: false
 ---

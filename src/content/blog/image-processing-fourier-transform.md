@@ -4,7 +4,7 @@ description: "ガウシアンフィルタを用いたノイズ除去と、手書
 pubDate: "2025-06-19"
 heroImage: "/image-processing-fourier-transform/hybridimage1.jpg"
 badge: "Academic"
-tags: ["image-processing", "computer-vision"]
+tags: ["image-processing", "computer-vision", "fourier-transform", "spatial-filtering"]
 ---
 
 ## 背景 (Background)

@@ -12,4 +12,5 @@ badge: "Academic"
 heroImage: "/image-processing-fourier-transform/hybridimage1.jpg"
 projectUrl: "/blog/image-processing-fourier-transform"
 pubDate: "2025-06-19"
+featured: false
 ---

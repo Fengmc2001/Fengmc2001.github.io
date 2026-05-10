@@ -12,4 +12,5 @@ badge: "Academic"
 heroImage: "/a-star-search-algorithm/kadai1-1.png"
 projectUrl: "/blog/a-star-search-algorithm"
 pubDate: "2025-10-08"
+featured: false
 ---

@@ -12,4 +12,5 @@ badge: "Academic"
 heroImage: "/matrix-dimensionality-reduction/hikaku1.jpg"
 projectUrl: "/blog/matrix-dimensionality-reduction"
 pubDate: "2024-11-11"
+featured: false
 ---

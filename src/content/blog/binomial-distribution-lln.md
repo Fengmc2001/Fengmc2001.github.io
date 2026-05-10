@@ -4,7 +4,7 @@ description: "乱数を用いた大数の法則 (LLN) と中心極限定理 (CLT
 pubDate: "2024-06-10"
 heroImage: "/binomial-distribution-lln/jiken1.png"
 badge: "Academic"
-tags: ["statistics", "probability"]
+tags: ["statistics", "probability-theory", "central-limit-theorem", "simulation"]
 ---
 
 ## 背景 (Background)
@@ -90,7 +90,7 @@ $$ f(x) = \frac{1}{\sqrt{2\pi} \cdot 10} \exp\left(-\frac{(x - 50)^2}{200}\right
 ![実験2 1変数の区間幅未指定のヒストグラム](/binomial-distribution-lln/2.0.png)
 ![実験2 1変数の区間幅指定のヒストグラム](/binomial-distribution-lln/2.1.png)
 ![実験2 2変数の区間幅指定のヒストグラム](/binomial-distribution-lln/2.2.png)
-![実験2 8変数の区間幅指定のヒストグラム](/binomial-distribution-lln/333301718069232_.pic.jpg)
+![実験2 8変数の区間幅指定のヒストグラム](/binomial-distribution-lln/clt-8vars.jpg)
 ![実験2 100変数の区間幅指定のヒストグラム](/binomial-distribution-lln/2.100.png)
 
 変数の量が少ない場合と比較して、8変数や100変数の場合は多くのデータが中心値である0.5に集中する。大数の法則が示す通り、標本平均は変数の数が増えれば増えるほど、期待値（$=0.5$）に近づくことが確認できた。
@@ -101,11 +101,11 @@ $$ f(x) = \frac{1}{\sqrt{2\pi} \cdot 10} \exp\left(-\frac{(x - 50)^2}{200}\right
 
 実験3において、平均値と標準偏差を変更した場合のヒストグラムは以下の通りである。
 
-![実験3 正規分布 N~(0,1) のヒストグラム](/binomial-distribution-lln/0,1.png)
-![実験3 正規分布 N~(-2,1) のヒストグラム](/binomial-distribution-lln/-2,1.png)
-![実験3 正規分布 N~(2,1) のヒストグラム](/binomial-distribution-lln/2,1.png)
-![実験3 正規分布 N~(0,2) のヒストグラム](/binomial-distribution-lln/0,2.png)
-![実験3 正規分布 N~(0,4) のヒストグラム](/binomial-distribution-lln/0,4.png)
+![実験3 正規分布 N~(0,1) のヒストグラム](/binomial-distribution-lln/z01.png)
+![実験3 正規分布 N~(-2,1) のヒストグラム](/binomial-distribution-lln/n21.png)
+![実験3 正規分布 N~(2,1) のヒストグラム](/binomial-distribution-lln/t21.png)
+![実験3 正規分布 N~(0,2) のヒストグラム](/binomial-distribution-lln/z02.png)
+![実験3 正規分布 N~(0,4) のヒストグラム](/binomial-distribution-lln/z04.png)
 
 標準偏差を固定（$\sigma=1$）し、平均値を変更した場合、分布の形状（広がり）は全く同じであるが、図形の中心位置がそれぞれ $0, -2, 2$ へと平行移動する。
 一方、平均を固定（$\mu=0$）し、標準偏差を変更した場合、図形の中心位置は変わらないが、標準偏差が大きくなるにつれて、分布の形状がより平坦で幅広くなることが確認できる。

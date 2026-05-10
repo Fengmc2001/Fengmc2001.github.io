@@ -12,4 +12,5 @@ badge: "Academic"
 heroImage: "/binomial-distribution-lln/jiken1.png"
 projectUrl: "/blog/binomial-distribution-lln"
 pubDate: "2024-06-10"
+featured: false
 ---

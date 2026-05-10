@@ -4,7 +4,7 @@ description: "M/M/1待ち行列モデルを応用した自動車整備工場と�
 pubDate: "2026-01-01"
 heroImage: "/analysis.svg"
 badge: "Academic"
-tags: ["simulation", "operations-research"]
+tags: ["queuing-theory", "mm1-model", "operations-research", "simulation"]
 ---
 
 ## 背景 (Background)
@@ -14,6 +14,10 @@ tags: ["simulation", "operations-research"]
 ## 導入
 
 本プロジェクトでは、待ち行列理論、特にM/M/1モデルを応用して、自動車整備工場およびスーパーマーケットのレジにおけるサービス効率と待ち行列長を評価する。また、複雑なシステムを解析するためのメタヒューリスティック最適化手法（焼きなまし法、蟻コロニー最適化法）や、エージェントベースモデルの実例についても調査し、システムシミュレーションの有用性を総合的に考察する。
+
+![自動車整備工場の待ち行列モデル概念図](/queuing-theory-simulation/i1.jpg)
+
+![スーパーマーケットのレジ待ちモデル](/queuing-theory-simulation/i2.jpg)
 
 ## 自動車整備工場の待ち行列分析
 

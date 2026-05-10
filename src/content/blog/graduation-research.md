@@ -4,7 +4,7 @@ description: "卒業研究のテーマと、これまでに学んだ機械的忘
 pubDate: "2026-05-09"
 heroImage: "/analysis.svg"
 badge: "Trustworthy AI"
-tags: ["machine-unlearning", "mllm", "trustworthy-ai", "multilingual"]
+tags: ["machine-unlearning", "mllm", "trustworthy-ai", "multilingual", "nlp", "evaluation"]
 ---
 
 > 本ページは学習・調査の整理用ノートであり、進行中の実験設計や未公開の評価結果には触れない。今後随時更新する予定。

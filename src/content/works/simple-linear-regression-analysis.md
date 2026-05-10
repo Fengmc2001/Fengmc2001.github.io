@@ -12,4 +12,5 @@ badge: "Academic"
 heroImage: "/simple-linear-regression-analysis/zu1.jpg"
 projectUrl: "/blog/simple-linear-regression-analysis"
 pubDate: "2024-12-17"
+featured: false
 ---

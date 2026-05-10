@@ -4,7 +4,7 @@ description: "古典的な人工知能手法であるA*アルゴリズムを用�
 pubDate: "2025-10-08"
 heroImage: "/a-star-search-algorithm/kadai1-1.png"
 badge: "Academic"
-tags: ["artificial-intelligence", "algorithms"]
+tags: ["a-star", "pathfinding", "artificial-intelligence", "algorithms"]
 ---
 
 ## 背景 (Background)
@@ -40,8 +40,8 @@ $$
 ![最良優先探索の経路](/a-star-search-algorithm/kadai1-2.png)
 図2: 最良優先探索の経路
 
-![A*アルゴリズムの経路](/a-star-search-algorithm/kadai1-1.png)
-図3: A*アルゴリズムの経路
+![A*アルゴリズムの経路](/a-star-search-algorithm/kadai1-2.png)
+図3: A*アルゴリズムの経路（図2の最良優先探索と同じ可視化画像）
 
 ## 最適探索
 
