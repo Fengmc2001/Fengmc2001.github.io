@@ -33,6 +33,10 @@ export const visibleWorks = (works: WorkEntry[], locale: Locale) =>
   works
     .filter((work) => !work.data.visibleIn || work.data.visibleIn.includes(locale))
     .sort((a, b) => {
+      // Featured items always sort first
+      if (a.data.featured && !b.data.featured) return -1;
+      if (!a.data.featured && b.data.featured) return 1;
+      // Within same featured status, sort by pubDate descending
       const diff = b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
       if (diff !== 0) return diff;
       return (a.data.order ?? 0) - (b.data.order ?? 0);
