@@ -2,7 +2,7 @@
 title: "画像処理：空間フィルタリングと2次元フーリエ変換"
 description: "ガウシアンフィルタを用いたノイズ除去と、手書き2次元フーリエ変換による周波数領域フィルタリングの実装。"
 pubDate: "2025-04-24"
-heroImage: "/image-processing-fourier-transform/hybridimage1.png"
+heroImage: "/image-processing-fourier-transform/hybridimage1.jpg"
 badge: "Academic"
 tags: ["image-processing", "computer-vision"]
 ---
@@ -127,7 +127,7 @@ $$
 
 ハイブリッド画像とは、遠くから見るか近くから見るかによって、異なる画像が見える画像です。
 
-![Hybrid imageの例](/image-processing-fourier-transform/hybridimage1.png)
+![Hybrid imageの例](/image-processing-fourier-transform/hybridimage1.jpg)
 
 ハイブリッド画像の作成手順は以下の通りです：
 

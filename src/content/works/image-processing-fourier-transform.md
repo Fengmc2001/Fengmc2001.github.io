@@ -9,7 +9,7 @@ description:
   zh: "利用高斯滤波进行图像降噪，并手写2D-FFT实现频域滤波。"
 section: "writing"
 badge: "Academic"
-heroImage: "/image-processing-fourier-transform/hybridimage1.png"
+heroImage: "/image-processing-fourier-transform/hybridimage1.jpg"
 projectUrl: "/blog/image-processing-fourier-transform"
 pubDate: "2025-04-24"
 ---
