@@ -9,7 +9,7 @@ description:
   zh: "应用M/M/1排队论模型评估服务效率与队列长度。"
 section: "writing"
 badge: "Academic"
-heroImage: "/analysis.svg"
+heroImage: "/queuing-theory-simulation/i1.jpg"
 projectUrl: "/blog/queuing-theory-simulation"
 pubDate: "2026-01-01"
 featured: false

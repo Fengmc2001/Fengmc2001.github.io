@@ -2,7 +2,7 @@
 title: "M/M/1待ち行列モデルを用いたサービス効率のシミュレーション評価"
 description: "M/M/1待ち行列モデルを応用した自動車整備工場とスーパーマーケットのサービス効率と待ち行列長の評価シミュレーション。"
 pubDate: "2026-01-01"
-heroImage: "/analysis.svg"
+heroImage: "/queuing-theory-simulation/i1.jpg"
 badge: "Academic"
 tags: ["queuing-theory", "mm1-model", "operations-research", "simulation"]
 ---
