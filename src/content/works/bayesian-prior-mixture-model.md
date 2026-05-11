@@ -1,8 +1,8 @@
 ---
 title:
-  en: "Bayesian Prior Mixture Model Analysis"
-  ja: "ベイズ混合事前分布モデルを用いた分析"
-  zh: "贝叶斯混合先验分布模型分析"
+  en: "Inference using Bayesian Mixture Prior Models"
+  ja: "ベイズ混合事前分布を用いた事後分布の推論"
+  zh: "贝叶斯混合先验分布模型推理"
 description:
   en: "Bayesian inference using a mixture of Beta prior distributions."
   ja: "ベータ分布の混合事前分布を用いたベイズ推論と分析。"
