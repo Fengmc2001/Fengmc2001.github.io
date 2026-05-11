@@ -66,6 +66,26 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <p class="text-xs text-base-content/40 mt-3">* データは教員提供、解析・執筆は個人で実施。</p>
     </section>
 
+    <!-- 重回帰分析 -->
+    <section class="relative pl-6 border-l-2 border-accent/30">
+      <div class="absolute -left-[5px] top-1 h-2 w-2 rounded-full bg-accent"></div>
+      <div class="badge badge-accent badge-outline mb-3">統計モデリング / Statistical Modeling</div>
+      <h2 class="text-xl font-bold mb-2 text-base-content">
+        <a href="/blog/multiple-linear-regression-analysis" class="hover:text-accent transition-colors">
+          重回帰分析における外れ値の処理と信頼区間のシミュレーション検証
+        </a>
+      </h2>
+      <p class="text-base-content/70 text-sm leading-relaxed mb-4">
+        多変量データに対する重回帰モデリングにおいて、回帰診断による外れ値の特定・除外効果を検証し、さらにモンテカルロシミュレーションを用いて95%信頼区間の被覆率（Coverage Probability）を実証的に確認した演習です。
+      </p>
+      <div class="flex flex-wrap gap-4 text-sm items-center bg-base-100 border border-base-200 p-3 rounded-lg w-fit">
+        <a href="/blog/multiple-linear-regression-analysis" class="font-medium text-accent hover:underline flex items-center gap-1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          記事を読む
+        </a>
+      </div>
+    </section>
+
     <div class="divider my-4"></div>
 
     <!-- 資格 -->

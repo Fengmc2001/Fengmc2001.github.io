@@ -144,6 +144,29 @@ Target Trial Emulation の枠組みでは、観察データで模倣的 RCT を�
 ## ソースコードとデータ
 
 本解析で使用した R コードおよびダミーデータは、以下の GitHub リポジトリにて公開している：
-- [Kaplan-Meier Survival Estimation (GitHub)](https://github.com/Fengmc2001/portfolio-projects/tree/main/kaplan-meier-survival-estimation)
+
+<div class="not-prose my-10">
+  <a
+    href="https://github.com/Fengmc2001/portfolio-projects/tree/main/kaplan-meier-survival-estimation"
+    target="_blank"
+    rel="noreferrer"
+    class="group block rounded-xl border border-slate-200 bg-slate-50/80 p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:bg-white hover:shadow-md"
+  >
+    <div class="flex items-start gap-4">
+      <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 fill-current">
+          <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.53 2.87 8.38 6.84 9.74.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.38-3.37-1.38-.45-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.94.85.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.98c.85 0 1.7.12 2.5.34 1.9-1.33 2.74-1.05 2.74-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9 0 1.38-.01 2.49-.01 2.82 0 .27.18.59.69.49A10.08 10.08 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"></path>
+        </svg>
+      </div>
+      <div>
+        <p class="m-0 text-sm font-medium text-slate-500">GitHub</p>
+        <p class="m-0 mt-1 text-lg font-semibold text-slate-900">kaplan-meier-survival-estimation</p>
+        <p class="m-0 mt-2 text-sm leading-relaxed text-slate-600">
+          Kaplan-Meier推定量と右打ち切りのシミュレーションに関する R ソースコードとデータ。
+        </p>
+      </div>
+    </div>
+  </a>
+</div>
 
 [報告書（レポート）原本](/biostatistics/kaplan-meier-report.pdf)

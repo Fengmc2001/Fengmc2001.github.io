@@ -111,3 +111,31 @@ $10,000$ 回の繰り返しの結果、真のパラメータを含む区間の�
 本プロジェクトでは、重回帰モデルの構築を通じて、外れ値の検出とその除外がモデルの適合度と予測精度にもたらす影響を実践的に評価しました。さらに、モンテカルロシミュレーションにより、推測統計の根幹である「信頼区間の被覆率」を数値的に確認しました。
 
 これらの分析手法とシミュレーション技術は、観測データのノイズやバイアスに対処しつつ、統計モデルの信頼性を確保するための基盤となります。これは、のちに因果推論や臨床試験データの解析において交絡因子を適切にモデル化する際にも不可欠な素養です。
+
+## ソースコードとデータ
+
+本解析で使用した R コードは、以下の GitHub リポジトリにて公開している：
+
+<div class="not-prose my-10">
+  <a
+    href="https://github.com/Fengmc2001/portfolio-projects/tree/main/multiple-linear-regression-analysis"
+    target="_blank"
+    rel="noreferrer"
+    class="group block rounded-xl border border-slate-200 bg-slate-50/80 p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:bg-white hover:shadow-md"
+  >
+    <div class="flex items-start gap-4">
+      <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 fill-current">
+          <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.53 2.87 8.38 6.84 9.74.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.38-3.37-1.38-.45-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.94.85.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.98c.85 0 1.7.12 2.5.34 1.9-1.33 2.74-1.05 2.74-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9 0 1.38-.01 2.49-.01 2.82 0 .27.18.59.69.49A10.08 10.08 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"></path>
+        </svg>
+      </div>
+      <div>
+        <p class="m-0 text-sm font-medium text-slate-500">GitHub</p>
+        <p class="m-0 mt-1 text-lg font-semibold text-slate-900">multiple-linear-regression-analysis</p>
+        <p class="m-0 mt-2 text-sm leading-relaxed text-slate-600">
+          重回帰分析における外れ値の診断と、信頼区間被覆率のモンテカルロシミュレーションの R コード。
+        </p>
+      </div>
+    </div>
+  </a>
+</div>
