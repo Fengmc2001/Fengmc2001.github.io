@@ -19,20 +19,36 @@ const pagePath = normalizedPath === "/ja" || normalizedPath === "/zh"
   : normalizedPath.replace(/^\/(ja|zh)/, "") || "/";
 
 const cleanPath = pagePath.startsWith("/") ? pagePath : `/${pagePath}`;
+const isBiostatPortfolio = cleanPath === "/biostatistics-portfolio";
 
 const homeHref = currentLocale === "en" ? "/" : `/${currentLocale}/`;
 const languageLinks = locales
   .map((locale) => {
     let href;
-    if (locale.code === "en") {
-      href = cleanPath;
+    let onClickStr = undefined;
+    let isCurrent = locale.code === currentLocale;
+
+    if (isBiostatPortfolio) {
+      isCurrent = locale.code === "ja";
+      href = "#";
+      if (locale.code !== "ja") {
+        onClickStr = "alert('このページは日本語のみ対応しています。'); return false;";
+      } else {
+        onClickStr = "event.preventDefault();";
+      }
     } else {
-      href = `/${locale.code}${cleanPath === "/" ? "/" : cleanPath}`;
+      if (locale.code === "en") {
+        href = cleanPath;
+      } else {
+        href = `/${locale.code}${cleanPath === "/" ? "/" : cleanPath}`;
+      }
     }
+
     return {
       ...locale,
-      isCurrent: locale.code === currentLocale,
-      href: href,
+      isCurrent,
+      href,
+      onClickStr,
     };
   });
 ---
@@ -55,7 +71,7 @@ const languageLinks = locales
       <div class="flex items-center gap-1">
         {
           languageLinks.map((link) => (
-            <a class:list={["btn btn-xs sm:btn-sm whitespace-nowrap", link.isCurrent ? "btn-active" : "btn-ghost"]} href={link.href}>
+            <a class:list={["btn btn-xs sm:btn-sm whitespace-nowrap", link.isCurrent ? "btn-active" : "btn-ghost"]} href={link.href} onclick={link.onClickStr}>
               {link.label}
             </a>
           ))
@@ -69,7 +85,7 @@ const languageLinks = locales
   <div class="flex items-center gap-1 rounded-lg bg-base-100/80 p-1 backdrop-blur">
     {
       languageLinks.map((link) => (
-        <a class:list={["btn btn-sm whitespace-nowrap", link.isCurrent ? "btn-active" : "btn-ghost"]} href={link.href}>
+        <a class:list={["btn btn-sm whitespace-nowrap", link.isCurrent ? "btn-active" : "btn-ghost"]} href={link.href} onclick={link.onClickStr}>
           {link.label}
         </a>
       ))
