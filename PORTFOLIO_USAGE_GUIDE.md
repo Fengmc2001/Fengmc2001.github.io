@@ -137,12 +137,41 @@ const card = workCard(work, "en", { useSummary: true, url: projectRoutes.en });
 - 添加新 placeholder：编辑 `src/lib/blogFilters.ts` 的 `HIDDEN_NOTE_SLUGS`，三语主页自动同步。
 - 注意：被隐藏的文章 URL 仍然能直接访问，只是不出现在主页 Latest notes。如果要彻底下线，删除 md 文件本身。
 
-### 0.10 404 页面是 locale-aware，但**必须用客户端 JS 检测**
-- GitHub Pages 静态托管对**所有未匹配 URL** 都只返回**同一份** `dist/404.html`。这意味着：
-  - **不能**用 `Astro.url.pathname` 在 server 端判断 locale——build 时它只是 `/404`，永远会把所有访问者识别成英文。
+### 0.10 404 页面是 locale-aware，但必须用客户端 JS 检测
+- GitHub Pages 静态托管对所有未匹配 URL 都只返回同一份 `dist/404.html`。这意味着：
+  - 不能用 `Astro.url.pathname` 在 server 端判断 locale——build 时它只是 `/404`，永远会把所有访问者识别成英文。
   - 必须用 `<script is:inline>` 在浏览器里读 `location.pathname`，再 DOM 操作把 `headline`、`btn`、`href` 三处替换成对应 locale 的文案。
 - 实现位置：`src/pages/404.astro` 的 `<script is:inline>` 块；DOM 节点用 `id="not-found-headline"` / `id="not-found-home"` 命名。
 - 新增其他全站语言时，更新 `labels` 字典即可，不要改回 server 端逻辑。
+
+### 0.11 文章末尾的 GitHub Repository 链接卡片规范
+在文章末尾链接外部代码仓库时，**严禁使用简单的 Markdown 无序列表链接**（如 `- [Project Name (GitHub)](url)`）。必须统一使用以下带有 SVG 图标和 Tailwind 样式的 HTML 卡片块，以保持与全站其他页面的高度一致性（参考 `irt_etesting_system.md` 或 `multiple-linear-regression-analysis.md`）：
+
+```html
+<div class="not-prose my-10">
+  <a
+    href="https://github.com/Fengmc2001/portfolio-projects/tree/main/<your-repo-folder>"
+    target="_blank"
+    rel="noreferrer"
+    class="group block rounded-xl border border-slate-200 bg-slate-50/80 p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:bg-white hover:shadow-md"
+  >
+    <div class="flex items-start gap-4">
+      <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 fill-current">
+          <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.53 2.87 8.38 6.84 9.74.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.38-3.37-1.38-.45-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.94.85.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.98c.85 0 1.7.12 2.5.34 1.9-1.33 2.74-1.05 2.74-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9 0 1.38-.01 2.49-.01 2.82 0 .27.18.59.69.49A10.08 10.08 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"></path>
+        </svg>
+      </div>
+      <div>
+        <p class="m-0 text-sm font-medium text-slate-500">GitHub</p>
+        <p class="m-0 mt-1 text-lg font-semibold text-slate-900">Repository Folder Name</p>
+        <p class="m-0 mt-2 text-sm leading-relaxed text-slate-600">
+          简短的日文描述。
+        </p>
+      </div>
+    </div>
+  </a>
+</div>
+```
 
 ### 0.8 三语 UI 标签集中在两处
 - 侧边栏标签（Home/Works/Notes/CV/Contact）：`src/components/SideBarMenu.astro` 中的 `labels` 字典。
