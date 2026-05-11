@@ -11,11 +11,11 @@ tags: ["machine-unlearning", "mllm", "trustworthy-ai", "multilingual", "nlp", "e
 
 ## 1. 概要
 
-本研究のテーマは、**多言語マルチモーダル大規模言語モデル (Multilingual Multimodal Large Language Models, MLLMs) における機械的忘却 (machine unlearning) の評価** である。
+本研究のテーマは、多言語マルチモーダル大規模言語モデル (Multilingual Multimodal Large Language Models, MLLMs) における機械的忘却 (machine unlearning) の評価 である。
 
-- **期間：** 2026-04 –（進行中）
-- **分野：** Trustworthy AI / Multimodal Machine Learning / Machine Unlearning
-- **キーワード：** Machine Unlearning, MLLM, Multilingual Evaluation, Privacy, Reliability
+- 期間： 2026-04 –（進行中）
+- 分野： Trustworthy AI / Multimodal Machine Learning / Machine Unlearning
+- キーワード： Machine Unlearning, MLLM, Multilingual Evaluation, Privacy, Reliability
 
 近年、画像理解や Visual Question Answering (VQA) を行う大規模モデルが急速に発展している。一方で、こうしたモデルが個人情報・特定の人物画像・特定のエンティティに関する知識を保持し続けることへの懸念も高まっている。指定された知識を選択的に忘却させつつ、モデル全体の能力を可能な限り保持することは、Trustworthy AI における重要な課題のひとつである。
 
@@ -33,9 +33,9 @@ tags: ["machine-unlearning", "mllm", "trustworthy-ai", "multilingual", "nlp", "e
 
 ### 2.3 多言語設定における追加の難しさ
 
-モデルが複数言語で整合された場合、忘却の効果が **プロンプトに用いる言語に依存する** 可能性がある。英語では忘却に成功しているように見えても、日本語や中国語のクエリでは元の知識が再露出する、という現象が起こり得る。
+モデルが複数言語で整合された場合、忘却の効果が プロンプトに用いる言語に依存する 可能性がある。英語では忘却に成功しているように見えても、日本語や中国語のクエリでは元の知識が再露出する、という現象が起こり得る。
 
-> 多言語マルチモーダルモデルが、視覚–テキスト的知識を **言語横断的に一貫して** 忘却できるかは自明ではない。
+> 多言語マルチモーダルモデルが、視覚–テキスト的知識を 言語横断的に一貫して 忘却できるかは自明ではない。
 
 ---
 
@@ -88,7 +88,7 @@ tags: ["machine-unlearning", "mllm", "trustworthy-ai", "multilingual", "nlp", "e
 
 忘却対象と無関係なタスク（一般的な VQA、無関係な画像説明、一般言語応答）への副作用が大きすぎないか。
 
-これらは互いにトレードオフを伴うため、単一指標ではなく **多次元的な評価プロトコル** を意識している。
+これらは互いにトレードオフを伴うため、単一指標ではなく 多次元的な評価プロトコル を意識している。
 
 ---
 
@@ -115,4 +115,4 @@ tags: ["machine-unlearning", "mllm", "trustworthy-ai", "multilingual", "nlp", "e
 4. 忘却の有効性と一般性能維持のトレードオフ。
 5. 再現可能な実験要約と、将来の拡張に耐える形での記述。
 
-本研究はまだ進行中であり、現段階の主目的は **信頼できる実験設定を組み、評価指標を慎重に定義する** ことにある。
+本研究はまだ進行中であり、現段階の主目的は 信頼できる実験設定を組み、評価指標を慎重に定義する ことにある。

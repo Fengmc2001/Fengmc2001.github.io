@@ -44,7 +44,7 @@ tags: ["biostatistics", "causal-inference", "target-trial-emulation"]
 - 交換可能性 (exchangeability)、positivity、consistency という三つの仮定
 - 交絡 (confounding) と回帰調整、IPW との関係
 
-学習を通じて理解した点は、**因果推論は単なるモデル当てはめではなく、まず推定対象 (estimand) を定義する作業から始まる** ということである。
+学習を通じて理解した点は、因果推論は単なるモデル当てはめではなく、まず推定対象 (estimand) を定義する作業から始まる ということである。
 
 ### 3.2 Target Trial Emulation (TTE)
 
@@ -60,7 +60,7 @@ tags: ["biostatistics", "causal-inference", "target-trial-emulation"]
 - 因果対比 (causal contrast)
 - 解析計画 (analysis plan)
 
-要点として理解したのは、**TTE は統計手法ではなく "問いを先に定義する" 設計フレームワーク** であり、time zero、治療開始、追跡開始の整合性が崩れた解析は immortal time bias などの設計レベルのバイアスを生むということ。
+要点として理解したのは、TTE は統計手法ではなく "問いを先に定義する" 設計フレームワーク であり、time zero、治療開始、追跡開始の整合性が崩れた解析は immortal time bias などの設計レベルのバイアスを生むということ。
 
 ### 3.3 Time-Varying Treatment と Treatment–Confounder Feedback
 
@@ -106,11 +106,11 @@ Grace period をもつ治療戦略を観察データ上で emulate する方法�
 
 ## 4. 学んだ実践的視点
 
-- **問題の翻訳**：臨床的な問いを、potential outcomes に基づく因果的対比に翻訳する手順を意識する。
-- **予測と因果の区別**：予測モデルとしての性能と、因果効果の不偏推定とは別問題である。
-- **仮定の透明化**：exchangeability、positivity、consistency のいずれが、どの段階で必要となるかを記述する。
-- **Bias と variance のトレードオフ**：重み付き推定では、推定対象が明確でも、データが推定を支えない場合がある (positivity 違反、極端な重み)。
-- **シミュレーション設計**：因果推論手法の挙動は、データ生成過程を明示しないと比較しにくい。
+- 問題の翻訳：臨床的な問いを、potential outcomes に基づく因果的対比に翻訳する手順を意識する。
+- 予測と因果の区別：予測モデルとしての性能と、因果効果の不偏推定とは別問題である。
+- 仮定の透明化：exchangeability、positivity、consistency のいずれが、どの段階で必要となるかを記述する。
+- Bias と variance のトレードオフ：重み付き推定では、推定対象が明確でも、データが推定を支えない場合がある (positivity 違反、極端な重み)。
+- シミュレーション設計：因果推論手法の挙動は、データ生成過程を明示しないと比較しにくい。
 
 ---
 
