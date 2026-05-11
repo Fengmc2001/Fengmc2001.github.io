@@ -141,4 +141,9 @@ Target Trial Emulation の枠組みでは、観察データで模倣的 RCT を�
 
 本演習を通じて、生存時間データの特殊性と、それを適切に扱うノンパラメトリック手法の意義を、手計算・シミュレーション・実データの 3 つの角度から確認することができた。
 
+## ソースコードとデータ
+
+本解析で使用した R コードおよびダミーデータは、以下の GitHub リポジトリにて公開している：
+- [Kaplan-Meier Survival Estimation (GitHub)](https://github.com/Fengmc2001/portfolio-projects/tree/main/kaplan-meier-survival-estimation)
+
 [報告書（レポート）原本](/biostatistics/kaplan-meier-report.pdf)

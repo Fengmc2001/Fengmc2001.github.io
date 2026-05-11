@@ -175,4 +175,9 @@ SBP 変化量について Welch の t 検定を実施した：
 2. **検出力分析の実践的価値**：「有意差なし」の解釈には効果量・標準偏差・検出力を踏まえた定量的な判断が不可欠であり、power.t.test はそのための直接的な道具となる。
 3. **サンプルサイズと科学的妥当性**：同じ解析手法でも $n = 10$ と $n = 86$ では結論が全く逆転しうる。この結果は、臨床試験において適切なサンプルサイズ設計を事前に行うことが、倫理的かつ科学的に妥当な結論を導くための不可欠な前提であることを示している。
 
+## ソースコードとデータ
+
+本解析で使用した R コードおよび患者カードの模擬データ（CSV）は、以下の GitHub リポジトリにて公開している：
+- [Simulated RCT Baseline Analysis (GitHub)](https://github.com/Fengmc2001/portfolio-projects/tree/main/simulated-rct-baseline-analysis)
+
 [報告書（レポート）原本](/biostatistics/simulated-clinical-trial-report.pdf) <span class="text-xs text-base-content/30">*共同実験者の情報を伏せています</span>
