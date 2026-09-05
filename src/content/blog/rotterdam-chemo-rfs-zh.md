@@ -13,7 +13,7 @@ tags: ["biostatistics", "survival-analysis", "causal-inference", "overlap-weight
 
 作者：Ziyin Wu（WU ZIYIN）。本文基于 2026 年 8 月 18 日的最终汇报及配套 R 代码。这是一份个人学习解答，并非官方答案、经过同行评审的研究或医疗建议。公开文档的整理与翻译使用了 AI 辅助；汇报代码另行保留。
 
-**[打开三语 HTML 幻灯片](https://fengmc2001.github.io/rotterdam-chemo-rfs/slides/)** — 基于原稿重构的公开教学版，封面不含学校、考试和个人信息，并非原 PDF 的逐页复制。
+**[打开原稿逐页 HTML 幻灯片](https://fengmc2001.github.io/rotterdam-chemo-rfs/slides/)** — 删除原 PDF 整个第1页，按原顺序保留第2～28页（27页）的排版与内容；采用字形路径 SVG，并附可选择、可检索的原文 HTML。幻灯片保持日语，解说文章保留三语。后续页的文献及所属信息按原稿保留。
 
 [复现与发布记录](https://github.com/Fengmc2001/rotterdam-chemo-rfs/blob/main/REPRODUCIBILITY.md) · 验证命令：`python3 analysis/verify.py`
 
@@ -83,7 +83,7 @@ RMST 对比为 +194 天，表示在淋巴结阳性重叠人群中，**最初五�
 - 本分析忠实复现了题目给定的 RFS 删失约定；该约定是否适用，取决于底层的随访过程。
 - 在已验证的运行环境中，bootstrap 执行产生了 **23 条倾向评分分离警告**。这些警告已记录，并未被悄悄丢弃。导出的五年／十年分组汇总包含 500 次 bootstrap 的贡献，但这并不能消除统计推断潜在的不稳定性。
 - 汇报附录讨论了探索性的 Cox 比例风险诊断和极端 ATE-IPTW 权重。这些分析**未在最终的 `survival.R` 中实现**，本文也不将其声称为已复现的结果。它们用于说明方法探索过程，而非第二个最终模型。
-- 公开说明文字澄清了百分点和因果假设，但并非对每张幻灯片的逐字重发。原始幻灯片不予再分发，因为其中也包含机构汇报材料及源自课程的内容。
+- 公开说明文字澄清了百分点和因果假设，但并非对每张幻灯片的逐字重发。HTML 播放器以字形路径 SVG 和提取原文 HTML 逐页展示原 PDF 第2～28页；不分发原 PDF/PPTX 文件及隐藏演讲备注。后续页源自课程的内容、文献及所属信息按原稿保留。
 
 ## 参考文献
 

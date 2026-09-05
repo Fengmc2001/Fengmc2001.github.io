@@ -13,7 +13,7 @@ tags: ["biostatistics", "survival-analysis", "causal-inference", "overlap-weight
 
 Author: Ziyin Wu (WU ZIYIN). Based on the final presentation of August 18, 2026 and its accompanying R code. This is a personal educational solution, not an official answer, a peer-reviewed study, or medical advice. The public documentation was organized and translated with AI assistance; the presentation code is preserved separately.
 
-**[Open the trilingual HTML slides](https://fengmc2001.github.io/rotterdam-chemo-rfs/slides/)** — a reconstructed public teaching edition, with institutional, examination and personal details removed from the cover; not a page-for-page copy of the original PDF.
+**[Open the page-for-page HTML slides](https://fengmc2001.github.io/rotterdam-chemo-rfs/slides/)** — the entire first PDF page is omitted; pages 2–28 (27 pages) retain their original order, layout and content as glyph-outlined SVG, with selectable/searchable extracted text in companion HTML. Slides remain in Japanese; the explanatory articles remain available in three languages. Citations and institutional references on later pages are retained as in the original.
 
 [Reproduction and publication record](https://github.com/Fengmc2001/rotterdam-chemo-rfs/blob/main/REPRODUCIBILITY.md) · Validate with `python3 analysis/verify.py`.
 
@@ -83,7 +83,7 @@ The +194-day RMST contrast means a difference in average recurrence-free time ac
 - The supplied RFS censoring convention is reproduced faithfully; its suitability depends on the underlying follow-up process.
 - Bootstrap execution emitted **23 propensity-score separation warnings** in the verified environment. They were recorded, not silently discarded. The exported 5/10-year group summaries contain 500 bootstrap contributions, but that does not remove potential inference instability.
 - The presentation appendix discusses exploratory Cox proportional-hazards diagnostics and extreme ATE-IPTW weights. Those analyses are **not implemented by the final `survival.R`** and are not claimed as reproduced results here. They explain the methodological exploration, not a second final model.
-- Public explanatory text clarifies percentage points and causal assumptions; it is not a verbatim republication of every slide. Original slides are not redistributed because they also contain institutional presentation material and lecture-derived content.
+- Public explanatory text clarifies percentage points and causal assumptions; it is not a verbatim republication of every slide. The HTML player displays original PDF pages 2–28 as glyph-outlined SVG with extracted-text HTML companions; the original PDF/PPTX files and hidden speaker notes are not distributed. Lecture-derived content, citations and institutional references on later pages are retained as in the original.
 
 ## References
 
