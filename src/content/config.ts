@@ -7,6 +7,8 @@ const localeTextSchema = z.object({
 });
 
 const blogSchema = z.object({
+    locale: z.enum(["en", "ja", "zh"]).optional(),
+    translationGroup: z.string().min(1).optional(),
     title: z.string(),
     description: z.string(),
     pubDate: z.coerce.date(),

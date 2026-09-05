@@ -2,6 +2,8 @@
 title: "Rotterdam乳腺癌数据：从混杂到重叠加权"
 description: "基于最终发表的生存分析完整流程、复现结果与解释边界。"
 pubDate: "2026-09-05"
+locale: "zh"
+translationGroup: "rotterdam-chemo-rfs"
 heroImage: "/biostatistics/rotterdam-chemo-rfs/presentation-plot-04.png"
 badge: "Biostatistics"
 tags: ["biostatistics", "survival-analysis", "causal-inference", "overlap-weighting", "r"]

@@ -2,6 +2,8 @@
 title: "Rotterdam Breast Cancer: From Confounding to Overlap Weighting"
 description: "A reproducible walkthrough of the final survival analysis, its results and limitations."
 pubDate: "2026-09-05"
+locale: "en"
+translationGroup: "rotterdam-chemo-rfs"
 heroImage: "/biostatistics/rotterdam-chemo-rfs/presentation-plot-04.png"
 badge: "Biostatistics"
 tags: ["biostatistics", "survival-analysis", "causal-inference", "overlap-weighting", "r"]

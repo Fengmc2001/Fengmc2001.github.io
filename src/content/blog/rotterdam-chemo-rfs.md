@@ -2,6 +2,8 @@
 title: "Rotterdam乳がんデータ：交絡からOverlap weightingへ"
 description: "最終発表に基づく生存時間解析の手順、再現結果、解釈上の限界。"
 pubDate: "2026-09-05"
+locale: "ja"
+translationGroup: "rotterdam-chemo-rfs"
 heroImage: "/biostatistics/rotterdam-chemo-rfs/presentation-plot-04.png"
 badge: "Biostatistics"
 tags: ["biostatistics", "survival-analysis", "causal-inference", "overlap-weighting", "r"]

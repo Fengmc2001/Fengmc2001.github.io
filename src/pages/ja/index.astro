@@ -5,9 +5,9 @@ import TimelineCurve from "../../components/TimelineCurve.astro";
 import { getCollection } from "astro:content";
 import createSlug from "../../lib/createSlug";
 import { featuredWorks, projectRoutes, workCard } from "../../lib/works";
-import { isPublicNote } from "../../lib/blogFilters";
+import { isPublicNote, notesForLocale } from "../../lib/blogFilters";
 
-const posts = (await getCollection("blog"))
+const posts = notesForLocale(await getCollection("blog"), "ja")
   .filter(isPublicNote)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const works = await getCollection("works");
